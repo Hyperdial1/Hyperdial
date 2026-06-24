@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: light; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-surface text-ink antialiased; }
+  ::selection { @apply bg-brand/20 text-ink; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-5 sm:px-8; }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-brand;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-200;
+  }
+  .btn-primary { @apply btn bg-brand text-white shadow-soft hover:bg-brand-dark; }
+  .btn-dark { @apply btn bg-deep text-white hover:bg-deep-600; }
+  .btn-ghost {
+    @apply btn border border-line bg-white text-ink hover:border-brand hover:text-brand;
+  }
+  .link-quiet { @apply text-muted transition-colors hover:text-ink; }
+  .card { @apply rounded-xl2 border border-line bg-white shadow-soft; }
+
+  .prose-body :where(h2) { @apply mt-10 mb-3 font-display text-2xl font-semibold text-ink; }
+  .prose-body :where(h3) { @apply mt-7 mb-2 font-display text-xl font-semibold text-ink; }
+  .prose-body :where(p) { @apply mb-4 leading-7 text-muted; }
+  .prose-body :where(ul) { @apply mb-4 list-disc space-y-1.5 pl-5 text-muted; }
+  .prose-body :where(ol) { @apply mb-4 list-decimal space-y-1.5 pl-5 text-muted; }
+  .prose-body :where(a) { @apply text-brand underline underline-offset-2; }
+  .prose-body :where(strong) { @apply font-semibold text-ink; }
+  .prose-body :where(blockquote) { @apply my-5 border-l-2 border-brand pl-4 italic text-ink; }
+  .prose-body :where(code) { @apply rounded bg-brand/5 px-1.5 py-0.5 text-[0.85em] text-ink; }
+}
