@@ -13,7 +13,6 @@ const menus: Menu[] = [
     items: [
       { label: "Overview", href: "/product", desc: "What HyperDial does" },
       { label: "How it learns", href: "/product#intelligence", desc: "The self-learning layer" },
-      { label: "Live dashboard", href: "/dashboard", desc: "See it in action" },
       { label: "Security & guardrails", href: "/docs/guardrails", desc: "Read-only by default" },
     ],
   },
@@ -111,9 +110,6 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/dashboard" className="hidden text-sm text-muted hover:text-ink sm:inline">
-            Sign in
-          </Link>
           <Link href="/demo" className="btn-primary">Talk to us</Link>
           <button className="md:hidden" aria-label="Menu" onClick={() => setMobileOpen(!mobileOpen)}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">

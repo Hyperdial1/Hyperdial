@@ -9,7 +9,6 @@ const groups = [
       { label: "How it learns", href: "/product#intelligence" },
       { label: "Pricing", href: "/pricing" },
       { label: "Docs", href: "/docs" },
-      { label: "Sign in", href: "/dashboard" },
     ],
   },
   {

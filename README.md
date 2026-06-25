@@ -16,7 +16,7 @@ variables — nothing breaks if they're empty.
    auto-detects Next.js.
 3. **Deploy.** You get a live URL with the full site:
    `/`, `/product`, `/solutions/*`, `/pricing`, `/demo`, `/blog`, `/glossary`,
-   `/docs`, `/dashboard`, `/privacy`, `/terms`.
+   `/docs`, `/privacy`, `/terms`.
 
 Everything below is optional and makes the demo page fully functional.
 
@@ -92,17 +92,18 @@ still works for the visitor.
 - **Privacy & Terms** are templates with `[BRACKETED]` placeholders, tuned for a
   product that records calls. Fill them in and have a lawyer review — call
   recording carries real consent and data-retention obligations.
-- **Dashboard** shows demo data and is currently public. Protect it with Clerk
-  (see below) before using real data.
 
 ---
 
-## Optional: subdomains and auth
+## Optional: subdomains and a future product app
 
-- **Subdomains** (`app.` / `docs.`): set `NEXT_PUBLIC_ROOT_DOMAIN` and add the
-  subdomains to the same Vercel project. See `middleware.ts`.
-- **Auth (Clerk)**: `npm install @clerk/nextjs`, wrap `app/layout.tsx` in
-  `<ClerkProvider>`, add Clerk middleware, and gate `/dashboard`.
+- **Subdomains** (`docs.`): set `NEXT_PUBLIC_ROOT_DOMAIN` and add the subdomain
+  to the same Vercel project. See `middleware.ts`.
+- There is no logged-in product app (`/dashboard`) right now — it was removed
+  to keep the site focused on marketing while pre-launch. If you build one
+  later, add it back as its own route group and protect it with an auth
+  provider like Clerk (`npm install @clerk/nextjs`, wrap `app/layout.tsx` in
+  `<ClerkProvider>`, add Clerk middleware).
 
 ---
 
