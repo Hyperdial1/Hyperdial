@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAll } from "@/lib/content";
+import { Wordmark } from "@/components/wordmark";
 
 export default function DocsLayout({
   children,
@@ -13,17 +14,12 @@ export default function DocsLayout({
     <div className="flex min-h-screen flex-col">
       <header className="border-b border-line bg-white">
         <div className="wrap flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-brand-indigo to-brand">
-              <span className="font-display text-sm font-bold text-white">H</span>
+          <div className="flex items-center gap-2">
+            <Wordmark />
+            <span className="rounded-full bg-line px-2 py-0.5 text-xs font-normal text-muted">
+              docs
             </span>
-            <span className="font-display text-lg font-semibold">
-              Hyper<span className="text-brand">Dial</span>
-              <span className="ml-2 rounded-full bg-line px-2 py-0.5 text-xs font-normal text-muted">
-                docs
-              </span>
-            </span>
-          </Link>
+          </div>
           <Link href="/" className="text-sm link-quiet">
             ← Back to site
           </Link>

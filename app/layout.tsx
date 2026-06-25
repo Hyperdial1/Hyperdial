@@ -31,6 +31,15 @@ export const metadata: Metadata = {
     "AI call center",
   ],
   alternates: { canonical: "/" },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     type: "website",
     siteName: "HyperDial",
@@ -38,12 +47,14 @@ export const metadata: Metadata = {
     description:
       "Your best agent, in every conversation. AI support across voice, chat, email, and social.",
     url: SITE,
+    images: [{ url: "/logo.png", width: 1200, height: 1200, alt: "HyperDial" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "HyperDial — AI customer service that learns from your best agents",
     description:
       "Your best agent, in every conversation — across voice, chat, email, and social.",
+    images: ["/logo.png"],
   },
   robots: { index: true, follow: true },
 };
