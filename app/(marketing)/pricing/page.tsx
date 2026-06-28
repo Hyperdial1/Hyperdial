@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { tiers, featureMatrix, roiStory, competitors } from "@/content/pricing";
+import { tiers, featureMatrix } from "@/content/pricing";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -92,68 +92,6 @@ export default function PricingPage() {
           </div>
         ))}
       </div>
-
-      {/* ROI story */}
-      <section className="mt-20 rounded-xl2 bg-deep p-8 text-white sm:p-12">
-        <span className="eyebrow text-brand-light">The math</span>
-        <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight">{roiStory.title}</h2>
-        <div className="mt-8 overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-white/10 text-left text-xs uppercase tracking-wider text-slate-soft">
-                <th className="py-2.5 pr-4 font-medium">Metric</th>
-                <th className="py-2.5 pr-4 font-medium">Today (human-only)</th>
-                <th className="py-2.5 pr-4 font-medium text-brand-light">With HyperDial Growth</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-white/10">
-              {roiStory.rows.map((r) => (
-                <tr key={r.metric}>
-                  <td className="py-2.5 pr-4 text-white/90">{r.metric}</td>
-                  <td className="py-2.5 pr-4 text-slate-soft">{r.today}</td>
-                  <td className="py-2.5 pr-4 font-medium text-brand-light">{r.withHyperDial}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-6 max-w-2xl text-sm leading-6 text-slate-soft">{roiStory.footnote}</p>
-      </section>
-
-      {/* Competitor comparison */}
-      <section className="mt-16">
-        <span className="eyebrow">How we compare</span>
-        <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight">HyperDial vs the market</h2>
-        <div className="mt-8 overflow-x-auto rounded-xl2 border border-line">
-          <table className="w-full min-w-[720px] text-sm">
-            <thead className="bg-line/40">
-              <tr className="text-left">
-                <th className="px-4 py-3 font-medium text-muted">Capability</th>
-                {competitors.columns.map((c) => (
-                  <th
-                    key={c}
-                    className={`px-4 py-3 text-center font-medium ${c === "HyperDial" ? "text-brand" : "text-muted"}`}
-                  >
-                    {c}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {competitors.rows.map((r) => (
-                <tr key={r.capability}>
-                  <td className="px-4 py-3 text-ink">{r.capability}</td>
-                  <td className="px-4 py-3 text-center font-medium text-brand">{r.hyperdial}</td>
-                  <td className="px-4 py-3 text-center text-muted">{r.intercom}</td>
-                  <td className="px-4 py-3 text-center text-muted">{r.zendesk}</td>
-                  <td className="px-4 py-3 text-center text-muted">{r.decagon}</td>
-                  <td className="px-4 py-3 text-center text-muted">{r.voiceTools}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
 
       {/* Full feature matrix */}
       <section id="full-features" className="mt-20 scroll-mt-24">
