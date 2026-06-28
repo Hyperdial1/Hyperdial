@@ -54,6 +54,16 @@ export default function DocsLayout({
         </aside>
         <div className="min-w-0 flex-1">{children}</div>
       </div>
+
+      <div className="wrap border-t border-line py-5">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs leading-5 text-faint">
+          <span className="font-medium text-muted">
+            Encrypted in transit and at rest, hosted on AWS, and GDPR-aligned.
+          </span>
+          We never share your data or use it to train models for anyone else
+          &mdash; your patterns are yours alone.
+        </p>
+      </div>
     </div>
   );
 }

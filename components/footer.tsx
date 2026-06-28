@@ -67,6 +67,18 @@ export function Footer() {
           </div>
         ))}
       </div>
+      <div className="wrap border-t border-line py-5">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs leading-5 text-faint">
+          <span className="inline-flex items-center gap-1.5 font-medium text-muted">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M12 2 4 5v6c0 5 3.5 8.5 8 9 4.5-.5 8-4 8-9V5l-8-3Z" stroke="currentColor" strokeWidth="1.6" />
+            </svg>
+            Encrypted in transit and at rest, hosted on AWS, and GDPR-aligned.
+          </span>
+          We never share your data or use it to train models for anyone else
+          &mdash; your patterns are yours alone.
+        </p>
+      </div>
       <div className="wrap flex flex-col items-start justify-between gap-3 border-t border-line py-6 text-xs text-faint sm:flex-row sm:items-center">
         <p>© {new Date().getFullYear()} HyperDial. All rights reserved.</p>
         <a href="mailto:deepak@hyperdial.io" className="hover:text-ink">
