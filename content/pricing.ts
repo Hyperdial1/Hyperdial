@@ -1,0 +1,287 @@
+// Pricing data sourced from HyperDial_Pricing_v2.xlsx — three sheets:
+// Plans Overview + Highlighted (Top Section) -> tiers below
+// Full Feature Matrix -> featureMatrix below
+// ROI & Value -> roiStory below
+// vs Competitors -> competitors below
+
+export type Tier = {
+  id: "pilot" | "growth" | "scale";
+  name: string;
+  tagline: string;
+  pricePerSeat: string;
+  priceNote: string;
+  monthlyTenSeats: string;
+  who: string;
+  comparison: string;
+  deployment: string;
+  highlightLabel: string;
+  highlights: string[];
+  earlyAccess?: string;
+  featured?: boolean;
+};
+
+export const tiers: Tier[] = [
+  {
+    id: "pilot",
+    name: "Pilot — Intelligence Layer",
+    tagline: "Make your existing tool smarter — it learns and auto-answers.",
+    pricePerSeat: "$80",
+    priceNote: "/ seat / mo",
+    monthlyTenSeats: "$800 / mo at 10 seats",
+    who: "Teams that want their existing support tool to perform better — without switching.",
+    comparison: "A smart KB auto-answer layer (like Wotnot) — but it learns from every conversation.",
+    deployment: "Webhook integration on top of your existing tool — built case-by-case. No rip-and-replace.",
+    highlightLabel: "Highlighted features",
+    highlights: [
+      "Connect your knowledge base",
+      "AI auto-answers customer queries",
+      "Agent Intelligence Engine — smarter every conversation",
+      "Knowledge base that builds itself",
+      "Human handoff with full context",
+      "Read-only + ticket actions (zero risk)",
+      "Sits on top of your existing tool — no switching",
+    ],
+    earlyAccess: "Locked for life for founding customers",
+  },
+  {
+    id: "growth",
+    name: "Growth — Full Platform",
+    tagline: "Run your whole support engine on HyperDial — with the Agent Intelligence Process.",
+    pricePerSeat: "$120",
+    priceNote: "/ seat / mo",
+    monthlyTenSeats: "$1,200 / mo at 10 seats",
+    who: "Teams ready to run their full support engine on HyperDial.",
+    comparison: "A full helpdesk (like Zendesk/Intercom) — fully loaded, plus an intelligence layer that learns from every call.",
+    deployment: "Native HyperDial platform + bring-your-own-number / forwarding.",
+    highlightLabel: "Everything in Pilot, plus",
+    highlights: [
+      "Full helpdesk: shared inbox, tickets, help center",
+      "Voice & calling: inbound + outbound AI calls",
+      "All channels: chat, email, WhatsApp, social",
+      "Agent Intelligence Process — learns from every call",
+      "Full analytics & reporting",
+      "Integrations: HubSpot, Salesforce, Zendesk & more",
+    ],
+    featured: true,
+  },
+  {
+    id: "scale",
+    name: "Scale — Enterprise + ROI",
+    tagline: "Enterprise-grade, multi-brand, real-time — with an ROI partner.",
+    pricePerSeat: "$160",
+    priceNote: "/ seat or custom",
+    monthlyTenSeats: "$1,600+ / mo at 10 seats",
+    who: "Larger teams replacing their tools and wanting more — with a partner accountable for ROI.",
+    comparison: "Enterprise CX suite — multi-brand, proactive, real-time, fully customised.",
+    deployment: "Native platform + custom integrations & API.",
+    highlightLabel: "Everything in Growth, plus",
+    highlights: [
+      "Multiple brand identities & help centers",
+      "Proactive support & AI recommendations",
+      "Advanced cross-channel workflows, real-time",
+      "Custom roles, SSO, HIPAA, audit trail",
+      "Personalized onboarding + dedicated ROI partner",
+      "Custom dashboards & deep customization",
+    ],
+  },
+];
+
+export type FeatureRow = { feature: string; pilot: string; growth: string; scale: string };
+export type FeatureSection = { section: string; rows: FeatureRow[] };
+
+export const featureMatrix: FeatureSection[] = [
+  {
+    section: "AI intelligence (the core)",
+    rows: [
+      { feature: "Connect & ingest your knowledge base", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "AI auto-answers customer queries", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Agent Intelligence Engine — learns from every conversation", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Knowledge base that builds itself", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Pattern library", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Manager review & approval", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Multi-source generative answers", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Suggested / auto-draft replies (agent copilot)", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Human handoff with full context", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Multilingual answers", pilot: "Core", growth: "Expanded", scale: "60+ / custom" },
+      { feature: "Tone of voice / brand voice", pilot: "Basic", growth: "✓", scale: "✓" },
+      { feature: "Personalized answers (customer context)", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Decay detection on patterns", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Learns from every voice call", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Proactive AI recommendations & insights", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Testing & simulations", pilot: "—", growth: "✓", scale: "✓" },
+    ],
+  },
+  {
+    section: "Channels",
+    rows: [
+      { feature: "AI over chat", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "AI over email", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "AI over WhatsApp", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "AI over SMS", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "AI over voice / phone", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "AI over social (Instagram / FB / X)", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Web messenger / widget", pilot: "—", growth: "✓", scale: "✓" },
+    ],
+  },
+  {
+    section: "Voice & call features",
+    rows: [
+      { feature: "Buy local / toll-free numbers", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Inbound + outbound AI calls", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Call recording", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Call transcripts & summaries", pilot: "If connected", growth: "✓", scale: "✓" },
+      { feature: "Caller ID & custom greetings", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Mute, hold & transfer", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Team routing", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "IVR / voice workflows", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Call CSAT", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Forward / callback / overflow", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Real-time call monitoring & dashboards", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Call barging / live monitoring", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Standard call reports", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Custom call reports", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Helpdesk / inbox",
+    rows: [
+      { feature: "Shared inbox", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Inbox views", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Macros", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Assign & snooze conversations", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Multiple team inboxes", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Round-robin assignment", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Office hours & reply time", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Workload management", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Service level agreements (SLAs)", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Ticketing",
+    rows: [
+      { feature: "Ticketing system", pilot: "Creates in your tool", growth: "✓", scale: "✓" },
+      { feature: "Ticket forms", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Ticket data attributes", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Tickets portal", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Side conversations", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Help center / knowledge",
+    rows: [
+      { feature: "Connect existing knowledge base", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Public help center", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Unlimited articles & collections", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Help center customization", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Multilingual help center", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Private / unbranded help center", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Multiple help centers", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Proactive support",
+    rows: [
+      { feature: "Proactive messages / banners / tooltips", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Surveys", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Product tours / checklists", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Reporting & analytics",
+    rows: [
+      { feature: "Deflection / volume dashboard", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "AI performance report", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "CSAT tracking", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Cost-per-ticket tracking", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Full intent & outcome analytics", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Report builder & pre-built reports", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Data export", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Advanced / custom reports", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Real-time dashboard", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Handling & safety",
+    rows: [
+      { feature: "Read-only + ticket actions (never risky actions)", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Escalation rules", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Consent / call-recording compliance", pilot: "Via your tool", growth: "✓", scale: "✓" },
+    ],
+  },
+  {
+    section: "Integrations",
+    rows: [
+      { feature: "Connect existing tool via webhooks (case-by-case)", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "HubSpot / Salesforce / Zendesk / Slack / Pipedrive", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Custom actions", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "API access", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Extended API limits & custom integrations", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Platform, security & admin",
+    rows: [
+      { feature: "Data encryption (in transit & at rest)", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Custom objects & events", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Workspace sandbox", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Custom roles", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "SSO & identity management", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Role-based access", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Audit trail", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Data residency", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "HIPAA support", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Multi-brand & customization",
+    rows: [
+      { feature: "Multiple brand identities", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Multibrand messenger / email", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Custom branding / white-label", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Multiple workspaces", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Support & success",
+    rows: [
+      { feature: "Email support", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "Priority support", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Self-serve onboarding", pilot: "✓", growth: "✓", scale: "—" },
+      { feature: "Personalized onboarding", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Dedicated support & SLAs", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Dedicated ROI partner / CSM", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+];
+
+export const roiStory = {
+  title: "The ROI story (10-seat team)",
+  rows: [
+    { metric: "Support headcount", today: "10 agents", withHyperDial: "10 seats (AI-augmented)" },
+    { metric: "Fully-loaded cost per agent / month", today: "$5,000", withHyperDial: "—" },
+    { metric: "Total human cost / month", today: "$50,000", withHyperDial: "$50,000 (initially)" },
+    { metric: "HyperDial cost / month (10 × $120)", today: "—", withHyperDial: "$1,200" },
+    { metric: "HyperDial as % of human cost", today: "—", withHyperDial: "~2%" },
+    { metric: "Typical volume the AI handles", today: "0%", withHyperDial: "60–80% (grows weekly)" },
+    { metric: "Effect", today: "Hire more agents as volume grows", withHyperDial: "Handle 2–3x volume without adding heads" },
+    { metric: "Illustrative saving (avoid 4 hires)", today: "—", withHyperDial: "~$20,000 / month" },
+  ],
+  footnote:
+    "At ~2% of what a human team costs, HyperDial pays for itself the moment it lets you avoid a single hire. Figures illustrative; finalised with each pilot.",
+};
+
+export type CompetitorRow = { capability: string; hyperdial: string; intercom: string; zendesk: string; decagon: string; voiceTools: string };
+
+export const competitors: { columns: string[]; rows: CompetitorRow[] } = {
+  columns: ["HyperDial", "Intercom Fin", "Zendesk AI", "Decagon", "Vapi / Bland / Retell"],
+  rows: [
+    { capability: "Voice / calling", hyperdial: "✓", intercom: "✓", zendesk: "✓ (EAP)", decagon: "✓", voiceTools: "✓" },
+    { capability: "Chat / email / social", hyperdial: "✓", intercom: "✓", zendesk: "✓", decagon: "✓", voiceTools: "—" },
+    { capability: "Learns from YOUR agents", hyperdial: "✓", intercom: "—", zendesk: "—", decagon: "—", voiceTools: "—" },
+    { capability: "Predictable per-seat pricing", hyperdial: "✓", intercom: "— ($/resolution)", zendesk: "— ($/resolution)", decagon: "— (custom)", voiceTools: "— ($/min)" },
+    { capability: "Sits on top of your existing tool", hyperdial: "✓", intercom: "Partial", zendesk: "Partial", decagon: "—", voiceTools: "—" },
+    { capability: "Built for SMB / mid-market budget", hyperdial: "✓", intercom: "Partial", zendesk: "Partial", decagon: "— (enterprise)", voiceTools: "✓ (DIY)" },
+    { capability: "Read-only + ticket safety", hyperdial: "✓", intercom: "Partial", zendesk: "Partial", decagon: "Partial", voiceTools: "—" },
+    { capability: "Knowledge base builds itself", hyperdial: "✓", intercom: "—", zendesk: "—", decagon: "—", voiceTools: "—" },
+  ],
+};

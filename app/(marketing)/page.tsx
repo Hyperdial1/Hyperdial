@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChatDemo } from "@/components/chat-demo";
+import { OutcomesCarousel } from "@/components/outcomes-carousel";
 import { getAll } from "@/lib/content";
 
 const channels = [
@@ -128,6 +129,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <OutcomesCarousel />
 
       {/* Trust */}
       <section className="wrap py-20">

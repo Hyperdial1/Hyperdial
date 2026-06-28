@@ -26,6 +26,7 @@ const groups = [
       { label: "Blog", href: "/blog" },
       { label: "Glossary", href: "/glossary" },
       { label: "Talk to us", href: "/demo" },
+      { label: "Book a demo", href: "/book-a-demo" },
     ],
   },
   {

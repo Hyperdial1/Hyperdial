@@ -5,7 +5,7 @@ const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hyperdial.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
-    "", "/product", "/pricing", "/demo", "/solutions",
+    "", "/product", "/pricing", "/demo", "/book-a-demo", "/solutions",
     "/blog", "/glossary", "/docs", "/privacy", "/terms",
   ];
 

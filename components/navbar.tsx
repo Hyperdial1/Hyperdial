@@ -110,6 +110,9 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Link href="/book-a-demo" className="hidden text-sm font-medium text-muted hover:text-brand sm:inline">
+            Book a demo
+          </Link>
           <Link href="/demo" className="btn-primary">Talk to us</Link>
           <button className="md:hidden" aria-label="Menu" onClick={() => setMobileOpen(!mobileOpen)}>
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -135,6 +138,7 @@ export function Navbar() {
               </div>
             ))}
             <Link href="/pricing" className="block py-1.5 text-sm text-muted" onClick={() => setMobileOpen(false)}>Pricing</Link>
+            <Link href="/book-a-demo" className="block py-1.5 text-sm font-medium text-brand" onClick={() => setMobileOpen(false)}>Book a demo</Link>
           </div>
         </div>
       )}
