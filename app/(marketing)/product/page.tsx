@@ -4,16 +4,52 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Product",
   description:
-    "How HyperDial handles calls and how the Agent Intelligence Process makes it smarter with every conversation.",
+    "HyperDial handles voice, chat, email, and social — and learns from your best agents with every conversation.",
 };
 
-const aopProblems = [
-  { p: "AI is frozen at deployment", s: "Most voice bots are trained once and left. HyperDial keeps learning from every real call." },
-  { p: "The same gap hits again and again", s: "A question the AI can't answer becomes a Signal Gap — resolved through human handoff, then learned so it never recurs." },
-  { p: "Best responses never reach the AI", s: "Your top agent's winning phrases get extracted, approved, and deployed instead of leaving when they do." },
-  { p: "Playbooks live in documents, not calls", s: "Patterns fire inside the live conversation, the moment the customer says something unexpected." },
-  { p: "Nobody notices when a pattern stops working", s: "Decay detection flags a pattern whose success rate is dropping before it drags results down." },
-  { p: "KB articles are manual and stale", s: "HyperDial auto-drafts a knowledge article after every call — your manager approves, the AI knows it forever." },
+const channels = [
+  { name: "Voice", icon: "📞", body: "Inbound and outbound calls, handled end to end or handed off cleanly." },
+  { name: "Live chat", icon: "💬", body: "Real-time answers on your site or app, in the same voice as your team." },
+  { name: "Email", icon: "✉️", body: "Drafts and sends replies, or queues them for a quick human check." },
+  { name: "Social", icon: "💡", body: "DMs and comments answered with the same knowledge as every other channel." },
+];
+
+const whoFor = [
+  {
+    title: "Support teams drowning in repeat questions",
+    body: "Order status, policy questions, account basics — the volume that eats agent time without needing a human touch.",
+  },
+  {
+    title: "Teams that already tried a bot and gave up",
+    body: "If the last AI project felt frozen in time, the difference here is the learning loop — it's covered on the next page.",
+  },
+  {
+    title: "Operations leads who can't add headcount",
+    body: "Handle more volume on the team you already have, with a clear read-only-by-default safety model.",
+  },
+];
+
+const howItWorks = [
+  {
+    n: "1",
+    title: "Connect what you already have",
+    body: "Forward calls, embed chat, connect your inbox and social accounts. No rip-and-replace, no migration project.",
+  },
+  {
+    n: "2",
+    title: "Point it at a knowledge source",
+    body: "Your help center, docs, or FAQs. The AI only answers from what you connect — and the knowledge base grows itself from real conversations over time.",
+  },
+  {
+    n: "3",
+    title: "Start read-only",
+    body: "It answers questions and creates tickets first. No action that could break anything until you deliberately allow it.",
+  },
+  {
+    n: "4",
+    title: "Let it learn from your team",
+    body: "As your agents handle the cases the AI can't yet, it studies what worked and turns that into approved, repeatable patterns — the Agent Intelligence Process, covered in depth on the next page.",
+  },
 ];
 
 export default function ProductPage() {
@@ -31,46 +67,69 @@ export default function ProductPage() {
         </p>
       </div>
 
-      {/* Agent Intelligence Process section */}
-      <section id="intelligence" className="mt-16 scroll-mt-24 rounded-xl2 bg-navy p-8 text-white sm:p-12">
-        <span className="eyebrow text-teal-bright">The differentiator</span>
-        <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight">
-          Agent Intelligence Process — the Agent Observation &amp; Pattern layer
+      {/* Channels */}
+      <section className="mt-14">
+        <span className="eyebrow">One brain, every channel</span>
+        <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+          Voice, chat, email, and social — not four disconnected tools
         </h2>
-        <p className="mt-4 max-w-2xl text-slate-soft">
-          AI support doesn&rsquo;t fail because of the model. It fails because it&rsquo;s
-          static — deployed once, never updated.
-          Meanwhile your human agents learn every day, and that knowledge goes
-          nowhere. Agent Intelligence Process is the layer that closes the loop between human expertise
-          and AI execution.
-        </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {aopProblems.map((item) => (
-            <div key={item.p} className="rounded-xl border border-white/10 bg-navy-800 p-5">
-              <h3 className="font-display text-base font-semibold text-teal-bright">{item.p}</h3>
-              <p className="mt-1.5 text-sm leading-6 text-slate-soft">{item.s}</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {channels.map((c) => (
+            <div key={c.name} className="card p-6">
+              <span className="text-2xl" aria-hidden>{c.icon}</span>
+              <h3 className="mt-3 font-display text-base font-semibold">{c.name}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-muted">{c.body}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* The moat */}
-      <section className="mt-16 max-w-2xl">
-        <span className="eyebrow">The compounding moat</span>
-        <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight">
-          The longer it runs, the harder it is to replace
+      {/* How it works */}
+      <section className="mt-16">
+        <span className="eyebrow">How it works</span>
+        <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+          Live in days, not months
         </h2>
-        <ul className="mt-6 space-y-3 text-muted">
-          <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-dark" />Every call becomes a new pattern candidate.</li>
-          <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-dark" />Every approved pattern makes the AI smarter.</li>
-          <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-dark" />Every resolved Signal Gap means that gap never returns.</li>
-          <li className="flex gap-2.5"><span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-teal-dark" />Every published article grows a knowledge base unique to you.</li>
-        </ul>
-        <p className="mt-5 leading-7 text-muted">
-          That pattern library is built from your own calls. It compounds over
-          time and doesn&rsquo;t transfer to a competitor — which is exactly what
-          makes it a moat.
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {howItWorks.map((s) => (
+            <div key={s.n} className="card p-6">
+              <span className="font-display text-sm font-semibold text-brand">{s.n}</span>
+              <h3 className="mt-2 font-display text-base font-semibold">{s.title}</h3>
+              <p className="mt-1.5 text-sm leading-6 text-muted">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Who it's for */}
+      <section className="mt-16 max-w-2xl">
+        <span className="eyebrow">Who it&rsquo;s for</span>
+        <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+          Built for teams who&rsquo;ve outgrown a static bot
+        </h2>
+        <div className="mt-8 space-y-5">
+          {whoFor.map((w) => (
+            <div key={w.title} className="border-l-2 border-brand pl-5">
+              <h3 className="font-display text-base font-semibold">{w.title}</h3>
+              <p className="mt-1 text-sm leading-6 text-muted">{w.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Cross-link to the differentiator */}
+      <section className="mt-16 rounded-xl2 bg-deep p-8 text-white sm:p-12">
+        <span className="eyebrow text-brand-light">The differentiator</span>
+        <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          What actually makes it get smarter over time
+        </h2>
+        <p className="mt-3 max-w-xl text-slate-soft">
+          Most AI support is frozen the day it ships. HyperDial isn&rsquo;t — and the
+          mechanism for that is worth understanding before you buy.
         </p>
+        <Link href="/product/how-it-learns" className="btn mt-6 bg-white text-brand hover:bg-brand-light hover:text-white">
+          See how it learns →
+        </Link>
       </section>
 
       <div className="mt-14 flex flex-wrap gap-3">

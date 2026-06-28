@@ -12,7 +12,7 @@ const menus: Menu[] = [
     label: "Product",
     items: [
       { label: "Overview", href: "/product", desc: "What HyperDial does" },
-      { label: "How it learns", href: "/product#intelligence", desc: "The self-learning layer" },
+      { label: "How it learns", href: "/product/how-it-learns", desc: "The self-learning layer" },
       { label: "Security & guardrails", href: "/docs/guardrails", desc: "Read-only by default" },
     ],
   },
