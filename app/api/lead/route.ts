@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
+// Existing fields (used by the old /demo LeadForm — kept for backward compatibility)
+// + new fields added for the /book-a-demo booking wizard.
 type LeadInput = {
+  // shared / legacy
   name?: string;
   work_email?: string;
   company?: string;
@@ -11,12 +14,34 @@ type LeadInput = {
   monthly_call_volume?: string;
   message?: string;
   source?: string;
+
+  // new — booking wizard
+  first_name?: string;
+  last_name?: string;
+  job_title?: string;
+  company_website?: string;
+  company_size?: string;
+  annual_support_volume?: string;
+  needs?: string[];
+  current_solution?: string;
+  timeline?: string;
+  country?: string;
 };
 
 function clean(v: unknown): string | null {
   if (typeof v !== "string") return null;
   const t = v.trim();
   return t.length ? t.slice(0, 2000) : null;
+}
+
+function cleanArray(v: unknown): string[] | null {
+  if (!Array.isArray(v)) return null;
+  const arr = v
+    .filter((item): item is string => typeof item === "string")
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .slice(0, 20); // sane upper bound
+  return arr.length ? arr : null;
 }
 
 export async function POST(req: NextRequest) {
@@ -27,8 +52,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
+  const firstName = clean(body.first_name);
+  const lastName = clean(body.last_name);
+  // Backward compatible: old LeadForm sends a single `name` field.
+  // New wizard sends first_name + last_name — combine them into `name`
+  // so anything still reading `name` (dashboards, the email template) keeps working.
+  const combinedName =
+    firstName && lastName ? `${firstName} ${lastName}` : clean(body.name);
+
   const lead = {
-    name: clean(body.name),
+    // legacy / shared
+    name: combinedName,
     work_email: clean(body.work_email),
     company: clean(body.company),
     phone: clean(body.phone),
@@ -36,9 +70,21 @@ export async function POST(req: NextRequest) {
     monthly_call_volume: clean(body.monthly_call_volume),
     message: clean(body.message),
     source: clean(body.source) ?? "demo_form",
+
+    // new — booking wizard (all optional; null if not sent by the old LeadForm)
+    first_name: firstName,
+    last_name: lastName,
+    job_title: clean(body.job_title),
+    company_website: clean(body.company_website),
+    company_size: clean(body.company_size),
+    annual_support_volume: clean(body.annual_support_volume),
+    needs: cleanArray(body.needs),
+    current_solution: clean(body.current_solution),
+    timeline: clean(body.timeline),
+    country: clean(body.country),
   };
 
-  // Minimal validation
+  // Minimal validation — unchanged from before
   if (!lead.name || !lead.work_email) {
     return NextResponse.json(
       { error: "Name and work email are required." },
@@ -79,7 +125,11 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(resendKey);
       const rows = Object.entries(lead)
-        .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#5B6577">${k}</td><td style="padding:4px 0"><strong>${v ?? "—"}</strong></td></tr>`)
+        .filter(([, v]) => v !== null && v !== undefined)
+        .map(([k, v]) => {
+          const display = Array.isArray(v) ? v.join(", ") : String(v);
+          return `<tr><td style="padding:4px 12px 4px 0;color:#5B6577">${k}</td><td style="padding:4px 0"><strong>${display}</strong></td></tr>`;
+        })
         .join("");
       await resend.emails.send({
         from: notifyFrom,
