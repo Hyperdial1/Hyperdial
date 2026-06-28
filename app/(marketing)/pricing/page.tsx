@@ -28,53 +28,56 @@ export default function PricingPage() {
           </p>
         </div>
 
-        {/* Tier cards — equal height, no visible pricing */}
-        <div className="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
-          {tiers.map((t) => (
-            <div
-              key={t.id}
-              className={`flex h-full flex-col rounded-xl2 border p-8 ${
-                t.featured ? "border-brand bg-deep text-white" : "border-line bg-white"
-              }`}
-            >
-              {t.featured && (
-                <span className="mb-3 inline-flex w-fit items-center rounded-full bg-brand px-3 py-1 text-xs font-medium text-white">
-                  Most popular
-                </span>
-              )}
-              <h2 className="font-display text-lg font-semibold">{t.name}</h2>
-              <p className={`mt-2 text-sm leading-6 ${t.featured ? "text-slate-soft" : "text-muted"}`}>
-                {t.tagline}
-              </p>
-
-              {t.earlyAccess && (
-                <p className="mt-4 text-xs font-medium text-brand">{t.earlyAccess}</p>
-              )}
-
-              <Link
-                href="/demo"
-                className={`btn mt-6 w-full ${
-                  t.featured ? "bg-white text-brand hover:bg-brand-light hover:text-white" : "btn-primary"
+        {/* Tier cards — staircase layout: Pilot shortest, Scale tallest */}
+        <div className="mt-14 grid items-end gap-5 lg:grid-cols-3">
+          {tiers.map((t, i) => {
+            const stepMinHeight = ["lg:min-h-[420px]", "lg:min-h-[480px]", "lg:min-h-[540px]"][i] ?? "";
+            return (
+              <div
+                key={t.id}
+                className={`flex flex-col rounded-xl2 border p-8 ${stepMinHeight} ${
+                  t.featured ? "border-brand bg-deep text-white" : "border-line bg-white"
                 }`}
               >
-                Talk to us
-              </Link>
+                {t.featured && (
+                  <span className="mb-3 inline-flex w-fit items-center rounded-full bg-brand px-3 py-1 text-xs font-medium text-white">
+                    Most popular
+                  </span>
+                )}
+                <h2 className="font-display text-lg font-semibold">{t.name}</h2>
+                <p className={`mt-2 text-sm leading-6 ${t.featured ? "text-slate-soft" : "text-muted"}`}>
+                  {t.tagline}
+                </p>
 
-              <p className={`mt-7 text-xs font-semibold uppercase tracking-wider ${t.featured ? "text-brand-light" : "text-faint"}`}>
-                {t.highlightLabel}
-              </p>
-              <ul className={`mt-3 flex-1 space-y-2.5 text-sm ${t.featured ? "text-slate-soft" : "text-muted"}`}>
-                {t.highlights.slice(0, 4).map((h) => (
-                  <li key={h} className="flex gap-2">
-                    <span className={t.featured ? "text-brand-light" : "text-brand"}>✓</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
+                {t.earlyAccess && (
+                  <p className="mt-4 text-xs font-medium text-brand">{t.earlyAccess}</p>
+                )}
 
-              <ViewAllFeaturesLink tier={t} />
-            </div>
-          ))}
+                <Link
+                  href="/demo"
+                  className={`btn mt-6 w-full ${
+                    t.featured ? "bg-white text-brand hover:bg-brand-light hover:text-white" : "btn-primary"
+                  }`}
+                >
+                  Talk to us
+                </Link>
+
+                <p className={`mt-7 text-xs font-semibold uppercase tracking-wider ${t.featured ? "text-brand-light" : "text-faint"}`}>
+                  {t.highlightLabel}
+                </p>
+                <ul className={`mt-3 flex-1 space-y-2.5 text-sm ${t.featured ? "text-slate-soft" : "text-muted"}`}>
+                  {t.highlights.slice(0, 4 + i).map((h) => (
+                    <li key={h} className="flex gap-2">
+                      <span className={t.featured ? "text-brand-light" : "text-brand"}>✓</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+
+                <ViewAllFeaturesLink tier={t} />
+              </div>
+            );
+          })}
         </div>
 
         {/* Who it's for / comparison strip */}

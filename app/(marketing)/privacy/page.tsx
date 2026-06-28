@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "How HyperDial collects, uses, and protects personal information.",
 };
 
-const body = `_Last updated: [DATE — set this when you publish]_
+const body = `_Last updated: June 29, 2026_
 
 This Privacy Policy explains how **Hyperdial** ("HyperDial", "we", "us", "our")
 collects, uses, discloses, and protects personal information when you visit
@@ -23,8 +23,8 @@ customers in India, the United States, the European Union, and globally.
 
 ## 1. Who we are
 
-HyperDial is operated by **Hyperdial**, registered at C-702 Hari Icon, Nana
-Chiloda, Kotarpur, Ahmedabad 382330, India. For any privacy question, request,
+HyperDial is operated by **Hyperdial**, registered in Ahmedabad, India. For
+any privacy question, request,
 or complaint, contact us at **deepak@hyperdial.io**.
 
 Where HyperDial processes personal data on behalf of a business customer —
@@ -216,7 +216,7 @@ updated date at the top of the page.
 ## 15. Contact us
 
 **Hyperdial**
-C-702 Hari Icon, Nana Chiloda, Kotarpur, Ahmedabad 382330, India
+Ahmedabad, India
 **deepak@hyperdial.io**`;
 
 export default function PrivacyPage() {

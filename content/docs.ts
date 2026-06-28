@@ -153,37 +153,97 @@ results.`,
   {
     slug: "guardrails",
     title: "Security & guardrails",
-    description: "Deciding what the AI is allowed to do.",
+    description: "How HyperDial decides what the AI is allowed to do, and how that's enforced.",
     category: "Configuration",
-    body: `## Read-only by default
+    body: `## Why this matters
 
-HyperDial starts read-only: it answers questions and creates tickets, but takes
-no action that could break anything. You expand its capabilities deliberately.
+The risk with an AI agent isn't that it gives a wrong answer — a chatbot
+that hallucinates produces a wrong sentence. The risk is that an agent with
+real permissions takes a wrong **action**: it issues a refund it shouldn't,
+updates a record incorrectly, or promises something your team can't honor.
+HyperDial's guardrails exist to make sure that whatever the model decides to
+do, the system around it enforces what's actually allowed — regardless of
+how confident the model sounds.
 
-## The three tiers
+## Read-only by default
 
-### Read
+Every new HyperDial deployment starts read-only: the AI can answer questions
+from your connected knowledge base and open support tickets, but it cannot
+take any action that changes a record, spends money, or otherwise can't be
+undone. You expand its capabilities deliberately, one capability at a time,
+once you've seen how it behaves.
 
-Look up an order, check a policy. Low risk — enable freely.
+## The three risk tiers
 
-### Reversible write
+Every action the AI can take falls into one of three tiers, and the level of
+control scales with how much damage a mistake in that tier could cause.
 
-Send a text, draft a ticket, update a CRM note. Medium risk — every action is
-logged.
+### Tier 1 — Read
 
-### Irreversible write
+Looking up an order, checking a policy, retrieving account status. Nothing
+here changes any data. This tier is low risk and is safe to enable broadly
+from day one.
 
-Refunds, account changes. High risk — set limits or require human approval.
+### Tier 2 — Reversible write
 
-## Limits over bans
+Sending a text, drafting a ticket, updating a CRM note, tagging a
+conversation. These actions change something, but the change can be undone
+or corrected without lasting harm. Every action in this tier is logged with
+the conversation it came from, the input that triggered it, and the
+outcome — so if something looks wrong, you can trace exactly why it
+happened.
 
-Set boundaries, not blanket bans: "callback offers up to X", "escalate above
-Y". Boundaries scale where prohibitions don't.
+### Tier 3 — Irreversible write
+
+Refunds, account cancellations, changes that can't be cleanly undone. This
+is where the cost of a mistake is real, so HyperDial defaults to either a
+hard limit (for example, "auto-approve refunds under $50, escalate
+everything else") or a human-approval step before the action executes. You
+decide where that line sits for your business.
+
+## Limits over blanket bans
+
+Rather than a long list of things the AI is *not* allowed to do, HyperDial
+is configured with boundaries on what it *can* do: "offer a callback window
+of up to 48 hours," "escalate any request over $200," "never modify a
+record older than 90 days." Boundaries like this scale to situations you
+didn't anticipate; a list of bans only ever covers the cases you thought to
+write down.
+
+## Approval before deployment, not after
+
+Every pattern the Agent Intelligence Process drafts — and every rule you or
+your team writes — has to be approved by someone on your side before it
+goes live. The AI never silently teaches itself a new behavior in
+production; a human always signs off first. If two suggested patterns
+conflict with each other, HyperDial surfaces the conflict and asks your
+manager to decide, rather than picking silently.
+
+## Escalation and human handoff
+
+Anything outside the AI's current knowledge or permissions hands off to a
+human with full conversation context attached — not a cold transfer. The
+person picking up the conversation can see exactly what was asked, what the
+AI already tried, and where it got stuck. That moment also becomes a Signal
+Gap: once a human resolves it, the resolution is captured and the same gap
+won't need a human again next time.
+
+## Defending against manipulation
+
+Conversations — especially voice and chat — are also where prompt injection
+attempts show up: a caller trying to talk the AI into ignoring its
+instructions, exceeding its permissions, or revealing something it
+shouldn't. Guardrails here are enforced outside the model itself, in the
+layer that decides whether a proposed action is actually allowed, so a
+manipulated or confused model still can't execute an action your
+configuration doesn't permit.
 
 ## Auditing
 
-Every action is logged with the call, the inputs, and the outcome. Review the
-irreversible ones regularly.`,
+Every action the AI takes is logged with the conversation it came from, the
+inputs that led to it, and the resulting outcome. Tier 2 and Tier 3 actions
+are the ones worth reviewing regularly — that's where a misconfigured
+boundary or a drifting pattern would actually cost you something.`,
   },
   {
     slug: "evaluation",

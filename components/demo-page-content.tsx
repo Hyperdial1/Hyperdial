@@ -98,7 +98,7 @@ export function DemoPageContent() {
         <div className="wrap relative py-20 text-center md:py-24">
           <span className="eyebrow justify-center text-brand-light">
             <span className="h-1.5 w-1.5 rounded-full bg-brand-light" />
-            Book a demo
+            Talk to us
           </span>
           <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
             See HyperDial handle your real conversations — not a script
@@ -108,7 +108,7 @@ export function DemoPageContent() {
             setup struggles with. No slides, no commitment.
           </p>
           <button onClick={() => setOpen(true)} className="btn-primary mt-8">
-            Book a demo
+            Talk to us
           </button>
           <p className="mt-3 text-sm text-slate-soft">
             <span className="text-amber-400">★★★★★</span> Trusted by support
@@ -259,7 +259,7 @@ export function DemoPageContent() {
             onClick={() => setOpen(true)}
             className="btn mt-8 bg-white text-brand hover:bg-brand-light hover:text-white"
           >
-            Book a demo
+            Talk to us
           </button>
           <p className="mt-5 text-sm text-slate-soft">
             Prefer to grab a slot straight off the calendar?{" "}
