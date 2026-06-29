@@ -22,9 +22,17 @@ function useExpand() {
 
 export function ViewAllFeaturesLink({ tier }: { tier: Tier }) {
   const { setExpanded } = useExpand();
+  function handleClick() {
+    setExpanded(true);
+    // Wait for the accordion to render/expand before scrolling to it —
+    // otherwise we scroll to where the (still collapsed) section currently is.
+    setTimeout(() => {
+      document.getElementById("full-features")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  }
   return (
     <button
-      onClick={() => setExpanded(true)}
+      onClick={handleClick}
       className={`mt-5 text-left text-sm font-medium ${tier.featured ? "text-brand-light" : "text-brand"} hover:underline`}
     >
       View all features →
