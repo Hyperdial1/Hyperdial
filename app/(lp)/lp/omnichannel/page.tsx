@@ -4,7 +4,8 @@ import { LpHero } from "@/components/lp/lp-hero";
 import { LpProblem } from "@/components/lp/lp-problem";
 import { LpHowItWorks } from "@/components/lp/lp-how-it-works";
 import { AopLoop } from "@/components/lp/aop-loop";
-import { LpDemoForm } from "@/components/lp/lp-demo-form";
+import { LpPopup } from "@/components/lp/lp-popup";
+import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 
 export const metadata: Metadata = {
   title: "Omnichannel AI Support Platform | HyperDial",
@@ -59,20 +60,22 @@ const channels = [
 ];
 
 export default function OmnichannelLp() {
+  const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
+      <LpPopup source="lp_omni" schedulerUrl={schedulerUrl} />
+      <LpFloatingCta label="Book a Demo" />
+
       <LpHeader />
 
       <LpHero
         eyebrow="Omnichannel AI Platform"
         headline="One AI brain. Every channel. Gets smarter every day."
         subhead="Voice, chat, email, social, and ticketing — unified under one AOP-powered platform. Replace the patchwork of tools your team is duct-taping together, and run support from a single intelligent system."
-        ctaLabel="Book a Demo"
       />
 
       <LpProblem points={problems} />
 
-      {/* Channels grid */}
       <section className="py-14 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <p className="text-sm text-muted mb-8">Everything your team touches, in one place</p>
@@ -91,7 +94,6 @@ export default function OmnichannelLp() {
 
       <AopLoop />
 
-      {/* Who it's for */}
       <section className="py-16 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold text-ink mb-8">
@@ -113,7 +115,6 @@ export default function OmnichannelLp() {
         </div>
       </section>
 
-      {/* Honest note */}
       <section className="py-10 bg-surface border-b border-line">
         <div className="wrap max-w-2xl mx-auto text-center">
           <p className="text-sm text-muted italic leading-relaxed">
@@ -123,22 +124,10 @@ export default function OmnichannelLp() {
         </div>
       </section>
 
-      {/* Book a Demo */}
-      <section id="book-demo" className="py-20 bg-surface">
-        <div className="wrap max-w-xl mx-auto text-center mb-10">
-          <p className="eyebrow mb-3">Book a Demo</p>
-          <h2 className="font-display text-3xl font-semibold text-ink mb-3">
-            See the full platform live
-          </h2>
-          <p className="text-muted">
-            20 minutes with our founding team. We&rsquo;ll show you exactly how the platform works across all channels — and what it would look like for your specific stack.
-          </p>
-        </div>
-        <LpDemoForm source="lp_omni" />
-      </section>
-
       <footer className="border-t border-line py-6 text-center text-xs text-faint bg-white">
-        © {new Date().getFullYear()} HyperDial · <a href="/privacy" className="hover:text-brand">Privacy</a> · <a href="/terms" className="hover:text-brand">Terms</a>
+        © {new Date().getFullYear()} HyperDial ·{" "}
+        <a href="/privacy" className="hover:text-brand">Privacy</a> ·{" "}
+        <a href="/terms" className="hover:text-brand">Terms</a>
       </footer>
     </>
   );

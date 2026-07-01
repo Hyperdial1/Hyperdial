@@ -4,7 +4,8 @@ import { LpHero } from "@/components/lp/lp-hero";
 import { LpProblem } from "@/components/lp/lp-problem";
 import { LpHowItWorks } from "@/components/lp/lp-how-it-works";
 import { AopLoop } from "@/components/lp/aop-loop";
-import { LpDemoForm } from "@/components/lp/lp-demo-form";
+import { LpPopup } from "@/components/lp/lp-popup";
+import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 
 export const metadata: Metadata = {
   title: "AI Support Agent for Chat, Email & Social | HyperDial",
@@ -50,15 +51,18 @@ const steps = [
 ];
 
 export default function SupportAgentLp() {
+  const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
+      <LpPopup source="lp_support" schedulerUrl={schedulerUrl} />
+      <LpFloatingCta label="Book a Demo" />
+
       <LpHeader />
 
       <LpHero
         eyebrow="AI Support Agent"
         headline="Handles the tickets your team writes the same answer to, every day."
         subhead="HyperDial's AI support agent works across chat, email, and social. It learns from your best agents' resolutions and handles repeat queries instantly — so your team can focus on the conversations that actually need a human."
-        ctaLabel="Book a Demo"
       />
 
       <LpProblem points={problems} />
@@ -67,7 +71,6 @@ export default function SupportAgentLp() {
 
       <AopLoop />
 
-      {/* Stats strip */}
       <section className="py-12 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto">
           <dl className="grid sm:grid-cols-3 gap-8 text-center">
@@ -85,7 +88,6 @@ export default function SupportAgentLp() {
         </div>
       </section>
 
-      {/* Who it's for */}
       <section className="py-16 bg-surface border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold text-ink mb-8">
@@ -107,22 +109,10 @@ export default function SupportAgentLp() {
         </div>
       </section>
 
-      {/* Book a Demo */}
-      <section id="book-demo" className="py-20 bg-surface">
-        <div className="wrap max-w-xl mx-auto text-center mb-10">
-          <p className="eyebrow mb-3">Book a Demo</p>
-          <h2 className="font-display text-3xl font-semibold text-ink mb-3">
-            See it handle your tickets live
-          </h2>
-          <p className="text-muted">
-            20 minutes with our team. We&rsquo;ll walk through how HyperDial would handle your most common support scenarios — before you commit to anything.
-          </p>
-        </div>
-        <LpDemoForm source="lp_support" />
-      </section>
-
       <footer className="border-t border-line py-6 text-center text-xs text-faint bg-white">
-        © {new Date().getFullYear()} HyperDial · <a href="/privacy" className="hover:text-brand">Privacy</a> · <a href="/terms" className="hover:text-brand">Terms</a>
+        © {new Date().getFullYear()} HyperDial ·{" "}
+        <a href="/privacy" className="hover:text-brand">Privacy</a> ·{" "}
+        <a href="/terms" className="hover:text-brand">Terms</a>
       </footer>
     </>
   );

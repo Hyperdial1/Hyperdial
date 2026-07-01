@@ -4,7 +4,8 @@ import { LpHero } from "@/components/lp/lp-hero";
 import { LpProblem } from "@/components/lp/lp-problem";
 import { LpHowItWorks } from "@/components/lp/lp-how-it-works";
 import { AopLoop } from "@/components/lp/aop-loop";
-import { LpDemoForm } from "@/components/lp/lp-demo-form";
+import { LpPopup } from "@/components/lp/lp-popup";
+import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 
 export const metadata: Metadata = {
   title: "AI Voice Agent that Learns | HyperDial",
@@ -50,15 +51,18 @@ const steps = [
 ];
 
 export default function VoiceAgentLp() {
+  const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
+      <LpPopup source="lp_voice" schedulerUrl={schedulerUrl} />
+      <LpFloatingCta label="Book a Demo" />
+
       <LpHeader />
 
       <LpHero
         eyebrow="AI Voice Agent + AOP Layer"
         headline="A voice agent that learns from your best rep — on every single call."
         subhead="HyperDial handles inbound and outbound calls, then uses the AOP layer to get smarter from every conversation your human agents resolve. No stale scripts. No robotic answers. Compounding intelligence."
-        ctaLabel="Book a Demo"
       />
 
       <LpProblem points={problems} />
@@ -67,7 +71,6 @@ export default function VoiceAgentLp() {
 
       <AopLoop />
 
-      {/* Who it's for */}
       <section className="py-16 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold text-ink mb-8">
@@ -89,22 +92,10 @@ export default function VoiceAgentLp() {
         </div>
       </section>
 
-      {/* Book a Demo */}
-      <section id="book-demo" className="py-20 bg-surface">
-        <div className="wrap max-w-xl mx-auto text-center mb-10">
-          <p className="eyebrow mb-3">Book a Demo</p>
-          <h2 className="font-display text-3xl font-semibold text-ink mb-3">
-            See the voice agent live
-          </h2>
-          <p className="text-muted">
-            20 minutes with our founding team. We&rsquo;ll show you the AOP loop in action on a real call scenario from your industry.
-          </p>
-        </div>
-        <LpDemoForm source="lp_voice" />
-      </section>
-
       <footer className="border-t border-line py-6 text-center text-xs text-faint bg-white">
-        © {new Date().getFullYear()} HyperDial · <a href="/privacy" className="hover:text-brand">Privacy</a> · <a href="/terms" className="hover:text-brand">Terms</a>
+        © {new Date().getFullYear()} HyperDial ·{" "}
+        <a href="/privacy" className="hover:text-brand">Privacy</a> ·{" "}
+        <a href="/terms" className="hover:text-brand">Terms</a>
       </footer>
     </>
   );

@@ -1,18 +1,13 @@
+"use client";
+
 interface LpHeroProps {
   eyebrow: string;
   headline: string;
   subhead: string;
   ctaLabel?: string;
-  ctaHref?: string;
 }
 
-export function LpHero({
-  eyebrow,
-  headline,
-  subhead,
-  ctaLabel = "Book a Demo",
-  ctaHref = "#book-demo",
-}: LpHeroProps) {
+export function LpHero({ eyebrow, headline, subhead, ctaLabel = "Book a Demo — Free" }: LpHeroProps) {
   return (
     <section className="bg-deep py-20 sm:py-28 text-white">
       <div className="wrap text-center max-w-3xl mx-auto">
@@ -25,9 +20,12 @@ export function LpHero({
         <p className="text-lg text-slate-soft leading-relaxed mb-10">
           {subhead}
         </p>
-        <a href={ctaHref} className="btn-primary text-base px-8 py-3.5 shadow-lift">
+        <button
+          onClick={() => window.dispatchEvent(new Event("open-demo-popup"))}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-10 py-4 text-lg font-semibold text-white shadow-lift transition-all duration-200 hover:bg-brand-dark hover:scale-105"
+        >
           {ctaLabel} →
-        </a>
+        </button>
         <p className="mt-4 text-xs text-white/40">No commitment. 20-minute walkthrough.</p>
       </div>
     </section>
