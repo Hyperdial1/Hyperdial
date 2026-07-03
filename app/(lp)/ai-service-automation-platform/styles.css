@@ -1,0 +1,173 @@
+/* Mockup page styles — structure/layout identical to the approved mockup,
+   colors remapped to the HyperDial purple palette. Scoped under .mockup-lp. */
+.mockup-lp {
+  --ink: #1e293b;          /* was deep pine → HyperDial ink */
+  --ink-soft: #64748b;     /* was muted pine → HyperDial muted */
+  --ground: #f8fafc;       /* was warm paper → HyperDial surface */
+  --card: #ffffff;
+  --accent: #7c3aed;       /* was signal coral → HyperDial brand purple */
+  --accent-deep: #6d28d9;  /* was coral deep → brand dark */
+  --sage: #ede9fe;         /* was sage tint → violet tint */
+  --line: #e2e8f0;         /* HyperDial line */
+  --gold: #a78bfa;         /* was gold → brand light */
+  --deep: #1e1b4b;         /* HyperDial dark-section indigo */
+
+  box-sizing: border-box;
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--ground);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+.mockup-lp *, .mockup-lp *::before, .mockup-lp *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.mockup-lp h1, .mockup-lp h2, .mockup-lp h3, .mockup-lp .serif, .mockup-lp .logo {
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 600; text-wrap: balance; line-height: 1.15;
+}
+.mockup-lp .eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); font-weight: 700; }
+.mockup-lp .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.mockup-lp section { padding: 88px 0; }
+.mockup-lp .btn { display: inline-block; border: none; cursor: pointer; font-weight: 700; font-size: 1rem; padding: 14px 28px; border-radius: 6px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
+.mockup-lp .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.mockup-lp .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 2px 0 var(--accent-deep); }
+.mockup-lp .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(109, 40, 217, .35); }
+.mockup-lp .btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+.mockup-lp .btn-ghost:hover { background: var(--ink); color: #fff; }
+
+/* ============ MODAL ============ */
+.mockup-lp .modal-veil { position: fixed; inset: 0; background: rgba(30, 27, 75, .62); backdrop-filter: blur(4px); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.mockup-lp .modal-veil.open { opacity: 1; pointer-events: auto; }
+.mockup-lp .modal { background: var(--card); border-radius: 12px; max-width: 520px; width: 100%; max-height: 92vh; overflow-y: auto; padding: 40px 40px 32px; position: relative; transform: translateY(16px); transition: transform .35s ease; }
+.mockup-lp .modal-veil.open .modal { transform: translateY(0); }
+.mockup-lp .modal-close { position: absolute; top: 14px; right: 14px; background: none; border: none; font-size: 1.5rem; line-height: 1; color: var(--ink-soft); cursor: pointer; padding: 8px; border-radius: 6px; }
+.mockup-lp .modal-close:hover { background: var(--sage); }
+.mockup-lp .modal h2 { font-size: 1.6rem; margin-bottom: 6px; }
+.mockup-lp .modal p.sub { color: var(--ink-soft); font-size: .95rem; margin-bottom: 22px; }
+.mockup-lp .field { margin-bottom: 14px; }
+.mockup-lp .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mockup-lp label { display: block; font-size: .8rem; font-weight: 700; margin-bottom: 4px; letter-spacing: .02em; }
+.mockup-lp input, .mockup-lp select { width: 100%; padding: 11px 12px; border: 1.5px solid var(--line); border-radius: 6px; font-size: .95rem; background: #fff; color: var(--ink); }
+.mockup-lp input:focus, .mockup-lp select:focus { outline: none; border-color: var(--accent); }
+.mockup-lp .modal .btn-primary { width: 100%; margin-top: 8px; }
+.mockup-lp .modal .micro { font-size: .75rem; color: var(--ink-soft); text-align: center; margin-top: 12px; }
+.mockup-lp .modal-success { text-align: center; padding: 28px 8px; }
+.mockup-lp .modal-success .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 1.8rem; color: var(--accent-deep); }
+
+/* ============ NAV ============ */
+.mockup-lp nav { position: sticky; top: 0; background: rgba(248, 250, 252, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); z-index: 50; }
+.mockup-lp .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.mockup-lp .logo { font-size: 1.3rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.mockup-lp .logo b { color: var(--accent); }
+.mockup-lp .nav-links { display: flex; gap: 28px; align-items: center; }
+.mockup-lp .nav-links a { color: var(--ink-soft); text-decoration: none; font-size: .9rem; font-weight: 600; }
+.mockup-lp .nav-links a:hover { color: var(--ink); }
+.mockup-lp .nav-links .btn { padding: 10px 18px; font-size: .88rem; color: #fff; }
+@media (max-width: 760px) { .mockup-lp .nav-links a:not(.btn) { display: none; } }
+
+/* ============ HERO ============ */
+.mockup-lp .hero { padding: 96px 0 72px; }
+.mockup-lp .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+@media (max-width: 900px) { .mockup-lp .hero-grid { grid-template-columns: 1fr; } }
+.mockup-lp .hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); margin: 16px 0 20px; }
+.mockup-lp .hero h1 em { font-style: normal; color: var(--accent-deep); border-bottom: 4px solid var(--sage); }
+.mockup-lp .hero p.lead { font-size: 1.15rem; color: var(--ink-soft); max-width: 34rem; margin-bottom: 30px; }
+.mockup-lp .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.mockup-lp .hero-note { font-size: .8rem; color: var(--ink-soft); margin-top: 14px; }
+
+/* hero visual: learning loop ticker */
+.mockup-lp .loopcard { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 24px; box-shadow: 0 12px 40px rgba(30, 41, 59, .08); }
+.mockup-lp .loopcard .lc-head { display: flex; justify-content: space-between; align-items: center; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 16px; }
+.mockup-lp .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 6px; animation: mlp-pulse 1.6s infinite; }
+@keyframes mlp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+.mockup-lp .ticket { display: flex; gap: 12px; padding: 12px; border-radius: 8px; background: var(--ground); margin-bottom: 10px; font-size: .85rem; align-items: flex-start; opacity: 0; transform: translateY(8px); animation: mlp-tin .5s forwards; }
+@keyframes mlp-tin { to { opacity: 1; transform: none; } }
+.mockup-lp .ticket .chip { flex-shrink: 0; font-size: .65rem; font-weight: 800; letter-spacing: .06em; padding: 3px 8px; border-radius: 99px; }
+.mockup-lp .chip-human { background: #e0e7ff; color: #3730a3; }
+.mockup-lp .chip-auto { background: var(--sage); color: var(--accent-deep); }
+.mockup-lp .lc-stat { display: flex; justify-content: space-between; border-top: 1px dashed var(--line); padding-top: 14px; margin-top: 6px; font-size: .8rem; color: var(--ink-soft); }
+.mockup-lp .lc-stat b { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* logo strip */
+.mockup-lp .logostrip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; background: var(--card); }
+.mockup-lp .logostrip .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+.mockup-lp .logostrip span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.mockup-lp .fakelogo { font-family: var(--font-poppins), system-ui, sans-serif; font-weight: 700; font-size: 1.05rem; color: #94a3b8; text-transform: none; letter-spacing: 0; }
+
+/* ============ SECTIONS ============ */
+.mockup-lp .sec-head { max-width: 620px; margin-bottom: 48px; }
+.mockup-lp .sec-head h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); margin-top: 12px; }
+.mockup-lp .sec-head p { color: var(--ink-soft); margin-top: 12px; }
+.mockup-lp .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 860px) { .mockup-lp .cards3 { grid-template-columns: 1fr; } }
+.mockup-lp .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px; }
+.mockup-lp .card .ico { width: 44px; height: 44px; border-radius: 8px; background: var(--sage); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.2rem; }
+.mockup-lp .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+.mockup-lp .card p { font-size: .92rem; color: var(--ink-soft); }
+
+.mockup-lp .alt-band { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.mockup-lp .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 860px) { .mockup-lp .steps { grid-template-columns: 1fr; } }
+.mockup-lp .step { position: relative; padding: 28px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.mockup-lp .step::before { counter-increment: step; content: counter(step); position: absolute; top: -16px; left: 24px; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem; }
+.mockup-lp .step h3 { font-size: 1.05rem; margin: 8px 0 8px; }
+.mockup-lp .step p { font-size: .9rem; color: var(--ink-soft); }
+
+/* AOP loop */
+.mockup-lp .aop { background: var(--deep); color: #eef2ff; border-radius: 16px; padding: 64px 48px; }
+.mockup-lp .aop .eyebrow { color: var(--gold); }
+.mockup-lp .aop h2 { color: #fff; font-size: clamp(1.6rem, 2.8vw, 2.1rem); margin: 10px 0 8px; }
+.mockup-lp .aop > .wrap > p { color: #c7cbe0; max-width: 38rem; }
+.mockup-lp .aop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 44px; }
+@media (max-width: 860px) { .mockup-lp .aop-grid { grid-template-columns: repeat(2, 1fr); } }
+.mockup-lp .aop-node { background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .14); border-radius: 10px; padding: 22px; position: relative; }
+.mockup-lp .aop-node h3 { color: #fff; font-size: 1rem; margin-bottom: 6px; }
+.mockup-lp .aop-node p { font-size: .85rem; color: #c7cbe0; }
+.mockup-lp .aop-node .n { font-size: .7rem; letter-spacing: .12em; color: var(--gold); text-transform: uppercase; font-weight: 700; }
+.mockup-lp .aop-node::after { content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.1rem; }
+.mockup-lp .aop-node:last-child::after { content: "↺"; }
+@media (max-width: 860px) { .mockup-lp .aop-node::after { display: none; } }
+
+/* stats */
+.mockup-lp .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+@media (max-width: 760px) { .mockup-lp .stats { grid-template-columns: repeat(2, 1fr); } }
+.mockup-lp .stat b { display: block; font-family: var(--font-poppins), system-ui, sans-serif; font-size: 2.6rem; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
+.mockup-lp .stat span { font-size: .85rem; color: var(--ink-soft); }
+
+/* comparison */
+.mockup-lp .cmp { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: .92rem; }
+.mockup-lp .cmp th, .mockup-lp .cmp td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--line); }
+.mockup-lp .cmp th { background: var(--sage); font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; }
+.mockup-lp .cmp td.yes { color: var(--accent-deep); font-weight: 700; }
+.mockup-lp .cmp td.no { color: #b45455; }
+.mockup-lp .cmp-scroll { overflow-x: auto; }
+
+/* fit list */
+.mockup-lp .fit { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 760px) { .mockup-lp .fit { grid-template-columns: 1fr; } }
+.mockup-lp .fit li { list-style: none; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 18px 20px; font-size: .95rem; }
+
+/* FAQ */
+.mockup-lp details { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; padding: 0 20px; }
+.mockup-lp summary { cursor: pointer; font-weight: 700; padding: 18px 0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.mockup-lp summary::-webkit-details-marker { display: none; }
+.mockup-lp summary::after { content: "+"; font-size: 1.3rem; color: var(--accent-deep); }
+.mockup-lp details[open] summary::after { content: "–"; }
+.mockup-lp details p { padding-bottom: 18px; color: var(--ink-soft); font-size: .93rem; }
+
+/* final CTA */
+.mockup-lp .final { background: var(--sage); border-radius: 16px; text-align: center; padding: 72px 32px; }
+.mockup-lp .final h2 { font-size: clamp(1.8rem, 3.2vw, 2.4rem); margin-bottom: 14px; }
+.mockup-lp .final p { color: var(--ink-soft); margin-bottom: 28px; }
+
+.mockup-lp footer { border-top: 1px solid var(--line); padding: 32px 0; font-size: .82rem; color: var(--ink-soft); }
+.mockup-lp footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.mockup-lp footer a { color: var(--ink-soft); }
+
+/* reveal on scroll */
+.mockup-lp .rv { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.mockup-lp .rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .mockup-lp .rv { opacity: 1; transform: none; transition: none; }
+  .mockup-lp .pulse, .mockup-lp .ticket { animation: none; opacity: 1; transform: none; }
+}
