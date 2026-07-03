@@ -17,20 +17,28 @@ const COUNTRIES = [
 
 export type LpVariant = "voice" | "support" | "omni";
 
+export type LpPhase = "form" | "calendar" | "booked";
+
 interface LpDemoFormProps {
   source: string;
   variant: LpVariant;
   inPopup?: boolean;
+  onPhaseChange?: (phase: LpPhase) => void;
 }
 
-type Phase = "form" | "calendar" | "booked";
+type Phase = LpPhase;
 
-export function LpDemoForm({ source, variant, inPopup = false }: LpDemoFormProps) {
-  const [phase, setPhase] = useState<Phase>("form");
+export function LpDemoForm({ source, variant, inPopup = false, onPhaseChange }: LpDemoFormProps) {
+  const [phase, setPhaseState] = useState<Phase>("form");
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
   const [calUrl, setCalUrl] = useState("");
   const submittingRef = useRef(false);
+
+  function setPhase(p: Phase) {
+    setPhaseState(p);
+    onPhaseChange?.(p);
+  }
 
   // Listen for Calendly booking confirmation
   useEffect(() => {
@@ -70,8 +78,17 @@ export function LpDemoForm({ source, variant, inPopup = false }: LpDemoFormProps
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Something went wrong");
 
-      // Build Calendly URL with pre-filled fields
-      const params = new URLSearchParams({ name: fullName, email });
+      // Build Calendly URL with pre-filled fields.
+      // embed_domain + embed_type are required for Calendly to postMessage
+      // calendly.event_scheduled back to us — without them it just shows
+      // its own branded confirmation screen inside the iframe.
+      const params = new URLSearchParams({
+        name: fullName,
+        email,
+        embed_domain: window.location.hostname,
+        embed_type: "Inline",
+        hide_gdpr_banner: "1",
+      });
       setCalUrl(`${CALENDLY_URL}?${params.toString()}`);
       setPhase("calendar");
     } catch (err) {
@@ -85,15 +102,20 @@ export function LpDemoForm({ source, variant, inPopup = false }: LpDemoFormProps
   // ── Booked confirmation ──────────────────────────────────────────
   if (phase === "booked") {
     return (
-      <div className="space-y-4 py-4 text-center">
-        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand text-white text-2xl shadow-lift">
-          ✓
+      <div className="space-y-5 py-6 text-center">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-brand text-white shadow-lift animate-[scale-in_0.3s_ease-out]">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
         </div>
         <div>
-          <h3 className="font-display text-xl font-bold text-ink">You&rsquo;re booked in!</h3>
-          <p className="mt-1 text-sm text-muted">
-            A Google Meet invite is on its way to your inbox. See you soon.
+          <h3 className="font-display text-2xl font-bold text-ink">You&rsquo;re booked in!</h3>
+          <p className="mt-2 text-sm text-muted">
+            A calendar invite is on its way to your inbox. We&rsquo;ll see you soon.
           </p>
+        </div>
+        <div className="mx-auto max-w-xs rounded-xl border border-line bg-canvas/60 px-4 py-3 text-xs text-muted">
+          Check your inbox (and spam folder) for the meeting details.
         </div>
       </div>
     );
@@ -102,12 +124,8 @@ export function LpDemoForm({ source, variant, inPopup = false }: LpDemoFormProps
   // ── Calendly embed ───────────────────────────────────────────────
   if (phase === "calendar") {
     return (
-      <div className="space-y-3">
-        <div className="rounded-xl bg-brand/5 border border-brand/20 p-4 text-center">
-          <p className="text-sm font-semibold text-ink">Details saved — now pick a time</p>
-          <p className="text-xs text-muted mt-0.5">Your name and email are pre-filled below.</p>
-        </div>
-        <div className="rounded-xl border border-line overflow-hidden" style={{ height: 620 }}>
+      <div className="animate-fade-up">
+        <div className="overflow-hidden bg-white" style={{ height: 640 }}>
           <iframe
             src={calUrl}
             className="w-full h-full"
@@ -117,7 +135,7 @@ export function LpDemoForm({ source, variant, inPopup = false }: LpDemoFormProps
         </div>
         <button
           onClick={() => setPhase("booked")}
-          className="w-full text-center text-xs text-muted underline underline-offset-2 hover:text-brand transition-colors"
+          className="mt-2 w-full text-center text-xs text-muted underline underline-offset-2 hover:text-brand transition-colors px-6 pb-4"
         >
           Already booked? Click here →
         </button>
