@@ -5,9 +5,16 @@ interface LpHeroProps {
   headline: string;
   subhead: string;
   ctaLabel?: string;
+  note?: string;
 }
 
-export function LpHero({ eyebrow, headline, subhead, ctaLabel = "Book a Demo — Free" }: LpHeroProps) {
+export function LpHero({
+  eyebrow,
+  headline,
+  subhead,
+  ctaLabel = "Book a Demo — Free",
+  note = "No commitment. 20-minute walkthrough.",
+}: LpHeroProps) {
   return (
     <section className="bg-deep py-20 sm:py-28 text-white">
       <div className="wrap text-center max-w-3xl mx-auto">
@@ -26,7 +33,7 @@ export function LpHero({ eyebrow, headline, subhead, ctaLabel = "Book a Demo —
         >
           {ctaLabel} →
         </button>
-        <p className="mt-4 text-xs text-white/40">No commitment. 20-minute walkthrough.</p>
+        <p className="mt-4 text-xs text-white/40">{note}</p>
       </div>
     </section>
   );
