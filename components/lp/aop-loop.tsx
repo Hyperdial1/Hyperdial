@@ -1,22 +1,22 @@
 const steps = [
   {
     label: "Observe",
-    desc: "Every human-handled conversation is captured automatically — no extra work for your agents.",
+    desc: "Captures how your agents actually resolve each issue across every channel — silently, in the background.",
     icon: "👁️",
   },
   {
     label: "Learn",
-    desc: "HyperDial extracts the phrasing, sequence, and offers that your top agents use to resolve issues.",
+    desc: "Distils each resolution into a reusable pattern — intent, steps, actions, outcome.",
     icon: "🧠",
   },
   {
     label: "Verify",
-    desc: "Candidate patterns queue for manager approval. A human always signs off before the AI repeats it.",
+    desc: "A manager reviews and approves every candidate pattern before it ever goes live. You stay in control.",
     icon: "✅",
   },
   {
     label: "Deploy",
-    desc: "Approved patterns execute identically across every channel — voice, chat, email, and social.",
+    desc: "Approved patterns execute instantly on chat, email, social, and your help desk.",
     icon: "🚀",
   },
 ];
@@ -29,10 +29,10 @@ export function AopLoop() {
           The AOP Layer
         </p>
         <h2 className="font-display text-3xl font-semibold text-white mb-4">
-          AI that keeps getting smarter — automatically
+          A learning loop, not a script library.
         </h2>
         <p className="text-slate-soft mb-12 max-w-xl mx-auto">
-          Most AI ships once and gets stale. HyperDial&rsquo;s Agent Orchestration Process runs a continuous loop that learns from every conversation your team handles.
+          Every conversation your team handles feeds a supervised loop that compounds — your automation rate rises every week, with a human approving every pattern before it ships.
         </p>
         <div className="grid sm:grid-cols-4 gap-6">
           {steps.map((step, i) => (

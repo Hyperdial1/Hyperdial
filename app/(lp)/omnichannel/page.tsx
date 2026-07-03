@@ -7,11 +7,14 @@ import { AopLoop } from "@/components/lp/aop-loop";
 import { LpPopup } from "@/components/lp/lp-popup";
 import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 import { LpInlineFormSection } from "@/components/lp/lp-inline-form-section";
+import { LpComparison } from "@/components/lp/lp-comparison";
+import { LpFaq } from "@/components/lp/lp-faq";
+import { LpFinalCta } from "@/components/lp/lp-final-cta";
 
 export const metadata: Metadata = {
   title: "Omnichannel AI Support Platform | HyperDial",
   description:
-    "Voice, chat, email, social, and ticketing — unified under one AOP-powered platform that learns continuously from your team.",
+    "Voice, chat, email and social — resolved by one AI that learns from every interaction, on the tools you already use.",
   robots: { index: false, follow: false },
 };
 
@@ -51,6 +54,57 @@ const steps = [
   },
 ];
 
+const comparisonRows = [
+  {
+    label: "One AI brain across every channel",
+    values: ["Single channel only", "Channels bolted together"],
+    hyperdial: "Built as one system",
+  },
+  {
+    label: "Context follows the customer between channels",
+    values: ["No", "Partially — separate histories"],
+    hyperdial: "Always — zero context lost",
+  },
+  {
+    label: "Learns from every interaction, everywhere",
+    values: ["Per-tool learning", "No shared learning"],
+    hyperdial: "One loop, compounds across channels",
+  },
+  {
+    label: "Works with your existing stack",
+    values: ["Replaces tools", "Rip-and-replace suite"],
+    hyperdial: "Layers on what you have",
+  },
+  {
+    label: "Time to value",
+    values: ["Weeks per channel", "Months of migration"],
+    hyperdial: "< 2 days",
+  },
+];
+
+const faqItems = [
+  {
+    q: "Do we have to replace our existing tools?",
+    a: "No. HyperDial layers on top of your current phone system, help desk, chat, email and social tools. Nothing to migrate.",
+  },
+  {
+    q: "Does the AI really share learning across channels?",
+    a: "Yes — that's the point. A resolution learned from an email thread applies instantly to the same question asked on WhatsApp, voice, or chat.",
+  },
+  {
+    q: "Does anything go live without our approval?",
+    a: "No. Every candidate pattern sits in a review queue until a manager approves it — one approval covers every channel.",
+  },
+  {
+    q: "How long does implementation take?",
+    a: "Most teams connect their first channels in under two days. You can start with one channel and add the rest as you go.",
+  },
+  {
+    q: "Is our customer data used to train models for anyone else?",
+    a: "No. Your resolution patterns are learned from your conversations and used only for your workspace.",
+  },
+];
+
 const channels = [
   { icon: "📞", label: "Voice" },
   { icon: "💬", label: "Live Chat" },
@@ -71,11 +125,15 @@ export default function OmnichannelLp() {
 
       <LpHero
         eyebrow="Omnichannel AI Platform"
-        headline="One AI brain. Every channel. Gets smarter every day."
-        subhead="Voice, chat, email, social, and ticketing — unified under one AOP-powered platform. Replace the patchwork of tools your team is duct-taping together, and run support from a single intelligent system."
+        headline="Every channel. One resolution engine."
+        subhead="Voice, chat, email and social — resolved by one AI that learns from every interaction, on the tools you already use. Replace the patchwork of point solutions with a single brain that remembers everything."
       />
 
-      <LpProblem points={problems} />
+      <LpProblem
+        points={problems}
+        heading="Five tools. Five conversations. Zero memory."
+        kicker="Your customer is one person — your stack treats them like five strangers."
+      />
 
       <section className="py-14 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
@@ -94,6 +152,30 @@ export default function OmnichannelLp() {
       <LpHowItWorks steps={steps} />
 
       <AopLoop />
+
+      {/* Stats strip */}
+      <section className="py-12 bg-white border-b border-line">
+        <div className="wrap max-w-3xl mx-auto">
+          <dl className="grid sm:grid-cols-3 gap-8 text-center">
+            {[
+              { stat: "1 brain", label: "across voice, chat, email & social" },
+              { stat: "0", label: "context lost between channels" },
+              { stat: "< 2 days", label: "average time to go live" },
+            ].map(({ stat, label }, i) => (
+              <div key={i} className="flex flex-col gap-1">
+                <dt className="font-display text-4xl font-bold text-brand">{stat}</dt>
+                <dd className="text-sm text-muted">{label}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <LpComparison
+        heading="Point solutions vs. one resolution engine"
+        columns={["Point solutions", "Suite tools"]}
+        rows={comparisonRows}
+      />
 
       <LpInlineFormSection
         source="lp_omni"
@@ -123,6 +205,13 @@ export default function OmnichannelLp() {
           </div>
         </div>
       </section>
+
+      <LpFaq items={faqItems} />
+
+      <LpFinalCta
+        heading="See one conversation cross three channels — resolved by one brain."
+        subtitle="30 minutes with the founding team. Bring a real customer journey and we'll show the loop running across your channels."
+      />
 
       <section className="py-10 bg-surface border-b border-line">
         <div className="wrap max-w-2xl mx-auto text-center">
