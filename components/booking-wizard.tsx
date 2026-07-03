@@ -609,6 +609,14 @@ function Step4Schedule({
   const params = new URLSearchParams();
   if (calName) params.set("name", calName);
   if (calEmail) params.set("email", calEmail);
+  // embed_domain + embed_type are required for Calendly to postMessage
+  // calendly.event_scheduled back to us — without them it just shows
+  // its own branded confirmation screen inside the iframe.
+  if (typeof window !== "undefined") {
+    params.set("embed_domain", window.location.hostname);
+    params.set("embed_type", "Inline");
+  }
+  params.set("hide_gdpr_banner", "1");
   const src = `${CALENDLY_URL}?${params.toString()}`;
 
   return (
