@@ -13,7 +13,7 @@
   --deep: #1e1b4b;         /* HyperDial dark-section indigo */
 
   box-sizing: border-box;
-  font-family: -apple-system, "Segoe UI", system-ui, Roboto, sans-serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   color: var(--ink);
   background: var(--ground);
   line-height: 1.6;
@@ -21,7 +21,7 @@
 }
 .mockup-lp *, .mockup-lp *::before, .mockup-lp *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .mockup-lp h1, .mockup-lp h2, .mockup-lp h3, .mockup-lp .serif, .mockup-lp .logo {
-  font-family: Charter, "Iowan Old Style", Georgia, "Times New Roman", serif;
+  font-family: var(--font-poppins), system-ui, sans-serif;
   font-weight: 600; text-wrap: balance; line-height: 1.15;
 }
 .mockup-lp .eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); font-weight: 700; }
@@ -91,7 +91,7 @@
 .mockup-lp .logostrip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 22px 0; background: var(--card); }
 .mockup-lp .logostrip .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
 .mockup-lp .logostrip span { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
-.mockup-lp .fakelogo { font-family: Charter, Georgia, serif; font-weight: 700; font-size: 1.05rem; color: #94a3b8; text-transform: none; letter-spacing: 0; }
+.mockup-lp .fakelogo { font-family: var(--font-poppins), system-ui, sans-serif; font-weight: 700; font-size: 1.05rem; color: #94a3b8; text-transform: none; letter-spacing: 0; }
 
 /* ============ SECTIONS ============ */
 .mockup-lp .sec-head { max-width: 620px; margin-bottom: 48px; }
@@ -131,7 +131,7 @@
 /* stats */
 .mockup-lp .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
 @media (max-width: 760px) { .mockup-lp .stats { grid-template-columns: repeat(2, 1fr); } }
-.mockup-lp .stat b { display: block; font-family: Charter, Georgia, serif; font-size: 2.6rem; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
+.mockup-lp .stat b { display: block; font-family: var(--font-poppins), system-ui, sans-serif; font-size: 2.6rem; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
 .mockup-lp .stat span { font-size: .85rem; color: var(--ink-soft); }
 
 /* comparison */
