@@ -137,10 +137,10 @@ export function AiCustomerServicePlatformClient() {
                   <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
                   <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
                   <div className="row2">
-                    <div className="field"><label htmlFor="ts">Support team size</label>
-                      <select id="ts" name="team_size"><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></div>
-                    <div className="field"><label htmlFor="tv">Channels you support</label>
-                      <select id="tv" name="channels"><option>Chat + email</option><option>+ Social</option><option>+ Voice/calls</option><option>All of the above</option></select></div>
+                    <div className="field"><label htmlFor="ts">Support agents on team</label>
+                      <input id="ts" name="team_size" type="number" placeholder="e.g. 20" required /></div>
+                    <div className="field"><label htmlFor="tv">Monthly ticket volume</label>
+                      <input id="tv" name="monthly_tickets" placeholder="e.g. 5,000" required /></div>
                   </div>
                   <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
                     {status === "sending" ? "Saving…" : "Book my demo →"}

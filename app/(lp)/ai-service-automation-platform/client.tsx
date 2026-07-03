@@ -4,7 +4,43 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
+const PLATFORMS = [
+  "WhatsApp", "Instagram", "Facebook", "Email", "Live Chat",
+  "Ticketing (Zendesk / Freshdesk)", "CRM (Salesforce / HubSpot)",
+  "SMS", "Twitter / X", "Other",
+];
+
 type ModalPhase = "form" | "calendar" | "booked";
+
+function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
+  const [selected, setSelected] = useState<string[]>([]);
+  function toggle(opt: string) {
+    setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
+  }
+  return (
+    <div className="field">
+      <label>{label}</label>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
+        {options.map((opt) => (
+          <label key={opt} style={{ cursor: "pointer", marginBottom: 0 }}>
+            <input type="checkbox" name={name} value={opt} checked={selected.includes(opt)} onChange={() => toggle(opt)} style={{ display: "none" }} />
+            <span
+              style={{
+                display: "inline-flex", alignItems: "center", borderRadius: 999, padding: "6px 12px",
+                fontSize: ".78rem", fontWeight: 600, border: "1.5px solid",
+                borderColor: selected.includes(opt) ? "var(--accent)" : "var(--line)",
+                background: selected.includes(opt) ? "var(--sage)" : "#fff",
+                color: selected.includes(opt) ? "var(--accent-deep)" : "var(--ink-soft)",
+              }}
+            >
+              {opt}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function AutomateSupportClient() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -92,12 +128,13 @@ export function AutomateSupportClient() {
     const data = Object.fromEntries(fd.entries());
     const fullName = `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim();
     const email = (data.work_email as string) ?? "";
+    const platforms = fd.getAll("platforms");
 
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source: "lp_omni", name: fullName }),
+        body: JSON.stringify({ ...data, platforms, source: "lp_omni", name: fullName }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Something went wrong");
@@ -138,12 +175,8 @@ export function AutomateSupportClient() {
                 </div>
                 <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
                 <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
-                <div className="row2">
-                  <div className="field"><label htmlFor="ts">Support team size</label>
-                    <select id="ts" name="team_size"><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></div>
-                  <div className="field"><label htmlFor="tv">Monthly tickets</label>
-                    <select id="tv" name="monthly_tickets"><option>&lt; 500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div>
-                </div>
+                <div className="field"><label htmlFor="eu">How many users?</label><input id="eu" name="end_users" type="number" placeholder="e.g. 1,000" required /></div>
+                <MultiSelect name="platforms" label="Which platforms do you want to integrate?" options={PLATFORMS} />
                 <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
                   {status === "sending" ? "Saving…" : "Book my demo →"}
                 </button>

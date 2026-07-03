@@ -4,7 +4,42 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
+const COUNTRIES = [
+  "India", "USA", "UK", "UAE", "Canada", "Australia",
+  "Singapore", "South Africa", "Other",
+];
+
 type ModalPhase = "form" | "calendar" | "booked";
+
+function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
+  const [selected, setSelected] = useState<string[]>([]);
+  function toggle(opt: string) {
+    setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
+  }
+  return (
+    <div className="field">
+      <label>{label}</label>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
+        {options.map((opt) => (
+          <label key={opt} style={{ cursor: "pointer", marginBottom: 0 }}>
+            <input type="checkbox" name={name} value={opt} checked={selected.includes(opt)} onChange={() => toggle(opt)} style={{ display: "none" }} />
+            <span
+              style={{
+                display: "inline-flex", alignItems: "center", borderRadius: 999, padding: "6px 12px",
+                fontSize: ".78rem", fontWeight: 600, border: "1.5px solid",
+                borderColor: selected.includes(opt) ? "var(--brand)" : "var(--line)",
+                background: selected.includes(opt) ? "var(--tint)" : "#fff",
+                color: selected.includes(opt) ? "var(--brand)" : "var(--muted)",
+              }}
+            >
+              {opt}
+            </span>
+          </label>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function AiBusinessCommunicationPlatformClient() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -88,12 +123,13 @@ export function AiBusinessCommunicationPlatformClient() {
     const data = Object.fromEntries(fd.entries());
     const fullName = `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim();
     const email = (data.work_email as string) ?? "";
+    const countries = fd.getAll("countries");
 
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source: "lp_smart_calling", name: fullName }),
+        body: JSON.stringify({ ...data, countries, source: "lp_smart_calling", name: fullName }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Something went wrong");
@@ -136,12 +172,8 @@ export function AiBusinessCommunicationPlatformClient() {
                   </div>
                   <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
                   <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
-                  <div className="row2">
-                    <div className="field"><label htmlFor="ts">Team size</label>
-                      <select id="ts" name="team_size"><option>1–5</option><option>6–20</option><option>21–50</option><option>50+</option></select></div>
-                    <div className="field"><label htmlFor="tv">Monthly call volume</label>
-                      <select id="tv" name="call_volume"><option>&lt; 500</option><option>500–2,000</option><option>2,000–10,000</option><option>10,000+</option></select></div>
-                  </div>
+                  <div className="field"><label htmlFor="eu">How many end users?</label><input id="eu" name="end_users" type="number" placeholder="e.g. 500" required /></div>
+                  <MultiSelect name="countries" label="Which countries will you be calling?" options={COUNTRIES} />
                   <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
                     {status === "sending" ? "Saving…" : "Book my demo — pick a time →"}
                   </button>
