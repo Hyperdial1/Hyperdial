@@ -6,6 +6,7 @@ import { LpHowItWorks } from "@/components/lp/lp-how-it-works";
 import { AopLoop } from "@/components/lp/aop-loop";
 import { LpPopup } from "@/components/lp/lp-popup";
 import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
+import { LpInlineFormSection } from "@/components/lp/lp-inline-form-section";
 
 export const metadata: Metadata = {
   title: "Omnichannel AI Support Platform | HyperDial",
@@ -93,6 +94,14 @@ export default function OmnichannelLp() {
       <LpHowItWorks steps={steps} />
 
       <AopLoop />
+
+      <LpInlineFormSection
+        source="lp_omni"
+        variant="omni"
+        eyebrow="Book a Demo"
+        title="See it unify your channels live"
+        subtitle="Bring a real conversation from any of your channels — we'll show you exactly how one AI brain handles it end to end."
+      />
 
       <section className="py-16 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">

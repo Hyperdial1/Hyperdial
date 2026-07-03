@@ -9,9 +9,9 @@ import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 import { LpInlineFormSection } from "@/components/lp/lp-inline-form-section";
 
 export const metadata: Metadata = {
-  title: "Self-Learning Support AI | HyperDial",
+  title: "AI Resolution Loop | HyperDial",
   description:
-    "HyperDial's AI resolves a query once your team has handled it — and every repeat after that, automatically. No scripts to write, no bot to retrain.",
+    "Every resolution makes the next one automatic. HyperDial's AI learns from every query your team resolves — and handles every repeat of it forever after.",
   robots: { index: false, follow: false },
 };
 
@@ -60,9 +60,9 @@ export default function AutomateSupportLp() {
       <LpHeader />
 
       <LpHero
-        eyebrow="Self-Learning Support AI"
-        headline="Solved once. Handled automatically after that."
-        subhead="The first time a question comes in, your team answers it like normal. HyperDial learns from that resolution and handles every repeat of that query automatically — forever. No scripts to write. No bot to retrain."
+        eyebrow="AI Resolution Loop"
+        headline="Every resolution makes the next one automatic."
+        subhead="The first time your team solves a query, HyperDial learns it. Every repeat after that — on every channel — gets resolved automatically. No scripts. No retraining. Just a loop that keeps getting faster."
         ctaLabel="See How It Works — Free"
       />
 
@@ -73,8 +73,8 @@ export default function AutomateSupportLp() {
         <div className="wrap max-w-3xl mx-auto">
           <dl className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { stat: "1x", label: "your team handles it — just once" },
-              { stat: "Every time after", label: "AI resolves it automatically" },
+              { stat: "1st resolution", label: "handled by your team" },
+              { stat: "Every one after", label: "resolved automatically" },
               { stat: "< 2 days", label: "average time to go live" },
             ].map(({ stat, label }, i) => (
               <div key={i} className="flex flex-col gap-1">
