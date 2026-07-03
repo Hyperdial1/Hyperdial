@@ -95,9 +95,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Enter a valid email." }, { status: 400 });
   }
 
-  const results: { supabase: string; email: string } = {
+  const results: { supabase: string; email: string; sheets: string } = {
     supabase: "skipped",
     email: "skipped",
+    sheets: "skipped",
   };
 
   // 1) Store structured data in Supabase (if configured)
@@ -116,14 +117,17 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 2) Send an email notification (if configured)
-  const resendKey = process.env.RESEND_API_KEY;
+  // 2) Send an email notification via Gmail SMTP (if configured)
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD;
   const notifyTo = process.env.LEAD_NOTIFY_EMAIL;
-  const notifyFrom = process.env.LEAD_FROM_EMAIL;
-  if (resendKey && notifyTo && notifyFrom) {
+  if (gmailUser && gmailPass && notifyTo) {
     try {
-      const { Resend } = await import("resend");
-      const resend = new Resend(resendKey);
+      const nodemailer = await import("nodemailer");
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: gmailUser, pass: gmailPass },
+      });
       const rows = Object.entries(lead)
         .filter(([, v]) => v !== null && v !== undefined)
         .map(([k, v]) => {
@@ -131,8 +135,8 @@ export async function POST(req: NextRequest) {
           return `<tr><td style="padding:4px 12px 4px 0;color:#5B6577">${k}</td><td style="padding:4px 0"><strong>${display}</strong></td></tr>`;
         })
         .join("");
-      await resend.emails.send({
-        from: notifyFrom,
+      await transporter.sendMail({
+        from: `"HyperDial Leads" <${gmailUser}>`,
         to: notifyTo,
         subject: `New HyperDial demo request — ${lead.company ?? lead.name}`,
         html: `<h2 style="font-family:sans-serif">New demo request</h2><table style="font-family:sans-serif;font-size:14px">${rows}</table>`,
@@ -140,6 +144,26 @@ export async function POST(req: NextRequest) {
       results.email = "sent";
     } catch (e) {
       results.email = `error: ${e instanceof Error ? e.message : "unknown"}`;
+    }
+  }
+
+  // 3) Send to Google Sheets via Apps Script webhook (if configured)
+  const sheetsWebhook = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  if (sheetsWebhook) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    try {
+      await fetch(sheetsWebhook, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...lead, submitted_at: new Date().toISOString() }),
+        signal: controller.signal,
+      });
+      results.sheets = "sent";
+    } catch (e) {
+      results.sheets = `error: ${e instanceof Error ? e.message : "unknown"}`;
+    } finally {
+      clearTimeout(timeout);
     }
   }
 
