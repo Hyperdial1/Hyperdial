@@ -63,7 +63,7 @@ export default function OmnichannelLp() {
   const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
-      <LpPopup source="lp_omni" schedulerUrl={schedulerUrl} />
+      <LpPopup source="lp_omni" variant="omni" />
       <LpFloatingCta label="Book a Demo" />
 
       <LpHeader />
