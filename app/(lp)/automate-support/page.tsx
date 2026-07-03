@@ -6,26 +6,27 @@ import { LpHowItWorks } from "@/components/lp/lp-how-it-works";
 import { AopLoop } from "@/components/lp/aop-loop";
 import { LpPopup } from "@/components/lp/lp-popup";
 import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
+import { LpInlineFormSection } from "@/components/lp/lp-inline-form-section";
 
 export const metadata: Metadata = {
-  title: "Automate Customer Support | HyperDial",
+  title: "Self-Learning Support AI | HyperDial",
   description:
-    "HyperDial automates the repetitive 80% of your support workload — so your team can focus on the conversations that actually need a human.",
+    "HyperDial's AI resolves a query once your team has handled it — and every repeat after that, automatically. No scripts to write, no bot to retrain.",
   robots: { index: false, follow: false },
 };
 
 const problems = [
   {
+    icon: "🤖",
+    text: "Static chatbots deflect, they don't resolve. Customers get frustrated and ask for a human anyway.",
+  },
+  {
     icon: "🔁",
-    text: "Your team answers the same 10 questions 50 times a day. That's not support — that's wasted time that could be automated.",
+    text: "Your team resolves the same question over and over — and nothing is captured, so the next repeat still needs a human.",
   },
   {
-    icon: "🐢",
-    text: "Response times are slipping. SLAs are breaking. CSAT is falling. And hiring more agents isn't fixing it fast enough.",
-  },
-  {
-    icon: "💀",
-    text: "You've tried a chatbot. It gave wrong answers, frustrated customers, and got switched off within a month.",
+    icon: "⚙️",
+    text: "Traditional automation means someone writes scripts and rules by hand. That doesn't scale, and it goes stale fast.",
   },
 ];
 
@@ -38,15 +39,15 @@ const steps = [
   },
   {
     number: "2",
-    title: "Automate the repetitive 80%",
+    title: "Your team resolves it once",
     description:
-      "FAQs, order status, refunds, onboarding — resolved instantly and accurately, 24/7, without a human touch.",
+      "The first time a question comes in, it's handled the normal way — your agent answers it like they always have.",
   },
   {
     number: "3",
-    title: "Gets smarter from your best agents",
+    title: "AI handles every repeat, automatically",
     description:
-      "Every time a human resolves something new, HyperDial's AOP layer captures it and handles it automatically next time.",
+      "From the second time that query shows up, HyperDial resolves it instantly — no scripting, no setup, it just learned.",
   },
 ];
 
@@ -59,9 +60,9 @@ export default function AutomateSupportLp() {
       <LpHeader />
 
       <LpHero
-        eyebrow="Customer Support Automation"
-        headline="Automate the 80% so your team can focus on the 20% that matters."
-        subhead="HyperDial handles your repeat tickets automatically — across chat, email, and social — and learns from every resolution your best agents make. No static scripts. No retraining. Just support that gets better every day."
+        eyebrow="Self-Learning Support AI"
+        headline="Solved once. Handled automatically after that."
+        subhead="The first time a question comes in, your team answers it like normal. HyperDial learns from that resolution and handles every repeat of that query automatically — forever. No scripts to write. No bot to retrain."
         ctaLabel="See How It Works — Free"
       />
 
@@ -72,12 +73,12 @@ export default function AutomateSupportLp() {
         <div className="wrap max-w-3xl mx-auto">
           <dl className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { stat: "80%", label: "of tickets resolved without human touch" },
-              { stat: "60%", label: "improvement in agent productivity" },
+              { stat: "1x", label: "your team handles it — just once" },
+              { stat: "Every time after", label: "AI resolves it automatically" },
               { stat: "< 2 days", label: "average time to go live" },
             ].map(({ stat, label }, i) => (
               <div key={i} className="flex flex-col gap-1">
-                <dt className="font-display text-4xl font-bold text-brand">{stat}</dt>
+                <dt className="font-display text-3xl sm:text-4xl font-bold text-brand">{stat}</dt>
                 <dd className="text-sm text-muted">{label}</dd>
               </div>
             ))}
@@ -89,6 +90,14 @@ export default function AutomateSupportLp() {
 
       <AopLoop />
 
+      <LpInlineFormSection
+        source="lp_automate_support"
+        variant="support"
+        eyebrow="Book a Demo"
+        title="See it learn in real time"
+        subtitle="Bring a real repeat question from your queue — we'll show you exactly how HyperDial resolves it after the first handoff."
+      />
+
       <section className="py-16 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold text-ink mb-8">
@@ -96,10 +105,10 @@ export default function AutomateSupportLp() {
           </h2>
           <div className="grid sm:grid-cols-2 gap-4 text-left">
             {[
-              "Your support team spends most of their day answering the same questions repeatedly",
-              "You're running a helpdesk on chat, email, or social and response times are slipping",
-              "You've tried a chatbot before and it failed because it couldn't learn from your team",
-              "You want automation that improves continuously — not a static bot you deploy and forget",
+              "Your support team resolves the same questions over and over",
+              "You're running a helpdesk on chat, email, or social and repeats are piling up",
+              "You've tried a chatbot before and it failed because it couldn't learn",
+              "You want automation that captures resolutions automatically — no scripting required",
             ].map((item, i) => (
               <div key={i} className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4">
                 <span className="mt-0.5 text-brand font-bold">✓</span>
