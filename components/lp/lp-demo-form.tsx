@@ -17,6 +17,7 @@ interface LpDemoFormProps {
 export function LpDemoForm({ source, inPopup = false, schedulerUrl }: LpDemoFormProps) {
   const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
   const [error, setError] = useState("");
+  const [calReady, setCalReady] = useState(false);
   const submittingRef = useRef(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -46,29 +47,40 @@ export function LpDemoForm({ source, inPopup = false, schedulerUrl }: LpDemoForm
 
   if (status === "ok") {
     return (
-      <div className="space-y-5">
-        <div className="flex items-start gap-3 rounded-xl bg-brand/5 border border-brand/20 p-4">
-          <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand text-white text-xs font-bold">✓</span>
-          <div>
-            <p className="text-sm font-semibold text-ink">Details received!</p>
-            <p className="text-xs text-muted mt-0.5">
-              We&rsquo;ll reach out within one business day to schedule your walkthrough.
-            </p>
+      <div className="space-y-6">
+        {/* Confirmation banner */}
+        <div className="rounded-2xl bg-gradient-to-br from-brand/10 to-brand/5 border border-brand/20 p-6 text-center">
+          <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand text-white text-xl font-bold shadow-lift">
+            ✓
           </div>
+          <h3 className="font-display text-lg font-bold text-ink">You&rsquo;re booked in!</h3>
+          <p className="mt-1 text-sm text-muted">
+            We&rsquo;ll reach out within one business day to confirm your walkthrough.
+          </p>
         </div>
 
         {schedulerUrl ? (
           <div>
-            <p className="text-xs font-medium text-muted text-center mb-3">
+            <p className="text-xs font-semibold text-center text-muted uppercase tracking-wider mb-3">
               Or pick a time right now ↓
             </p>
-            <iframe
-              src={schedulerUrl}
-              className="w-full rounded-xl border border-line"
-              style={{ height: 500 }}
-              frameBorder="0"
-              title="Book a time with HyperDial"
-            />
+            <div className="relative rounded-xl border border-line overflow-hidden" style={{ height: 500 }}>
+              {/* Skeleton loader shown until iframe signals ready */}
+              {!calReady && (
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-surface">
+                  <div className="h-8 w-8 rounded-full border-2 border-brand border-t-transparent animate-spin" />
+                  <p className="text-xs text-muted">Loading calendar…</p>
+                </div>
+              )}
+              <iframe
+                src={schedulerUrl}
+                className="w-full h-full"
+                style={{ opacity: calReady ? 1 : 0, transition: "opacity 0.3s" }}
+                frameBorder="0"
+                title="Book a time with HyperDial"
+                onLoad={() => setCalReady(true)}
+              />
+            </div>
           </div>
         ) : null}
       </div>
