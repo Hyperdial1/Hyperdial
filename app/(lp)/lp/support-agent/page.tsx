@@ -54,7 +54,7 @@ export default function SupportAgentLp() {
   const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
-      <LpPopup source="lp_support" schedulerUrl={schedulerUrl} />
+      <LpPopup source="lp_support" variant="support" />
       <LpFloatingCta label="Book a Demo" />
 
       <LpHeader />

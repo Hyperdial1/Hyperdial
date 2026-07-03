@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { LpDemoForm } from "@/components/lp/lp-demo-form";
+import { LpDemoForm, LpVariant } from "@/components/lp/lp-demo-form";
 
 interface LpPopupProps {
   source: string;
-  schedulerUrl?: string;
+  variant: LpVariant;
 }
 
-export function LpPopup({ source, schedulerUrl }: LpPopupProps) {
+export function LpPopup({ source, variant }: LpPopupProps) {
   const [open, setOpen] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -73,7 +73,7 @@ export function LpPopup({ source, schedulerUrl }: LpPopupProps) {
 
         {/* Form */}
         <div className="px-6 pb-6 pt-4">
-          <LpDemoForm source={source} inPopup schedulerUrl={schedulerUrl} />
+          <LpDemoForm source={source} variant={variant} inPopup />
         </div>
       </div>
     </div>
