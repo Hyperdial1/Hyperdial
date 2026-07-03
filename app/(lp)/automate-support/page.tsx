@@ -8,50 +8,49 @@ import { LpPopup } from "@/components/lp/lp-popup";
 import { LpFloatingCta } from "@/components/lp/lp-floating-cta";
 
 export const metadata: Metadata = {
-  title: "AI Support Agent for Chat, Email & Social | HyperDial",
+  title: "Automate Customer Support | HyperDial",
   description:
-    "HyperDial's AI support agent handles repeat tickets across chat, email, and social — and gets smarter every time a human agent resolves something new.",
+    "HyperDial automates the repetitive 80% of your support workload — so your team can focus on the conversations that actually need a human.",
   robots: { index: false, follow: false },
 };
 
 const problems = [
   {
     icon: "🔁",
-    text: "Your team writes the same answer to the same 10 questions, 50 times a day. That's not support — that's copy-paste.",
+    text: "Your team answers the same 10 questions 50 times a day. That's not support — that's wasted time that could be automated.",
   },
   {
     icon: "🐢",
-    text: "Response times are slipping. SLAs are breaking. CSAT is falling. And you can't hire your way out of it fast enough.",
+    text: "Response times are slipping. SLAs are breaking. CSAT is falling. And hiring more agents isn't fixing it fast enough.",
   },
   {
     icon: "💀",
-    text: "Your last chatbot gave wrong answers, damaged customer trust, and got turned off after a month.",
+    text: "You've tried a chatbot. It gave wrong answers, frustrated customers, and got switched off within a month.",
   },
 ];
 
 const steps = [
   {
     number: "1",
-    title: "Connect your channels",
+    title: "Connect your support channels",
     description:
-      "Plug HyperDial into your existing chat, email, and social tools. No rip-and-replace — works alongside what you have.",
+      "Chat, email, social, ticketing — HyperDial plugs into what you already use. No migration, no disruption.",
   },
   {
     number: "2",
-    title: "AI handles repeat queries instantly",
+    title: "Automate the repetitive 80%",
     description:
-      "Order status, refunds, FAQs, onboarding steps — resolved automatically, 24/7, without a human touch.",
+      "FAQs, order status, refunds, onboarding — resolved instantly and accurately, 24/7, without a human touch.",
   },
   {
     number: "3",
-    title: "AOP learns from your best agents",
+    title: "Gets smarter from your best agents",
     description:
-      "Every time a human resolves something new, the AOP layer studies it and adds it to the playbook — automatically.",
+      "Every time a human resolves something new, HyperDial's AOP layer captures it and handles it automatically next time.",
   },
 ];
 
-export default function SupportAgentLp() {
-  const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
+export default function AutomateSupportLp() {
   return (
     <>
       <LpPopup source="lp_automate_support" variant="support" />
@@ -60,24 +59,22 @@ export default function SupportAgentLp() {
       <LpHeader />
 
       <LpHero
-        eyebrow="AI Support Agent"
-        headline="Handles the tickets your team writes the same answer to, every day."
-        subhead="HyperDial's AI support agent works across chat, email, and social. It learns from your best agents' resolutions and handles repeat queries instantly — so your team can focus on the conversations that actually need a human."
+        eyebrow="Customer Support Automation"
+        headline="Automate the 80% so your team can focus on the 20% that matters."
+        subhead="HyperDial handles your repeat tickets automatically — across chat, email, and social — and learns from every resolution your best agents make. No static scripts. No retraining. Just support that gets better every day."
+        ctaLabel="See How It Works — Free"
       />
 
       <LpProblem points={problems} />
 
-      <LpHowItWorks steps={steps} />
-
-      <AopLoop />
-
+      {/* Stats strip */}
       <section className="py-12 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto">
           <dl className="grid sm:grid-cols-3 gap-8 text-center">
             {[
-              { stat: "68%", label: "of tickets handled without human touch" },
+              { stat: "80%", label: "of tickets resolved without human touch" },
+              { stat: "60%", label: "improvement in agent productivity" },
               { stat: "< 2 days", label: "average time to go live" },
-              { stat: "24/7", label: "coverage across every channel" },
             ].map(({ stat, label }, i) => (
               <div key={i} className="flex flex-col gap-1">
                 <dt className="font-display text-4xl font-bold text-brand">{stat}</dt>
@@ -88,19 +85,23 @@ export default function SupportAgentLp() {
         </div>
       </section>
 
-      <section className="py-16 bg-surface border-b border-line">
+      <LpHowItWorks steps={steps} />
+
+      <AopLoop />
+
+      <section className="py-16 bg-white border-b border-line">
         <div className="wrap max-w-3xl mx-auto text-center">
           <h2 className="font-display text-2xl font-semibold text-ink mb-8">
             This is built for you if…
           </h2>
           <div className="grid sm:grid-cols-2 gap-4 text-left">
             {[
-              "You run a SaaS or e-commerce business with a high volume of repeat support tickets",
-              "Your team is spending most of their time on questions that could be answered automatically",
-              "You've tried chatbots before and they failed — because they couldn't learn",
-              "You want AI that improves continuously, not a static bot you deploy and forget",
+              "Your support team spends most of their day answering the same questions repeatedly",
+              "You're running a helpdesk on chat, email, or social and response times are slipping",
+              "You've tried a chatbot before and it failed because it couldn't learn from your team",
+              "You want automation that improves continuously — not a static bot you deploy and forget",
             ].map((item, i) => (
-              <div key={i} className="flex items-start gap-3 rounded-xl border border-line bg-white p-4">
+              <div key={i} className="flex items-start gap-3 rounded-xl border border-line bg-surface p-4">
                 <span className="mt-0.5 text-brand font-bold">✓</span>
                 <p className="text-sm text-muted leading-relaxed">{item}</p>
               </div>
