@@ -117,14 +117,17 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // 2) Send an email notification (if configured)
-  const resendKey = process.env.RESEND_API_KEY;
+  // 2) Send an email notification via Gmail SMTP (if configured)
+  const gmailUser = process.env.GMAIL_USER;
+  const gmailPass = process.env.GMAIL_APP_PASSWORD;
   const notifyTo = process.env.LEAD_NOTIFY_EMAIL;
-  const notifyFrom = process.env.LEAD_FROM_EMAIL;
-  if (resendKey && notifyTo && notifyFrom) {
+  if (gmailUser && gmailPass && notifyTo) {
     try {
-      const { Resend } = await import("resend");
-      const resend = new Resend(resendKey);
+      const nodemailer = await import("nodemailer");
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: { user: gmailUser, pass: gmailPass },
+      });
       const rows = Object.entries(lead)
         .filter(([, v]) => v !== null && v !== undefined)
         .map(([k, v]) => {
@@ -132,8 +135,8 @@ export async function POST(req: NextRequest) {
           return `<tr><td style="padding:4px 12px 4px 0;color:#5B6577">${k}</td><td style="padding:4px 0"><strong>${display}</strong></td></tr>`;
         })
         .join("");
-      await resend.emails.send({
-        from: notifyFrom,
+      await transporter.sendMail({
+        from: `"HyperDial Leads" <${gmailUser}>`,
         to: notifyTo,
         subject: `New HyperDial demo request — ${lead.company ?? lead.name}`,
         html: `<h2 style="font-family:sans-serif">New demo request</h2><table style="font-family:sans-serif;font-size:14px">${rows}</table>`,
