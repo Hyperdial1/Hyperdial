@@ -54,7 +54,7 @@ export default function VoiceAgentLp() {
   const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   return (
     <>
-      <LpPopup source="lp_voice" schedulerUrl={schedulerUrl} />
+      <LpPopup source="lp_voice" variant="voice" />
       <LpFloatingCta label="Book a Demo" />
 
       <LpHeader />
