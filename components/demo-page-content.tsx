@@ -85,7 +85,6 @@ const faqs = [
 ];
 
 export function DemoPageContent() {
-  const schedulerUrl = process.env.NEXT_PUBLIC_GCAL_SCHEDULE_URL;
   const [open, setOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -273,7 +272,6 @@ export function DemoPageContent() {
       <BookingWizard
         open={open}
         onClose={() => setOpen(false)}
-        schedulerUrl={schedulerUrl}
       />
     </>
   );

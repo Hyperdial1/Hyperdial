@@ -97,11 +97,9 @@ const STEP_META = [
 export function BookingWizard({
   open,
   onClose,
-  schedulerUrl,
 }: {
   open: boolean;
   onClose: () => void;
-  schedulerUrl?: string;
 }) {
   const [step, setStep] = useState<Step>(1);
   const [data, setData] = useState<WizardData>(initialData);
@@ -308,7 +306,8 @@ export function BookingWizard({
           )}
           {step === 4 && (
             <Step4Schedule
-              schedulerUrl={schedulerUrl}
+              calName={[data.first_name, data.last_name].filter(Boolean).join(" ")}
+              calEmail={data.work_email}
               onBack={goBack}
               onDone={() => setStep(5)}
             />
@@ -579,56 +578,58 @@ function Step3({
   );
 }
 
-/* ---------------- Step 4: real Google Calendar iframe ---------------- */
+/* ---------------- Step 4: Calendly ---------------- */
+
+const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
 function Step4Schedule({
-  schedulerUrl,
+  calName,
+  calEmail,
   onBack,
   onDone,
 }: {
-  schedulerUrl?: string;
+  calName?: string;
+  calEmail?: string;
   onBack: () => void;
   onDone: () => void;
 }) {
+  const [booked, setBooked] = useState(false);
+
+  useEffect(() => {
+    function onMessage(e: MessageEvent) {
+      if (e.data?.event === "calendly.event_scheduled") {
+        setBooked(true);
+        onDone();
+      }
+    }
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [onDone]);
+
+  const params = new URLSearchParams();
+  if (calName) params.set("name", calName);
+  if (calEmail) params.set("email", calEmail);
+  const src = `${CALENDLY_URL}?${params.toString()}`;
+
   return (
     <div>
       <p className="mb-3 text-[12.5px] text-muted">
-        Pick a slot below — you&rsquo;ll get an instant confirmation with a
-        Google Meet link.
+        Pick a slot below — you&rsquo;ll get an instant Google Meet confirmation.
       </p>
-
-      {schedulerUrl ? (
-        <iframe
-          src={schedulerUrl}
-          title="Book a HyperDial demo"
-          className="h-[420px] w-full rounded-xl border border-line bg-white"
-          loading="lazy"
-        />
-      ) : (
-        <div className="flex h-[260px] flex-col items-center justify-center rounded-xl border border-line bg-surface p-6 text-center">
-          <span className="grid h-10 w-10 place-items-center rounded-full bg-brand/10 text-xl">
-            📅
-          </span>
-          <h3 className="mt-3 font-display text-sm font-semibold">
-            Scheduler not connected yet
-          </h3>
-          <p className="mt-1.5 text-[12px] leading-5 text-muted">
-            Add your Google Calendar appointment-scheduling link as{" "}
-            <code className="rounded bg-line px-1 py-0.5">
-              NEXT_PUBLIC_GCAL_SCHEDULE_URL
-            </code>{" "}
-            in Vercel, then redeploy.
-          </p>
-        </div>
-      )}
-
+      <iframe
+        src={src}
+        title="Book a HyperDial demo"
+        className="h-[500px] w-full rounded-xl border border-line bg-white"
+      />
       <div className="mt-4 flex items-center justify-between">
         <button onClick={onBack} className="btn-ghost">
           Back
         </button>
-        <button onClick={onDone} className="text-[12.5px] font-medium text-brand hover:underline">
-          I&rsquo;ve booked a time →
-        </button>
+        {!booked && (
+          <button onClick={onDone} className="text-[12.5px] font-medium text-brand hover:underline">
+            Already booked a time →
+          </button>
+        )}
       </div>
     </div>
   );
