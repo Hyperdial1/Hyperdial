@@ -247,14 +247,6 @@ export function AutomateSupportClient() {
         </div>
       </header>
 
-      {/* logo strip */}
-      <div className="logostrip">
-        <div className="wrap">
-          <span>Trusted by support teams at</span>
-          <span className="fakelogo">Northwind</span><span className="fakelogo">Acmeflow</span><span className="fakelogo">Brightpath</span><span className="fakelogo">Loopware</span><span className="fakelogo">Kitehq</span>
-        </div>
-      </div>
-
       {/* ================= PROBLEM ================= */}
       <section id="problem">
         <div className="wrap">

@@ -115,7 +115,8 @@
 @media (max-width: 760px) { .bcp-lp .stats { grid-template-columns: repeat(2, 1fr); } }
 .bcp-lp .stat b { display: block; font-size: 2.7rem; font-weight: 800; letter-spacing: -.03em; color: var(--brand); font-variant-numeric: tabular-nums; }
 .bcp-lp .stat b small { font-size: 1.4rem; }
-.bcp-lp .stat span { font-size: .85rem; color: var(--muted); }
+.bcp-lp .stat > span { font-size: .85rem; color: var(--muted); }
+.bcp-lp .stat b span { font-size: inherit; color: inherit; }
 
 /* problem cards */
 .bcp-lp .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }

@@ -246,9 +246,8 @@ export function AiBusinessCommunicationPlatformClient() {
       <div className="ratings">
         <div className="wrap">
           <span className="t">Trusted by growing teams</span>
-          <span className="rate"><span className="stars">★★★★★</span> 4.6 on G2 (placeholder)</span>
-          <span className="rate"><span className="stars">★★★★★</span> 4.5 on Capterra (placeholder)</span>
           <span className="rate">99.9% uptime SLA</span>
+          <span className="rate">5-minute setup</span>
           <span className="rate">Numbers in 150+ countries</span>
         </div>
       </div>
@@ -346,19 +345,14 @@ export function AiBusinessCommunicationPlatformClient() {
       <section id="results">
         <div className="wrap">
           <div className="sec-head rv">
-            <p className="eyebrow">Customers</p>
+            <p className="eyebrow">Trust &amp; reliability</p>
             <h2>Built for teams who live on the phone.</h2>
-          </div>
-          <div className="quotes" style={{ marginTop: 0 }}>
-            <div className="quote rv"><span className="m">0 missed</span><p>&ldquo;We went from missing a third of inbound calls to missing none. The after-hours AI alone paid for the whole system.&rdquo;</p><cite>Ops Lead, logistics (placeholder)</cite></div>
-            <div className="quote rv"><span className="m">3× calls</span><p>&ldquo;The power dialer tripled our outbound conversations, and the AI notes mean reps actually update the CRM now — because they don&rsquo;t have to.&rdquo;</p><cite>Sales Manager, SaaS (placeholder)</cite></div>
-            <div className="quote rv"><span className="m">12 numbers</span><p>&ldquo;Twelve numbers across four countries, managed from one dashboard. We deleted the forwarding spreadsheet forever.&rdquo;</p><cite>Founder, e-commerce (placeholder)</cite></div>
           </div>
           <div className="trust rv">
             <span className="badge"><b>99.9%</b> uptime SLA</span>
             <span className="badge"><b>Encrypted</b> calls &amp; recordings</span>
             <span className="badge"><b>GDPR</b> ready</span>
-            <span className="badge"><b>SOC 2</b> (in progress — placeholder)</span>
+            <span className="badge"><b>SOC 2</b> in progress</span>
             <span className="badge"><b>150+</b> countries</span>
           </div>
         </div>

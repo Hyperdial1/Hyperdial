@@ -206,14 +206,6 @@ export function AiCustomerServicePlatformClient() {
         </div>
       </header>
 
-      {/* logo strip */}
-      <div className="logostrip">
-        <div className="wrap">
-          <span>Powering support teams at</span>
-          <span className="fakelogo">Northwind</span><span className="fakelogo">Acmeflow</span><span className="fakelogo">Brightpath</span><span className="fakelogo">Loopware</span><span className="fakelogo">Kitehq</span>
-        </div>
-      </div>
-
       {/* ================= PLATFORM PILLARS ================= */}
       <section id="platform">
         <div className="wrap">
@@ -334,11 +326,6 @@ export function AiCustomerServicePlatformClient() {
             <div className="stat"><b data-count="40">0</b><span>% of conversations resolved by AI</span></div>
             <div className="stat"><b data-count="35">0</b><span>% faster average resolution time</span></div>
             <div className="stat"><b data-count="2">0</b><span>days to go live alongside your stack</span></div>
-          </div>
-          <div className="quotes">
-            <div className="quote rv"><span className="m">42%</span><p>&ldquo;Within two months, four in ten conversations were resolving without an agent — and CSAT went up, not down.&rdquo;</p><cite>Head of Support, B2B SaaS (placeholder)</cite></div>
-            <div className="quote rv"><span className="m">1 queue</span><p>&ldquo;We shut down three tools. Calls, WhatsApp and email finally live in one place, and my team stopped tab-switching.&rdquo;</p><cite>CX Manager, e-commerce (placeholder)</cite></div>
-            <div className="quote rv"><span className="m">2 weeks</span><p>&ldquo;The copilot got our new hires answering like senior agents in their first fortnight.&rdquo;</p><cite>Support Lead, fintech (placeholder)</cite></div>
           </div>
         </div>
       </section>
