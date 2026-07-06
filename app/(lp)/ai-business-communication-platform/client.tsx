@@ -188,7 +188,7 @@ export function AiBusinessCommunicationPlatformClient() {
       <div className="field"><label htmlFor={`${p}eu`}>How many end users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 500" required /></div>
       <MultiSelect name="countries" label="Which countries will you be calling?" options={COUNTRIES} />
       <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Saving…" : "Book my demo — pick a time →"}
+        {status === "sending" ? "Saving…" : "Book my demo →"}
       </button>
       {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
       <p className="micro">No credit card. Keep your existing number. Set up in under 5 minutes.</p>
@@ -394,7 +394,7 @@ export function AiBusinessCommunicationPlatformClient() {
             <p className="eyebrow" style={{ color: "var(--brand-light)", position: "relative" }}>Ready when you are</p>
             <h2>We&rsquo;ll set up a working number<br />live on your demo call.</h2>
             <p>30 minutes, no commitment, no sales pitch. Bring your call volume — leave with a phone system that never misses.</p>
-            <a href="#" className="btn btn-primary" onClick={demoClick}>Book my demo — pick a time →</a>
+            <a href="#" className="btn btn-primary" onClick={demoClick}>Book my demo →</a>
           </div>
         </div>
       </section>
