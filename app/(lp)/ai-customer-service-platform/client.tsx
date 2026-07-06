@@ -6,6 +6,25 @@ const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
 type ModalPhase = "form" | "calendar" | "booked";
 
+function Svg({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {children}
+    </svg>
+  );
+}
+
+const ICONS = {
+  phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />,
+  chat: <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />,
+  mail: <><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></>,
+  globe: <><circle cx="12" cy="12" r="10" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><path d="M2 12h20" /></>,
+  inbox: <><polyline points="22 12 16 12 14 15 10 15 8 12 2 12" /><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" /></>,
+  sparkles: <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />,
+  gauge: <><path d="m12 14 4-4" /><path d="M3.34 19a10 10 0 1 1 17.32 0" /></>,
+  rocket: <><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></>,
+} as const;
+
 export function AiCustomerServicePlatformClient() {
   const [modalOpen, setModalOpen] = useState(false);
   const [phase, setPhase] = useState<ModalPhase>("form");
@@ -22,11 +41,6 @@ export function AiCustomerServicePlatformClient() {
     setModalOpen(false);
     document.body.style.overflow = "";
   }, []);
-
-  useEffect(() => {
-    const t = setTimeout(openModal, 400);
-    return () => clearTimeout(t);
-  }, [openModal]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
@@ -108,6 +122,7 @@ export function AiCustomerServicePlatformClient() {
       setCalUrl(`${CALENDLY_URL}?${params.toString()}`);
       setPhase("calendar");
       setStatus("idle");
+      openModal();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -115,6 +130,28 @@ export function AiCustomerServicePlatformClient() {
       submittingRef.current = false;
     }
   }
+
+  const renderForm = (p: string) => (
+    <form onSubmit={onSubmit}>
+      <div className="row2">
+        <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
+        <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
+      </div>
+      <div className="field"><label htmlFor={`${p}em`}>Work email</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+      <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
+      <div className="row2">
+        <div className="field"><label htmlFor={`${p}ts`}>Support agents on team</label>
+          <input id={`${p}ts`} name="team_size" type="number" placeholder="e.g. 20" required /></div>
+        <div className="field"><label htmlFor={`${p}tv`}>Monthly ticket volume</label>
+          <input id={`${p}tv`} name="monthly_tickets" placeholder="e.g. 5,000" required /></div>
+      </div>
+      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Saving…" : "Book my demo →"}
+      </button>
+      {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
+      <p className="micro">No credit card. No commitment. We&rsquo;ll tailor the walkthrough to your channels.</p>
+    </form>
+  );
 
   return (
     <div className="csp-lp">
@@ -129,25 +166,7 @@ export function AiCustomerServicePlatformClient() {
                 <p className="eyebrow">Personalised demo · 30 min</p>
                 <h2 id="mtitle">See every channel in one workspace</h2>
                 <p className="sub">Book a demo and we&rsquo;ll show HyperDial running your tickets, chats, socials and calls — with AI working alongside your team.</p>
-                <form onSubmit={onSubmit}>
-                  <div className="row2">
-                    <div className="field"><label htmlFor="fn">First name</label><input id="fn" name="first_name" required autoComplete="given-name" /></div>
-                    <div className="field"><label htmlFor="ln">Last name</label><input id="ln" name="last_name" required autoComplete="family-name" /></div>
-                  </div>
-                  <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
-                  <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
-                  <div className="row2">
-                    <div className="field"><label htmlFor="ts">Support agents on team</label>
-                      <input id="ts" name="team_size" type="number" placeholder="e.g. 20" required /></div>
-                    <div className="field"><label htmlFor="tv">Monthly ticket volume</label>
-                      <input id="tv" name="monthly_tickets" placeholder="e.g. 5,000" required /></div>
-                  </div>
-                  <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-                    {status === "sending" ? "Saving…" : "Book my demo →"}
-                  </button>
-                  {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
-                  <p className="micro">No credit card. No commitment. We&rsquo;ll tailor the walkthrough to your channels.</p>
-                </form>
+                {renderForm("m")}
               </div>
             )}
             {phase === "calendar" && (
@@ -195,13 +214,11 @@ export function AiCustomerServicePlatformClient() {
             </div>
             <p className="hero-note">Free 30-minute walkthrough · works alongside your existing tools · live in days, not months</p>
           </div>
-          <div className="inbox" aria-hidden="true">
-            <div className="inbox-bar"><span><span className="pulse"></span>All conversations</span><span>One queue</span></div>
-            <div className="convo"><span className="ch ch-call">CALL</span><span className="who">Aroha M. — billing dispute <span>· transcribed &amp; summarised</span></span><span className="state st-co">Agent + AI</span></div>
-            <div className="convo" style={{ animationDelay: ".5s" }}><span className="ch ch-chat">CHAT</span><span className="who">Daniel R. — &ldquo;reset my password&rdquo;</span><span className="state st-ai">AI resolved</span></div>
-            <div className="convo" style={{ animationDelay: "1s" }}><span className="ch ch-soc">SOCIAL</span><span className="who">@kiwistartup — plan upgrade DM</span><span className="state st-ai">AI resolved</span></div>
-            <div className="convo" style={{ animationDelay: "1.5s" }}><span className="ch ch-mail">EMAIL</span><span className="who">Priya S. — API integration question</span><span className="state st-open">Assigned · draft ready</span></div>
-            <div className="convo" style={{ animationDelay: "2s" }}><span className="ch ch-chat">CHAT</span><span className="who">Tom W. — &ldquo;where&rsquo;s my invoice?&rdquo;</span><span className="state st-ai">AI resolved</span></div>
+          <div className="hero-form">
+            <p className="hf-eyebrow">Personalised demo · 30 min</p>
+            <h2>Book your demo</h2>
+            <p className="hf-sub">We&rsquo;ll show HyperDial running your tickets, chats, socials and calls — no commitment.</p>
+            {renderForm("h")}
           </div>
         </div>
       </header>
@@ -281,10 +298,10 @@ export function AiCustomerServicePlatformClient() {
             <h2>Meet customers wherever they already are.</h2>
           </div>
           <div className="chgrid">
-            <div className="chcard rv"><div className="ico">📞</div><h3>Voice &amp; calls</h3><p>Cloud calling with live transcription, AI call summaries, and instant post-call ticket creation.</p></div>
-            <div className="chcard rv"><div className="ico">💬</div><h3>Live chat &amp; messaging</h3><p>Website chat and in-app messaging with AI agents on the front line and humans one click away.</p></div>
-            <div className="chcard rv"><div className="ico">✉️</div><h3>Email &amp; ticketing</h3><p>A modern help desk — routing, SLAs, priorities and AI-drafted replies, without the clutter.</p></div>
-            <div className="chcard rv"><div className="ico">🌐</div><h3>Social &amp; WhatsApp</h3><p>Instagram, Facebook, X and WhatsApp DMs handled in the same queue as everything else.</p></div>
+            <div className="chcard rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.phone}</Svg></div><h3>Voice &amp; calls</h3><p>Cloud calling with live transcription, AI call summaries, and instant post-call ticket creation.</p></div>
+            <div className="chcard rv"><div className="ico" style={{ color: "var(--green)" }}><Svg size={22}>{ICONS.chat}</Svg></div><h3>Live chat &amp; messaging</h3><p>Website chat and in-app messaging with AI agents on the front line and humans one click away.</p></div>
+            <div className="chcard rv"><div className="ico" style={{ color: "var(--amber)" }}><Svg size={22}>{ICONS.mail}</Svg></div><h3>Email &amp; ticketing</h3><p>A modern help desk — routing, SLAs, priorities and AI-drafted replies, without the clutter.</p></div>
+            <div className="chcard rv"><div className="ico" style={{ color: "var(--coral)" }}><Svg size={22}>{ICONS.globe}</Svg></div><h3>Social &amp; WhatsApp</h3><p>Instagram, Facebook, X and WhatsApp DMs handled in the same queue as everything else.</p></div>
           </div>
         </div>
       </section>
@@ -318,14 +335,15 @@ export function AiCustomerServicePlatformClient() {
       <section id="results">
         <div className="wrap">
           <div className="sec-head rv">
-            <p className="eyebrow">Customers</p>
+            <p className="eyebrow pill">Customers</p>
             <h2>One platform. Measurable results.</h2>
+            <p>The numbers support teams track — unified channels, AI resolution and time to value.</p>
           </div>
-          <div className="stats rv">
-            <div className="stat"><b data-count="6">0</b><span>channels unified in one workspace</span></div>
-            <div className="stat"><b data-count="40">0</b><span>% of conversations resolved by AI</span></div>
-            <div className="stat"><b data-count="35">0</b><span>% faster average resolution time</span></div>
-            <div className="stat"><b data-count="2">0</b><span>days to go live alongside your stack</span></div>
+          <div className="metrics rv">
+            <div className="metric"><div className="mi" style={{ color: "var(--brand)" }}><Svg>{ICONS.inbox}</Svg></div><b><span data-count="6">0</span> channels, one workspace</b><p>Voice, chat, email, WhatsApp and socials in a single queue.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--green)" }}><Svg>{ICONS.sparkles}</Svg></div><b><span data-count="40">0</span>% resolved by AI</b><p>Routine conversations handled end to end, without an agent.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--amber)" }}><Svg>{ICONS.gauge}</Svg></div><b><span data-count="35">0</span>% faster resolutions</b><p>Average handle time drops as the AI drafts, routes and summarises.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--coral)" }}><Svg>{ICONS.rocket}</Svg></div><b><span data-count="2">0</span> days to go live</b><p>Runs alongside your current stack — migrate at your own pace.</p></div>
           </div>
         </div>
       </section>

@@ -11,6 +11,35 @@ const COUNTRIES = [
 
 type ModalPhase = "form" | "calendar" | "booked";
 
+function Svg({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {children}
+    </svg>
+  );
+}
+
+const ICONS = {
+  globe: <><circle cx="12" cy="12" r="10" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /><path d="M2 12h20" /></>,
+  repeat: <><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></>,
+  split: <><path d="M16 3h5v5" /><path d="M8 3H3v5" /><path d="M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3" /><path d="m15 9 6-6" /></>,
+  layers: <><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z" /><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65" /><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65" /></>,
+  zap: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />,
+  mic: <><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line x1="12" x2="12" y1="19" y2="22" /></>,
+  sparkles: <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />,
+  users: <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></>,
+  headphones: <><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Z" /><path d="M21 14h-3a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-5Z" /><path d="M3 14v-3a9 9 0 0 1 18 0v3" /></>,
+  moon: <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />,
+  chart: <><path d="M3 3v18h18" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" /></>,
+  link: <><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /></>,
+  phone: <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />,
+  shuffle: <><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.1-8.6c.8-1.1 2-1.7 3.3-1.7H22" /><path d="m18 2 4 4-4 4" /><path d="M2 6h1.9c1.5 0 2.9.9 3.6 2.2" /><path d="M22 18h-5.9c-1.3 0-2.6-.7-3.3-1.8l-.5-.8" /><path d="m18 14 4 4-4 4" /></>,
+  file: <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M16 13H8" /><path d="M16 17H8" /></>,
+  target: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>,
+  clock: <><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></>,
+  refresh: <><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></>,
+} as const;
+
 function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
   const [selected, setSelected] = useState<string[]>([]);
   function toggle(opt: string) {
@@ -57,11 +86,6 @@ export function AiBusinessCommunicationPlatformClient() {
     setModalOpen(false);
     document.body.style.overflow = "";
   }, []);
-
-  useEffect(() => {
-    const t = setTimeout(openModal, 400);
-    return () => clearTimeout(t);
-  }, [openModal]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
@@ -144,6 +168,7 @@ export function AiBusinessCommunicationPlatformClient() {
       setCalUrl(`${CALENDLY_URL}?${params.toString()}`);
       setPhase("calendar");
       setStatus("idle");
+      openModal();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -151,6 +176,24 @@ export function AiBusinessCommunicationPlatformClient() {
       submittingRef.current = false;
     }
   }
+
+  const renderForm = (p: string) => (
+    <form onSubmit={onSubmit}>
+      <div className="row2">
+        <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
+        <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
+      </div>
+      <div className="field"><label htmlFor={`${p}em`}>Work email</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+      <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
+      <div className="field"><label htmlFor={`${p}eu`}>How many end users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 500" required /></div>
+      <MultiSelect name="countries" label="Which countries will you be calling?" options={COUNTRIES} />
+      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Saving…" : "Book my demo — pick a time →"}
+      </button>
+      {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
+      <p className="micro">No credit card. Keep your existing number. Set up in under 5 minutes.</p>
+    </form>
+  );
 
   return (
     <div className="bcp-lp">
@@ -165,21 +208,7 @@ export function AiBusinessCommunicationPlatformClient() {
                 <p className="eyebrow">Live demo · 30 min</p>
                 <h2 id="mtitle">Hear your calls run themselves</h2>
                 <p className="sub">Book a demo — we&rsquo;ll set up a working number on the call and show smart routing, AI notes and follow-ups live. No commitment, no sales pitch.</p>
-                <form onSubmit={onSubmit}>
-                  <div className="row2">
-                    <div className="field"><label htmlFor="fn">First name</label><input id="fn" name="first_name" required autoComplete="given-name" /></div>
-                    <div className="field"><label htmlFor="ln">Last name</label><input id="ln" name="last_name" required autoComplete="family-name" /></div>
-                  </div>
-                  <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
-                  <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
-                  <div className="field"><label htmlFor="eu">How many end users?</label><input id="eu" name="end_users" type="number" placeholder="e.g. 500" required /></div>
-                  <MultiSelect name="countries" label="Which countries will you be calling?" options={COUNTRIES} />
-                  <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-                    {status === "sending" ? "Saving…" : "Book my demo — pick a time →"}
-                  </button>
-                  {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
-                  <p className="micro">No credit card. Keep your existing number. Set up in under 5 minutes.</p>
-                </form>
+                {renderForm("m")}
               </div>
             )}
             {phase === "calendar" && (
@@ -218,26 +247,20 @@ export function AiBusinessCommunicationPlatformClient() {
         <div className="glow glow-1"></div><div className="glow glow-2"></div>
         <div className="wrap hero-grid">
           <div>
-            <p className="eyebrow">AI-powered business phone system</p>
-            <h1>More calls answered. <em>Zero leads lost.</em></h1>
-            <p className="lead">Calling, routing and follow-ups on one smart phone system. Set up in minutes, keep your existing number — and every call gets answered, logged, transcribed and followed up. Automatically.</p>
+            <p className="eyebrow">Business calling with built-in AI intelligence</p>
+            <h1>Make every call <em>your best call.</em></h1>
+            <p className="lead">Every call your team makes is recorded, transcribed and analysed automatically. HyperDial turns your call records into reports, quality scores and feedback loops — so your team learns from every conversation, and the next call is always better than the last.</p>
             <div className="hero-ctas">
               <a href="#" className="btn btn-primary" onClick={demoClick}>Book a demo →</a>
               <a href="#features" className="btn btn-ghost-inv">See all features</a>
             </div>
             <p className="hero-note">&lt; 5-minute setup · 99.9% uptime · works with your existing number</p>
           </div>
-          <div className="callcard" aria-hidden="true">
-            <div className="cc-bar"><span><span className="pulse"></span>Live call</span><span>Smart line · +64 9 ···</span></div>
-            <div className="cc-call">
-              <div className="cc-ava">JM</div>
-              <div><div><b>James M.</b> — inbound, routed to Sales</div><div className="t">Matched by IVR intent · &ldquo;pricing question&rdquo;</div></div>
-              <div className="cc-timer">02:47</div>
-            </div>
-            <div className="cc-line"><span className="tag tg-live">TRANSCRIBING</span><span className="txt">&ldquo;…so we&rsquo;d need around twenty seats from March…&rdquo;</span></div>
-            <div className="cc-line" style={{ animationDelay: ".6s" }}><span className="tag tg-ai">AI NOTE</span><span className="txt">Budget confirmed · decision by Friday · send Team plan pricing</span></div>
-            <div className="cc-line" style={{ animationDelay: "1.2s" }}><span className="tag tg-task">FOLLOW-UP</span><span className="txt">Task created: email proposal today, call back Thursday 10am</span></div>
-            <div className="cc-line" style={{ animationDelay: "1.8s" }}><span className="tag tg-ai">AI SUMMARY</span><span className="txt">Logged to CRM automatically <span>· 0 manual notes taken</span></span></div>
+          <div className="hero-form">
+            <p className="hf-eyebrow">Live demo · 30 min</p>
+            <h2>Book your demo</h2>
+            <p className="hf-sub">We&rsquo;ll show smart routing, AI notes and call intelligence live — no commitment, no sales pitch.</p>
+            {renderForm("h")}
           </div>
         </div>
       </header>
@@ -255,15 +278,16 @@ export function AiBusinessCommunicationPlatformClient() {
       {/* ================= RESULTS STATS ================= */}
       <section style={{ padding: "72px 0" }}>
         <div className="wrap">
-          <div className="sec-head center rv" style={{ marginBottom: 40 }}>
-            <p className="eyebrow">Why teams switch</p>
+          <div className="sec-head center rv" style={{ marginBottom: 48 }}>
+            <p className="eyebrow pill">Why teams switch</p>
             <h2>What happens when no call falls through the cracks.</h2>
+            <p>HyperDial drives measurable gains in answer rates, rep productivity and follow-through.</p>
           </div>
-          <div className="stats rv">
-            <div className="stat"><b><span data-count="0">0</span></b><span>missed calls with smart auto-routing</span></div>
-            <div className="stat"><b><span data-count="4">0</span>×</b><span>more conversations per rep with the dialer</span></div>
-            <div className="stat"><b>&lt;<span data-count="5">0</span><small> min</small></b><span>from sign-up to your first live call</span></div>
-            <div className="stat"><b><span data-count="100">0</span>%</b><span>of calls transcribed, summarised &amp; logged</span></div>
+          <div className="metrics rv">
+            <div className="metric"><div className="mi" style={{ color: "var(--brand)" }}><Svg>{ICONS.target}</Svg></div><b><span data-count="0">0</span> missed calls</b><p>Smart routing and after-hours AI pick up every ring — nights and weekends included.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--green)" }}><Svg>{ICONS.zap}</Svg></div><b><span data-count="4">0</span>× more conversations</b><p>The power dialer keeps reps talking instead of dialling, waiting and logging.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--amber)" }}><Svg>{ICONS.clock}</Svg></div><b>&lt;<span data-count="5">0</span> min to go live</b><p>From sign-up to your first live call on a working business number.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--coral)" }}><Svg>{ICONS.refresh}</Svg></div><b><span data-count="100">0</span>% of calls logged</b><p>Every call transcribed, summarised and written to your CRM automatically.</p></div>
           </div>
         </div>
       </section>
@@ -276,9 +300,9 @@ export function AiBusinessCommunicationPlatformClient() {
             <h2>The calls you miss are the revenue you lose.</h2>
           </div>
           <div className="cards3">
-            <div className="card rv"><div className="ico">📵</div><h3>Missed calls go to competitors</h3><p>Every unanswered ring is a lead calling the next number on their list. After hours, on weekends, when lines are busy — they don&rsquo;t wait.</p></div>
-            <div className="card rv"><div className="ico">🔀</div><h3>Numbers are an admin nightmare</h3><p>Multiple lines, teams and regions mean forwarding rules, spreadsheets and SIM cards nobody wants to manage.</p></div>
-            <div className="card rv"><div className="ico">📝</div><h3>Context dies after hang-up</h3><p>Manual call logging and follow-up tracking means notes get skipped, promises get forgotten, and deals quietly go cold.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.phone}</Svg></div><h3>Missed calls go to competitors</h3><p>Every unanswered ring is a lead calling the next number on their list. After hours, on weekends, when lines are busy — they don&rsquo;t wait.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.shuffle}</Svg></div><h3>Numbers are an admin nightmare</h3><p>Multiple lines, teams and regions mean forwarding rules, spreadsheets and SIM cards nobody wants to manage.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.file}</Svg></div><h3>Context dies after hang-up</h3><p>Manual call logging and follow-up tracking means notes get skipped, promises get forgotten, and deals quietly go cold.</p></div>
           </div>
         </div>
       </section>
@@ -287,23 +311,23 @@ export function AiBusinessCommunicationPlatformClient() {
       <section id="features">
         <div className="wrap">
           <div className="sec-head rv">
-            <p className="eyebrow">Features</p>
-            <h2>Everything a modern phone system should do — in one place.</h2>
-            <p>The full calling stack, with AI built into every call rather than bolted on.</p>
+            <p className="eyebrow pill">Platform</p>
+            <h2>The pillars of serious business calling.</h2>
+            <p>Numbers, routing, dialling and coaching — with intelligence working every call, not bolted on after.</p>
           </div>
           <div className="featgrid">
-            <div className="feat rv"><div className="fi">🌍</div><h3>Global virtual numbers</h3><p>Local, mobile and toll-free numbers in 150+ countries — buy in a click, go live instantly.</p></div>
-            <div className="feat rv"><div className="fi">🔁</div><h3>Number porting</h3><p>Keep your existing business number. Port it in without downtime or telco paperwork.</p></div>
-            <div className="feat rv"><div className="fi">🧭</div><h3>Smart call routing</h3><p>Route by team, time zone, language or intent — every caller reaches the right person, first time.</p></div>
-            <div className="feat rv"><div className="fi">🎛️</div><h3>Multi-level IVR</h3><p>A phone menu callers don&rsquo;t hate — AI understands what they say, not just what they press.</p></div>
-            <div className="feat rv"><div className="fi">⚡</div><h3>Power &amp; auto dialer</h3><p>Burn through call lists without manual dialling — reps just talk, the dialer does the rest.</p></div>
-            <div className="feat rv"><div className="fi">🎙️</div><h3>Call recording &amp; transcription</h3><p>Every call recorded and transcribed automatically — searchable forever, compliant by design.</p></div>
-            <div className="feat rv"><div className="fi">🧠</div><h3>AI notes, summaries &amp; tasks</h3><p>Key points, commitments and next steps captured on every call — logged to your CRM, no typing.</p></div>
-            <div className="feat rv"><div className="fi">📥</div><h3>Call queuing &amp; distribution</h3><p>Fair, automatic distribution across your team with queue callbacks so nobody hangs up angry.</p></div>
-            <div className="feat rv"><div className="fi">👂</div><h3>Live monitoring, whisper &amp; barge</h3><p>Coach reps silently mid-call, whisper prompts only they hear, or jump in when it matters.</p></div>
-            <div className="feat rv"><div className="fi">🌙</div><h3>After-hours &amp; voicemail drop</h3><p>Business-hour rules, smart voicemail with instant transcripts, and automated callback follow-ups.</p></div>
-            <div className="feat rv"><div className="fi">📊</div><h3>Call analytics dashboard</h3><p>Answer rates, wait times, outcomes and rep performance — live, per team and per number.</p></div>
-            <div className="feat rv"><div className="fi">🔗</div><h3>CRM &amp; helpdesk integrations</h3><p>Two-way sync with your CRM, helpdesk and Slack — calls, notes and tasks land where you work.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.globe}</Svg></div><h3>Global virtual numbers</h3><p>Local, mobile and toll-free numbers in 150+ countries. Buy in a click. Live instantly.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.repeat}</Svg></div><h3>Number porting</h3><p>Keep the number your customers already know. Ported in with zero downtime, zero telco paperwork.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--green)" }}><Svg>{ICONS.split}</Svg></div><h3>Smart call routing</h3><p>Route by team, time zone, language or intent. Every caller reaches the right person, first time.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--amber)" }}><Svg>{ICONS.layers}</Svg></div><h3>Multi-level IVR</h3><p>A phone menu callers don&rsquo;t hate. AI understands what they say — not just what they press.</p></div>
+            <div className="feat rv"><span className="tag">Popular</span><div className="fi" style={{ color: "var(--coral)" }}><Svg>{ICONS.zap}</Svg></div><h3>Power &amp; auto dialer</h3><p>Reps just talk. The dialer works the list, skips dead numbers and paces itself.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.mic}</Svg></div><h3>Call recording &amp; transcription</h3><p>Every call recorded and transcribed automatically. Searchable forever. Compliant by design.</p></div>
+            <div className="feat rv"><span className="tag">Flagship</span><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.sparkles}</Svg></div><h3>AI notes, summaries &amp; tasks</h3><p>Key points, commitments and next steps — logged to your CRM before you&rsquo;ve hung up.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--green)" }}><Svg>{ICONS.users}</Svg></div><h3>Call queuing &amp; distribution</h3><p>Fair automatic distribution with queue callbacks. Nobody waits on hold, nobody hangs up angry.</p></div>
+            <div className="feat rv"><span className="tag">New</span><div className="fi" style={{ color: "var(--amber)" }}><Svg>{ICONS.headphones}</Svg></div><h3>Live monitoring, whisper &amp; barge</h3><p>Coach silently mid-call. Whisper prompts only your rep hears. Jump in when it matters.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--coral)" }}><Svg>{ICONS.moon}</Svg></div><h3>After-hours &amp; voicemail drop</h3><p>Business-hour rules, instant voicemail transcripts and automated callback follow-ups.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.chart}</Svg></div><h3>Call analytics dashboard</h3><p>Answer rates, wait times, outcomes and rep performance — live, per team, per number.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.link}</Svg></div><h3>CRM &amp; helpdesk integrations</h3><p>Two-way sync with your CRM, helpdesk and Slack. Calls, notes and tasks land where you work.</p></div>
           </div>
         </div>
       </section>

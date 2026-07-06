@@ -12,6 +12,24 @@ const PLATFORMS = [
 
 type ModalPhase = "form" | "calendar" | "booked";
 
+function Svg({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      {children}
+    </svg>
+  );
+}
+
+const ICONS = {
+  bot: <><path d="M12 8V4H8" /><rect x="4" y="8" width="16" height="12" rx="2" /><path d="M2 14h2" /><path d="M20 14h2" /><path d="M15 13v2" /><path d="M9 13v2" /></>,
+  refresh: <><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></>,
+  branch: <><path d="M6 3v12" /><circle cx="18" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="M18 9a9 9 0 0 1-9 9" /></>,
+  sparkles: <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />,
+  rocket: <><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></>,
+  timer: <><line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" /></>,
+  check: <><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></>,
+} as const;
+
 function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
   const [selected, setSelected] = useState<string[]>([]);
   function toggle(opt: string) {
@@ -58,12 +76,6 @@ export function AutomateSupportClient() {
     setModalOpen(false);
     document.body.style.overflow = "";
   }, []);
-
-  // Open on load (slight delay so the page paints behind it)
-  useEffect(() => {
-    const t = setTimeout(openModal, 400);
-    return () => clearTimeout(t);
-  }, [openModal]);
 
   // Escape closes
   useEffect(() => {
@@ -149,6 +161,7 @@ export function AutomateSupportClient() {
       setCalUrl(`${CALENDLY_URL}?${params.toString()}`);
       setPhase("calendar");
       setStatus("idle");
+      openModal();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -156,6 +169,24 @@ export function AutomateSupportClient() {
       submittingRef.current = false;
     }
   }
+
+  const renderForm = (p: string) => (
+    <form onSubmit={onSubmit}>
+      <div className="row2">
+        <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
+        <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
+      </div>
+      <div className="field"><label htmlFor={`${p}em`}>Work email</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+      <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
+      <div className="field"><label htmlFor={`${p}eu`}>How many users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 1,000" required /></div>
+      <MultiSelect name="platforms" label="Which platforms do you want to integrate?" options={PLATFORMS} />
+      <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
+        {status === "sending" ? "Saving…" : "Book my demo →"}
+      </button>
+      {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
+      <p className="micro">No credit card. No setup fee. 20-minute walkthrough, your data stays yours.</p>
+    </form>
+  );
 
   return (
     <div className="mockup-lp">
@@ -168,21 +199,7 @@ export function AutomateSupportClient() {
               <p className="eyebrow">Live walkthrough · 30 min</p>
               <h2 id="mtitle">See your support run itself</h2>
               <p className="sub">Book a demo with the founding team. We&rsquo;ll map your top repeat queries and show the automation live — no commitment.</p>
-              <form onSubmit={onSubmit}>
-                <div className="row2">
-                  <div className="field"><label htmlFor="fn">First name</label><input id="fn" name="first_name" required autoComplete="given-name" /></div>
-                  <div className="field"><label htmlFor="ln">Last name</label><input id="ln" name="last_name" required autoComplete="family-name" /></div>
-                </div>
-                <div className="field"><label htmlFor="em">Work email</label><input id="em" name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
-                <div className="field"><label htmlFor="ph">Phone</label><input id="ph" name="phone" type="tel" autoComplete="tel" /></div>
-                <div className="field"><label htmlFor="eu">How many users?</label><input id="eu" name="end_users" type="number" placeholder="e.g. 1,000" required /></div>
-                <MultiSelect name="platforms" label="Which platforms do you want to integrate?" options={PLATFORMS} />
-                <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
-                  {status === "sending" ? "Saving…" : "Book my demo →"}
-                </button>
-                {status === "error" && <p className="micro" style={{ color: "#B91C1C" }}>{error}</p>}
-                <p className="micro">No credit card. No setup fee. 20-minute walkthrough, your data stays yours.</p>
-              </form>
+              {renderForm("m")}
             </div>
           )}
           {phase === "calendar" && (
@@ -234,15 +251,11 @@ export function AutomateSupportClient() {
             </div>
             <p className="hero-note">Free 20-minute walkthrough · live in under 2 days · works with your existing help desk</p>
           </div>
-          <div className="loopcard" aria-hidden="true">
-            <div className="lc-head"><span><span className="pulse"></span>Live queue</span><span>Today</span></div>
-            <div>
-              <div className="ticket"><span className="chip chip-human">HUMAN · 1st</span><span>&ldquo;How do I transfer my number?&rdquo; — resolved by Priya, 4 min</span></div>
-              <div className="ticket" style={{ animationDelay: ".6s" }}><span className="chip chip-auto">AUTO</span><span>&ldquo;How do I transfer my number?&rdquo; — resolved by HyperDial, 6 sec</span></div>
-              <div className="ticket" style={{ animationDelay: "1.2s" }}><span className="chip chip-auto">AUTO</span><span>&ldquo;Transfer my number to a new SIM?&rdquo; — resolved by HyperDial, 5 sec</span></div>
-              <div className="ticket" style={{ animationDelay: "1.8s" }}><span className="chip chip-auto">AUTO</span><span>&ldquo;Port number from old account&rdquo; — resolved by HyperDial, 7 sec</span></div>
-            </div>
-            <div className="lc-stat"><span>Solved once by your team</span><b>→ automated 214× this month</b></div>
+          <div className="hero-form">
+            <p className="hf-eyebrow">Live walkthrough · 30 min</p>
+            <h2>Book your demo</h2>
+            <p className="hf-sub">We&rsquo;ll map your top repeat queries and show the automation live — no commitment.</p>
+            {renderForm("h")}
           </div>
         </div>
       </header>
@@ -256,9 +269,9 @@ export function AutomateSupportClient() {
             <p>And your chatbot still can&rsquo;t answer it once.</p>
           </div>
           <div className="cards3">
-            <div className="card rv"><div className="ico">🤖</div><h3>Static chatbots deflect, not resolve</h3><p>Decision-tree bots frustrate customers, escalate anyway, and quietly burn your CSAT.</p></div>
-            <div className="card rv"><div className="ico">🔁</div><h3>Solved knowledge evaporates</h3><p>Your best agents solve the same issue daily — and none of that resolution is ever captured or reused.</p></div>
-            <div className="card rv"><div className="ico">🧱</div><h3>Scripted automation doesn&rsquo;t scale</h3><p>Manual flows go stale the day your product changes. Someone has to maintain every branch, forever.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--accent)" }}><Svg size={22}>{ICONS.bot}</Svg></div><h3>Static chatbots deflect, not resolve</h3><p>Decision-tree bots frustrate customers, escalate anyway, and quietly burn your CSAT.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--accent)" }}><Svg size={22}>{ICONS.refresh}</Svg></div><h3>Solved knowledge evaporates</h3><p>Your best agents solve the same issue daily — and none of that resolution is ever captured or reused.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--accent)" }}><Svg size={22}>{ICONS.branch}</Svg></div><h3>Scripted automation doesn&rsquo;t scale</h3><p>Manual flows go stale the day your product changes. Someone has to maintain every branch, forever.</p></div>
           </div>
         </div>
       </section>
@@ -301,14 +314,15 @@ export function AutomateSupportClient() {
       <section id="results">
         <div className="wrap">
           <div className="sec-head rv">
-            <p className="eyebrow">Results</p>
+            <p className="eyebrow pill">Results</p>
             <h2>The maths of solving things once.</h2>
+            <p>Every resolution your team makes compounds — here&rsquo;s what that adds up to.</p>
           </div>
-          <div className="stats rv">
-            <div className="stat"><b data-count="70">0</b><span>% of repeat queries resolved automatically</span></div>
-            <div className="stat"><b data-count="2">0</b><span>days average time to go live</span></div>
-            <div className="stat"><b data-count="6">0</b><span>seconds median automated resolution</span></div>
-            <div className="stat"><b data-count="0">0</b><span>scripts or decision trees to maintain</span></div>
+          <div className="metrics rv">
+            <div className="metric"><div className="mi" style={{ color: "var(--accent)" }}><Svg>{ICONS.sparkles}</Svg></div><b><span data-count="70">0</span>% resolved automatically</b><p>Repeat queries handled end to end — however they&rsquo;re phrased, on any channel.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--green)" }}><Svg>{ICONS.rocket}</Svg></div><b><span data-count="2">0</span> days to go live</b><p>Plugs into your existing stack. Nothing to migrate, nothing to rebuild.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--amber)" }}><Svg>{ICONS.timer}</Svg></div><b><span data-count="6">0</span>-second resolutions</b><p>Median time for an automated answer a customer actually accepts.</p></div>
+            <div className="metric"><div className="mi" style={{ color: "var(--coral)" }}><Svg>{ICONS.check}</Svg></div><b><span data-count="0">0</span> scripts to maintain</b><p>No decision trees, no stale flows — the loop maintains itself.</p></div>
           </div>
           <div className="cmp-scroll rv" style={{ marginTop: 56 }}>
             <table className="cmp">

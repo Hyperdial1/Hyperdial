@@ -11,6 +11,9 @@
   --line: #e2e8f0;         /* HyperDial line */
   --gold: #a78bfa;         /* was gold → brand light */
   --deep: #1e1b4b;         /* HyperDial dark-section indigo */
+  --green: #10b981;
+  --amber: #f59e0b;
+  --coral: #f43f5e;
 
   box-sizing: border-box;
   font-family: var(--font-poppins), system-ui, sans-serif;
@@ -25,6 +28,8 @@
   font-weight: 600; text-wrap: balance; line-height: 1.15;
 }
 .mockup-lp .eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); font-weight: 700; }
+.mockup-lp .eyebrow.pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 16px; }
+.mockup-lp .eyebrow.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .mockup-lp .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 .mockup-lp section { padding: 88px 0; }
 .mockup-lp .btn { display: inline-block; border: none; cursor: pointer; font-weight: 700; font-size: 1rem; padding: 14px 28px; border-radius: 6px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease; }
@@ -100,7 +105,15 @@
 .mockup-lp .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 860px) { .mockup-lp .cards3 { grid-template-columns: 1fr; } }
 .mockup-lp .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 28px; }
-.mockup-lp .card .ico { width: 44px; height: 44px; border-radius: 8px; background: var(--sage); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.2rem; }
+.mockup-lp .card .ico { width: 44px; height: 44px; border-radius: 8px; background: var(--sage); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+/* hero form card */
+.mockup-lp .hero-form { position: relative; background: var(--card); border-radius: 12px; padding: 30px 32px; box-shadow: 0 30px 70px -25px rgba(30, 27, 75, .35); color: var(--ink); }
+.mockup-lp .hero-form .hf-eyebrow { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-deep); font-weight: 700; }
+.mockup-lp .hero-form h2 { font-size: 1.3rem; margin: 4px 0 4px; }
+.mockup-lp .hero-form .hf-sub { font-size: .85rem; color: var(--ink-soft); margin-bottom: 18px; }
+.mockup-lp .hero-form .btn-primary { width: 100%; margin-top: 8px; }
+.mockup-lp .hero-form .micro { font-size: .72rem; color: var(--ink-soft); text-align: center; margin-top: 10px; }
 .mockup-lp .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .mockup-lp .card p { font-size: .92rem; color: var(--ink-soft); }
 
@@ -129,10 +142,24 @@
 @media (max-width: 860px) { .mockup-lp .aop-node::after { display: none; } }
 
 /* stats */
-.mockup-lp .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
-@media (max-width: 760px) { .mockup-lp .stats { grid-template-columns: repeat(2, 1fr); } }
-.mockup-lp .stat b { display: block; font-family: var(--font-poppins), system-ui, sans-serif; font-size: 2.6rem; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
-.mockup-lp .stat span { font-size: .85rem; color: var(--ink-soft); }
+.mockup-lp .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; text-align: left; }
+.mockup-lp .metric { padding: 30px 28px; border-left: 1px solid var(--line); }
+.mockup-lp .metric:first-child { border-left: none; }
+.mockup-lp .metric .mi { margin-bottom: 16px; }
+.mockup-lp .metric b { display: block; font-size: 1.35rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 8px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.mockup-lp .metric p { font-size: .82rem; color: var(--ink-soft); }
+@media (max-width: 860px) {
+  .mockup-lp .metrics { grid-template-columns: repeat(2, 1fr); }
+  .mockup-lp .metric { border-top: 1px solid var(--line); }
+  .mockup-lp .metric:nth-child(-n+2) { border-top: none; }
+  .mockup-lp .metric:nth-child(odd) { border-left: none; }
+}
+@media (max-width: 480px) {
+  .mockup-lp .metrics { grid-template-columns: 1fr; }
+  .mockup-lp .metric { border-left: none; }
+  .mockup-lp .metric:nth-child(-n+2) { border-top: 1px solid var(--line); }
+  .mockup-lp .metric:first-child { border-top: none; }
+}
 
 /* comparison */
 .mockup-lp .cmp { width: 100%; border-collapse: collapse; background: var(--card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: .92rem; }

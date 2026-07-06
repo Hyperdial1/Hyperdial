@@ -16,6 +16,7 @@
   --line: #e5e7eb;
   --green: #10b981;
   --amber: #f59e0b;
+  --coral: #f43f5e;
 
   box-sizing: border-box;
   font-family: var(--font-poppins), system-ui, sans-serif;
@@ -27,6 +28,8 @@
 .bcp-lp *, .bcp-lp *::before, .bcp-lp *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .bcp-lp h1, .bcp-lp h2, .bcp-lp h3 { font-weight: 800; letter-spacing: -.02em; text-wrap: balance; line-height: 1.12; }
 .bcp-lp .eyebrow { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); font-weight: 700; }
+.bcp-lp .eyebrow.pill { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 7px 16px; }
+.bcp-lp .eyebrow.pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--brand); }
 .bcp-lp .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 .bcp-lp section { padding: 88px 0; }
 .bcp-lp .btn { display: inline-block; border: none; cursor: pointer; font-weight: 700; font-size: 1rem; padding: 14px 28px; border-radius: 10px; text-decoration: none; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
@@ -97,6 +100,14 @@
 .bcp-lp .tg-task { background: rgba(251, 191, 36, .15); color: #fcd34d; }
 .bcp-lp .cc-line .txt span { color: #9b9ec7; }
 
+/* hero form card */
+.bcp-lp .hero-form { position: relative; background: #fff; border-radius: 16px; padding: 30px 32px; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .5); color: var(--ink); }
+.bcp-lp .hero-form .hf-eyebrow { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); font-weight: 700; }
+.bcp-lp .hero-form h2 { font-size: 1.3rem; margin: 4px 0 4px; }
+.bcp-lp .hero-form .hf-sub { font-size: .85rem; color: var(--muted); margin-bottom: 18px; }
+.bcp-lp .hero-form .btn-primary { width: 100%; margin-top: 8px; }
+.bcp-lp .hero-form .micro { font-size: .72rem; color: var(--muted); text-align: center; margin-top: 10px; }
+
 /* ratings strip */
 .bcp-lp .ratings { border-bottom: 1px solid var(--line); padding: 20px 0; background: var(--soft); }
 .bcp-lp .ratings .wrap { display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
@@ -110,19 +121,31 @@
 .bcp-lp .sec-head p { color: var(--muted); margin-top: 12px; }
 .bcp-lp .center { text-align: center; margin-left: auto; margin-right: auto; }
 
-/* stats */
-.bcp-lp .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
-@media (max-width: 760px) { .bcp-lp .stats { grid-template-columns: repeat(2, 1fr); } }
-.bcp-lp .stat b { display: block; font-size: 2.7rem; font-weight: 800; letter-spacing: -.03em; color: var(--brand); font-variant-numeric: tabular-nums; }
-.bcp-lp .stat b small { font-size: 1.4rem; }
-.bcp-lp .stat > span { font-size: .85rem; color: var(--muted); }
-.bcp-lp .stat b span { font-size: inherit; color: inherit; }
+/* metrics band */
+.bcp-lp .metrics { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: 16px; background: #fff; overflow: hidden; text-align: left; }
+.bcp-lp .metric { padding: 30px 28px; border-left: 1px solid var(--line); }
+.bcp-lp .metric:first-child { border-left: none; }
+.bcp-lp .metric .mi { margin-bottom: 16px; }
+.bcp-lp .metric b { display: block; font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; margin-bottom: 8px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.bcp-lp .metric p { font-size: .82rem; color: var(--muted); }
+@media (max-width: 860px) {
+  .bcp-lp .metrics { grid-template-columns: repeat(2, 1fr); }
+  .bcp-lp .metric { border-top: 1px solid var(--line); }
+  .bcp-lp .metric:nth-child(-n+2) { border-top: none; }
+  .bcp-lp .metric:nth-child(odd) { border-left: none; }
+}
+@media (max-width: 480px) {
+  .bcp-lp .metrics { grid-template-columns: 1fr; }
+  .bcp-lp .metric { border-left: none; }
+  .bcp-lp .metric:nth-child(-n+2) { border-top: 1px solid var(--line); }
+  .bcp-lp .metric:first-child { border-top: none; }
+}
 
 /* problem cards */
 .bcp-lp .cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 860px) { .bcp-lp .cards3 { grid-template-columns: 1fr; } }
 .bcp-lp .card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 28px; }
-.bcp-lp .card .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--tint); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.2rem; }
+.bcp-lp .card .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--tint); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
 .bcp-lp .card h3 { font-size: 1.08rem; margin-bottom: 8px; }
 .bcp-lp .card p { font-size: .9rem; color: var(--muted); }
 
@@ -130,11 +153,12 @@
 .bcp-lp .featgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 @media (max-width: 860px) { .bcp-lp .featgrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .bcp-lp .featgrid { grid-template-columns: 1fr; } }
-.bcp-lp .feat { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 22px; transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
-.bcp-lp .feat:hover { transform: translateY(-3px); border-color: var(--brand-light); box-shadow: 0 16px 40px -20px rgba(30, 27, 75, .3); }
-.bcp-lp .feat .fi { width: 38px; height: 38px; border-radius: 9px; background: var(--tint); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; font-size: 1.05rem; }
-.bcp-lp .feat h3 { font-size: .98rem; margin-bottom: 5px; }
-.bcp-lp .feat p { font-size: .84rem; color: var(--muted); }
+.bcp-lp .feat { position: relative; background: var(--tint); border-radius: 14px; padding: 26px 24px; transition: box-shadow .2s ease, transform .2s ease; }
+.bcp-lp .feat:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -20px rgba(30, 27, 75, .35); }
+.bcp-lp .feat .fi { margin-bottom: 14px; display: flex; }
+.bcp-lp .feat h3 { font-size: 1.02rem; margin-bottom: 6px; }
+.bcp-lp .feat p { font-size: .85rem; color: var(--muted); }
+.bcp-lp .feat .tag { position: absolute; top: 18px; right: 18px; font-size: .62rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: #fff; color: var(--brand); border: 1px solid var(--brand-light); }
 
 /* steps */
 .bcp-lp .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
