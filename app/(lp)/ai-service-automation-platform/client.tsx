@@ -10,7 +10,7 @@ const PLATFORMS = [
   "SMS", "Twitter / X", "Other",
 ];
 
-type ModalPhase = "form" | "calendar" | "booked";
+type ModalPhase = "form" | "calendar";
 
 function Svg({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
   return (
@@ -87,7 +87,7 @@ export function AutomateSupportClient() {
   // Calendly booking confirmation
   useEffect(() => {
     function onMessage(e: MessageEvent) {
-      if (e.data?.event === "calendly.event_scheduled") setPhase("booked");
+      if (e.data?.event === "calendly.event_scheduled") window.location.href = "/ai-service-automation-platform/thank-you";
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -208,17 +208,9 @@ export function AutomateSupportClient() {
               <h2>Pick a time</h2>
               <p className="sub">Choose whatever slot works best for you.</p>
               <iframe src={calUrl} title="Pick a time with HyperDial" style={{ width: "100%", height: 480, border: "none", borderRadius: 8 }} />
-              <button type="button" className="micro" style={{ background: "none", border: "none", cursor: "pointer", textDecoration: "underline", display: "block", margin: "10px auto 0" }} onClick={() => setPhase("booked")}>
+              <button type="button" className="micro" style={{ background: "none", border: "none", cursor: "pointer", textDecoration: "underline", display: "block", margin: "10px auto 0" }} onClick={() => { window.location.href = "/ai-service-automation-platform/thank-you"; }}>
                 Already booked? Click here →
               </button>
-            </div>
-          )}
-          {phase === "booked" && (
-            <div className="modal-success" style={{ display: "block" }}>
-              <div className="tick">✓</div>
-              <h2>You&rsquo;re booked in.</h2>
-              <p className="sub" style={{ marginTop: 8 }}>We&rsquo;ll email you a calendar invite shortly. Meanwhile, see what HyperDial will do for your queue ↓</p>
-              <button className="btn btn-ghost" onClick={closeModal}>Explore the product</button>
             </div>
           )}
         </div>

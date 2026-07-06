@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
-type ModalPhase = "form" | "calendar" | "booked";
+type ModalPhase = "form" | "calendar";
 
 function Svg({ children, size = 24 }: { children: React.ReactNode; size?: number }) {
   return (
@@ -50,7 +50,7 @@ export function AiCustomerServicePlatformClient() {
 
   useEffect(() => {
     function onMessage(e: MessageEvent) {
-      if (e.data?.event === "calendly.event_scheduled") setPhase("booked");
+      if (e.data?.event === "calendly.event_scheduled") window.location.href = "/ai-customer-service-platform/thank-you";
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -175,17 +175,9 @@ export function AiCustomerServicePlatformClient() {
                 <h2>Pick a time</h2>
                 <p className="sub">Choose whatever slot works best for you.</p>
                 <iframe src={calUrl} title="Pick a time with HyperDial" style={{ width: "100%", height: 480, border: "none", borderRadius: 8 }} />
-                <button type="button" className="micro" style={{ background: "none", border: "none", cursor: "pointer", textDecoration: "underline", display: "block", margin: "10px auto 0" }} onClick={() => setPhase("booked")}>
+                <button type="button" className="micro" style={{ background: "none", border: "none", cursor: "pointer", textDecoration: "underline", display: "block", margin: "10px auto 0" }} onClick={() => { window.location.href = "/ai-customer-service-platform/thank-you"; }}>
                   Already booked? Click here →
                 </button>
-              </div>
-            )}
-            {phase === "booked" && (
-              <div className="modal-success" style={{ display: "block" }}>
-                <div className="tick">✓</div>
-                <h2>You&rsquo;re booked in.</h2>
-                <p className="sub" style={{ marginTop: 8 }}>A calendar invite is on its way. Meanwhile, take a look at the platform ↓</p>
-                <button className="btn btn-ghost" onClick={closeModal}>Explore the platform</button>
               </div>
             )}
           </div>
