@@ -26,6 +26,13 @@ type LeadInput = {
   current_solution?: string;
   timeline?: string;
   country?: string;
+
+  // new — LP qualifying fields (business-communication / customer-service / service-automation)
+  end_users?: string;
+  countries?: string[];
+  team_size?: string;
+  monthly_tickets?: string;
+  platforms?: string[];
 };
 
 function clean(v: unknown): string | null {
@@ -82,6 +89,13 @@ export async function POST(req: NextRequest) {
     current_solution: clean(body.current_solution),
     timeline: clean(body.timeline),
     country: clean(body.country),
+
+    // new — LP qualifying fields
+    end_users: clean(body.end_users),
+    countries: cleanArray(body.countries),
+    team_size: clean(body.team_size),
+    monthly_tickets: clean(body.monthly_tickets),
+    platforms: cleanArray(body.platforms),
   };
 
   // Minimal validation — unchanged from before
