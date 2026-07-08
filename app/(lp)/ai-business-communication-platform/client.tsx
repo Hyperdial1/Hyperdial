@@ -37,6 +37,7 @@ const ICONS = {
   file: <><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M16 13H8" /><path d="M16 17H8" /></>,
   target: <><circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" /></>,
   clock: <><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></>,
+  shield: <><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></>,
   refresh: <><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></>,
 } as const;
 
@@ -239,19 +240,19 @@ export function AiBusinessCommunicationPlatformClient() {
         <div className="glow glow-1"></div><div className="glow glow-2"></div>
         <div className="wrap hero-grid">
           <div>
-            <p className="eyebrow">Business calling with built-in AI intelligence</p>
-            <h1>Make every call <em>your best call.</em></h1>
-            <p className="lead">Every call your team makes is recorded, transcribed and analysed automatically. HyperDial turns your call records into reports, quality scores and feedback loops — so your team learns from every conversation, and the next call is always better than the last.</p>
+            <p className="eyebrow">Business calling, built to be answered</p>
+            <h1>Calls that get <em>answered.</em></h1>
+            <p className="lead">Every unanswered call is a customer you paid to reach and never met. HyperDial gives you clean local numbers in every market you call, number health that protects your caller reputation, and one platform for calls, follow-ups and your CRM — so more conversations start, and none slip through the cracks. Behind it all: real humans who pick up when you need help, and AI that makes every call smarter than the last.</p>
             <div className="hero-ctas">
               <a href="#" className="btn btn-primary" onClick={demoClick}>Book a demo →</a>
               <a href="#features" className="btn btn-ghost-inv">See all features</a>
             </div>
-            <p className="hero-note">&lt; 5-minute setup · 99.9% uptime · works with your existing number</p>
+            <p className="hero-note">&lt; 5-minute setup · keep your existing number · founder-level support</p>
           </div>
           <div className="hero-form">
             <p className="hf-eyebrow">Live demo · 30 min</p>
             <h2>Book your demo</h2>
-            <p className="hf-sub">We&rsquo;ll show smart routing, AI notes and call intelligence live — no commitment, no sales pitch.</p>
+            <p className="hf-sub">We&rsquo;ll set up a clean local number on the call and show routing, follow-ups and AI notes live — no commitment, no sales pitch.</p>
             {renderForm("h")}
           </div>
         </div>
@@ -293,7 +294,7 @@ export function AiBusinessCommunicationPlatformClient() {
           </div>
           <div className="cards3">
             <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.phone}</Svg></div><h3>Missed calls go to competitors</h3><p>Every unanswered ring is a lead calling the next number on their list. After hours, on weekends, when lines are busy — they don&rsquo;t wait.</p></div>
-            <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.shuffle}</Svg></div><h3>Numbers are an admin nightmare</h3><p>Multiple lines, teams and regions mean forwarding rules, spreadsheets and SIM cards nobody wants to manage.</p></div>
+            <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.globe}</Svg></div><h3>Nobody answers a foreign number</h3><p>Calling from an overseas or spam-flagged caller ID kills your answer rate — your outreach dies before anyone hears a word.</p></div>
             <div className="card rv"><div className="ico" style={{ color: "var(--brand)" }}><Svg size={22}>{ICONS.file}</Svg></div><h3>Context dies after hang-up</h3><p>Manual call logging and follow-up tracking means notes get skipped, promises get forgotten, and deals quietly go cold.</p></div>
           </div>
         </div>
@@ -308,13 +309,13 @@ export function AiBusinessCommunicationPlatformClient() {
             <p>Numbers, routing, dialling and coaching — with intelligence working every call, not bolted on after.</p>
           </div>
           <div className="featgrid">
-            <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.globe}</Svg></div><h3>Global virtual numbers</h3><p>Local, mobile and toll-free numbers in 150+ countries. Buy in a click. Live instantly.</p></div>
-            <div className="feat rv"><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.repeat}</Svg></div><h3>Number porting</h3><p>Keep the number your customers already know. Ported in with zero downtime, zero telco paperwork.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.globe}</Svg></div><h3>Local numbers, local caller ID</h3><p>Clean local, mobile and toll-free numbers in 150+ countries — because nobody answers a foreign number. Or port the one your customers already know.</p></div>
+            <div className="feat rv"><span className="tag">Flagship</span><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.shield}</Svg></div><h3>Number health &amp; rotation</h3><p>Monitoring and rotation hygiene that guards your caller reputation call after call — before answer rates dip.</p></div>
             <div className="feat rv"><div className="fi" style={{ color: "var(--green)" }}><Svg>{ICONS.split}</Svg></div><h3>Smart call routing</h3><p>Route by team, time zone, language or intent. Every caller reaches the right person, first time.</p></div>
             <div className="feat rv"><div className="fi" style={{ color: "var(--amber)" }}><Svg>{ICONS.layers}</Svg></div><h3>Multi-level IVR</h3><p>A phone menu callers don&rsquo;t hate. AI understands what they say — not just what they press.</p></div>
             <div className="feat rv"><span className="tag">Popular</span><div className="fi" style={{ color: "var(--coral)" }}><Svg>{ICONS.zap}</Svg></div><h3>Power &amp; auto dialer</h3><p>Reps just talk. The dialer works the list, skips dead numbers and paces itself.</p></div>
             <div className="feat rv"><div className="fi" style={{ color: "var(--brand)" }}><Svg>{ICONS.mic}</Svg></div><h3>Call recording &amp; transcription</h3><p>Every call recorded and transcribed automatically. Searchable forever. Compliant by design.</p></div>
-            <div className="feat rv"><span className="tag">Flagship</span><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.sparkles}</Svg></div><h3>AI notes, summaries &amp; tasks</h3><p>Key points, commitments and next steps — logged to your CRM before you&rsquo;ve hung up.</p></div>
+            <div className="feat rv"><div className="fi" style={{ color: "var(--indigo)" }}><Svg>{ICONS.sparkles}</Svg></div><h3>AI notes, summaries &amp; tasks</h3><p>Key points, commitments and next steps — logged to your CRM before you&rsquo;ve hung up.</p></div>
             <div className="feat rv"><div className="fi" style={{ color: "var(--green)" }}><Svg>{ICONS.users}</Svg></div><h3>Call queuing &amp; distribution</h3><p>Fair automatic distribution with queue callbacks. Nobody waits on hold, nobody hangs up angry.</p></div>
             <div className="feat rv"><span className="tag">New</span><div className="fi" style={{ color: "var(--amber)" }}><Svg>{ICONS.headphones}</Svg></div><h3>Live monitoring, whisper &amp; barge</h3><p>Coach silently mid-call. Whisper prompts only your rep hears. Jump in when it matters.</p></div>
             <div className="feat rv"><div className="fi" style={{ color: "var(--coral)" }}><Svg>{ICONS.moon}</Svg></div><h3>After-hours &amp; voicemail drop</h3><p>Business-hour rules, instant voicemail transcripts and automated callback follow-ups.</p></div>
@@ -365,6 +366,7 @@ export function AiBusinessCommunicationPlatformClient() {
             <h2>Built for teams who live on the phone.</h2>
           </div>
           <div className="trust rv">
+            <span className="badge"><b>Founder-level</b> support — minutes, not days</span>
             <span className="badge"><b>99.9%</b> uptime SLA</span>
             <span className="badge"><b>Encrypted</b> calls &amp; recordings</span>
             <span className="badge"><b>GDPR</b> ready</span>
@@ -378,6 +380,7 @@ export function AiBusinessCommunicationPlatformClient() {
       <section id="faq" style={{ background: "var(--soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
         <div className="wrap" style={{ maxWidth: 760 }}>
           <div className="sec-head rv"><p className="eyebrow">FAQ</p><h2>Before you ask —</h2></div>
+          <details className="rv"><summary>Why do more of my calls get answered with HyperDial?</summary><p>Two reasons. Prospects see a clean local number for their market instead of a foreign or flagged one — and number health monitoring rotates and protects your caller IDs before reputation problems dent your answer rate.</p></details>
           <details className="rv"><summary>Can I keep my existing business number?</summary><p>Yes. Port your current number in with no downtime — or run it alongside new HyperDial numbers during the transition.</p></details>
           <details className="rv"><summary>Do I need any hardware or a new SIM?</summary><p>No. HyperDial runs on the devices you already have — desktop, browser and mobile apps. If you can open a laptop, you can run a call centre.</p></details>
           <details className="rv"><summary>How long does setup really take?</summary><p>Under 5 minutes for a working number. Routing rules, teams and the AI assistant are configured the same day — we&rsquo;ll do it with you on the demo call.</p></details>

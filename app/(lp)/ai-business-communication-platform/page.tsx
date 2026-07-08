@@ -5,7 +5,7 @@ import "./styles.css";
 export const metadata: Metadata = {
   title: "HyperDial — AI Business Communication Platform",
   description:
-    "Make every call your best call. Every call recorded, transcribed and analysed — call reports, quality scores and feedback loops that make your team better with every conversation.",
+    "Calls that get answered. Clean local numbers in every market you call, number health that protects your caller reputation, and one platform for calls, follow-ups and your CRM.",
   robots: { index: false, follow: false },
 };
 
