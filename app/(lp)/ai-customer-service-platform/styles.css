@@ -65,7 +65,8 @@
 /* ============ NAV ============ */
 .csp-lp nav { position: sticky; top: 0; background: rgba(255, 255, 255, .85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); z-index: 50; }
 .csp-lp .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.csp-lp .logo { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.csp-lp .logo { display: inline-flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; color: var(--ink); text-decoration: none; }
+.csp-lp .logo img { width: 28px; height: 28px; border-radius: 8px; display: block; }
 .csp-lp .logo b { color: var(--brand); }
 .csp-lp .nav-inner .btn { padding: 10px 20px; font-size: .88rem; }
 

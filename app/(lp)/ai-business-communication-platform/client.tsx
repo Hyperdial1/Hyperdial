@@ -230,7 +230,7 @@ export function AiBusinessCommunicationPlatformClient() {
       {/* ================= NAV — logo + CTA only ================= */}
       <nav>
         <div className="wrap nav-inner">
-          <a className="logo" href="#top">Hyper<b>Dial</b></a>
+          <a className="logo" href="#top"><img src="/logo.png" alt="" /><span>Hyper<b>Dial</b></span></a>
           <a href="#" className="btn btn-primary" onClick={demoClick}>Book a demo</a>
         </div>
       </nav>

@@ -219,7 +219,7 @@ export function AutomateSupportClient() {
       {/* ================= NAV ================= */}
       <nav>
         <div className="wrap nav-inner">
-          <a className="logo" href="#top">Hyper<b>Dial</b></a>
+          <a className="logo" href="#top"><img src="/logo.png" alt="" /><span>Hyper<b>Dial</b></span></a>
           <div className="nav-links">
             <a href="#how">How it works</a>
             <a href="#aop">The learning loop</a>

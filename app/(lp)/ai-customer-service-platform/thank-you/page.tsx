@@ -12,7 +12,7 @@ export default function ThankYouPage() {
     <div className="csp-lp">
       <nav>
         <div className="wrap nav-inner">
-          <Link className="logo" href="/ai-customer-service-platform">Hyper<b>Dial</b></Link>
+          <Link className="logo" href="/ai-customer-service-platform"><img src="/logo.png" alt="" /><span>Hyper<b>Dial</b></span></Link>
         </div>
       </nav>
       <section style={{ minHeight: "70vh", display: "flex", alignItems: "center" }}>

@@ -61,7 +61,8 @@
 /* ============ NAV ============ */
 .mockup-lp nav { position: sticky; top: 0; background: rgba(248, 250, 252, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); z-index: 50; }
 .mockup-lp .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.mockup-lp .logo { font-size: 1.3rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.mockup-lp .logo { display: inline-flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.mockup-lp .logo img { width: 28px; height: 28px; border-radius: 8px; display: block; }
 .mockup-lp .logo b { color: var(--accent); }
 .mockup-lp .nav-links { display: flex; gap: 28px; align-items: center; }
 .mockup-lp .nav-links a { color: var(--ink-soft); text-decoration: none; font-size: .9rem; font-weight: 600; }

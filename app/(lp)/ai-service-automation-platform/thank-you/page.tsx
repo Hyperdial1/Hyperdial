@@ -12,7 +12,7 @@ export default function ThankYouPage() {
     <div className="mockup-lp">
       <nav>
         <div className="wrap nav-inner">
-          <Link className="logo" href="/ai-service-automation-platform">Hyper<b>Dial</b></Link>
+          <Link className="logo" href="/ai-service-automation-platform"><img src="/logo.png" alt="" /><span>Hyper<b>Dial</b></span></Link>
         </div>
       </nav>
       <section style={{ minHeight: "70vh", display: "flex", alignItems: "center" }}>
