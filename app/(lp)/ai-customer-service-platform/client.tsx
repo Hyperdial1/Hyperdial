@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
@@ -102,6 +103,13 @@ export function AiCustomerServicePlatformClient() {
     const data = Object.fromEntries(fd.entries());
     const fullName = `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim();
     const email = (data.work_email as string) ?? "";
+    if (isFreeEmail(email)) {
+      setStatus("error");
+      setError(FREE_EMAIL_ERROR);
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "lead_blocked_free_email", { lp_source: "lp_automate_support" });
+      submittingRef.current = false;
+      return;
+    }
 
     try {
       const res = await fetch("/api/lead", {
@@ -137,7 +145,7 @@ export function AiCustomerServicePlatformClient() {
         <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
         <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
       </div>
-      <div className="field"><label htmlFor={`${p}em`}>Work email</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+      <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
       <div className="row2">
         <div className="field"><label htmlFor={`${p}ts`}>Support agents on team</label>

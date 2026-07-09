@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
 
 export const runtime = "nodejs";
 
@@ -107,6 +108,9 @@ export async function POST(req: NextRequest) {
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(lead.work_email)) {
     return NextResponse.json({ error: "Enter a valid email." }, { status: 400 });
+  }
+  if (isFreeEmail(lead.work_email)) {
+    return NextResponse.json({ error: FREE_EMAIL_ERROR }, { status: 400 });
   }
 
   const results: { supabase: string; email: string; sheets: string } = {

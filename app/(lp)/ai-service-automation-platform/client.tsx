@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
@@ -140,6 +141,13 @@ export function AutomateSupportClient() {
     const data = Object.fromEntries(fd.entries());
     const fullName = `${data.first_name ?? ""} ${data.last_name ?? ""}`.trim();
     const email = (data.work_email as string) ?? "";
+    if (isFreeEmail(email)) {
+      setStatus("error");
+      setError(FREE_EMAIL_ERROR);
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "lead_blocked_free_email", { lp_source: "lp_omni" });
+      submittingRef.current = false;
+      return;
+    }
     const platforms = fd.getAll("platforms");
 
     try {
@@ -176,7 +184,7 @@ export function AutomateSupportClient() {
         <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
         <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
       </div>
-      <div className="field"><label htmlFor={`${p}em`}>Work email</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
+      <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
       <div className="field"><label htmlFor={`${p}eu`}>How many users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 1,000" required /></div>
       <MultiSelect name="platforms" label="Which platforms do you want to integrate?" options={PLATFORMS} />

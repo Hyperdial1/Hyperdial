@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
 
 type Step = 1 | 2 | 3 | 4 | 5;
 
@@ -36,14 +37,6 @@ const initialData: WizardData = {
   timeline: "",
 };
 
-const FREE_EMAIL_DOMAINS = [
-  "gmail.com",
-  "yahoo.com",
-  "hotmail.com",
-  "outlook.com",
-  "icloud.com",
-  "aol.com",
-];
 
 const COUNTRIES = [
   "India",
@@ -146,13 +139,15 @@ export function BookingWizard({
     }));
   }
 
-  const emailDomain = data.work_email.split("@")[1]?.toLowerCase();
-  const showFreeEmailWarning = !!emailDomain && FREE_EMAIL_DOMAINS.includes(emailDomain);
+  const emailFormatValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.work_email.trim());
+  const freeEmailBlocked = emailFormatValid && isFreeEmail(data.work_email);
 
   function validateStep1(): boolean {
     const next: Record<string, boolean> = {};
-    const emailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.work_email.trim());
-    if (!emailValid) next.work_email = true;
+    if (!emailFormatValid || freeEmailBlocked) next.work_email = true;
+    if (freeEmailBlocked) {
+      (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag?.("event", "lead_blocked_free_email", { lp_source: "book_a_demo_wizard" });
+    }
     if (!data.first_name) next.first_name = true;
     if (!data.last_name) next.last_name = true;
     if (!data.phone) next.phone = true;
@@ -280,7 +275,7 @@ export function BookingWizard({
               set={set}
               errors={errors}
               formError={formError}
-              showFreeEmailWarning={showFreeEmailWarning}
+              freeEmailBlocked={freeEmailBlocked}
               onContinue={goNext}
             />
           )}
@@ -332,14 +327,14 @@ function Step1({
   set,
   errors,
   formError,
-  showFreeEmailWarning,
+  freeEmailBlocked,
   onContinue,
 }: {
   data: WizardData;
   set: <K extends keyof WizardData>(key: K, value: WizardData[K]) => void;
   errors: Record<string, boolean>;
   formError: string | null;
-  showFreeEmailWarning: boolean;
+  freeEmailBlocked: boolean;
   onContinue: () => void;
 }) {
   return (
@@ -364,19 +359,21 @@ function Step1({
       </div>
 
       <TextField
-        label="Business email"
+        label="Business email (no Gmail / Yahoo / Outlook)"
         required
         type="email"
         value={data.work_email}
         onChange={(v) => set("work_email", v)}
-        placeholder="you@company.com"
+        placeholder="you@yourcompany.com"
         invalid={errors.work_email}
-        error={errors.work_email ? "Enter a valid email address." : undefined}
-        hint={
-          showFreeEmailWarning
-            ? "That looks like a personal email — a work email helps us tailor the demo."
+        error={
+          errors.work_email
+            ? freeEmailBlocked
+              ? FREE_EMAIL_ERROR
+              : "Enter a valid email address."
             : undefined
         }
+        hint={freeEmailBlocked && !errors.work_email ? FREE_EMAIL_ERROR : undefined}
         hintTone="warn"
       />
 
