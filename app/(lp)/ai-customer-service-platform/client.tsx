@@ -147,12 +147,8 @@ export function AiCustomerServicePlatformClient() {
       </div>
       <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
-      <div className="row2">
-        <div className="field"><label htmlFor={`${p}ts`}>Support agents on team</label>
-          <input id={`${p}ts`} name="team_size" type="number" placeholder="e.g. 20" required /></div>
-        <div className="field"><label htmlFor={`${p}tv`}>Monthly ticket volume</label>
-          <input id={`${p}tv`} name="monthly_tickets" placeholder="e.g. 5,000" required /></div>
-      </div>
+      <div className="field"><label htmlFor={`${p}ts`}>Support agents on team</label>
+        <input id={`${p}ts`} name="team_size" type="number" placeholder="e.g. 20" required /></div>
       <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
         {status === "sending" ? "Saving…" : "Book my demo →"}
       </button>
