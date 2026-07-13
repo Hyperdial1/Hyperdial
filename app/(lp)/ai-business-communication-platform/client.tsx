@@ -1,14 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
+import { isFreeEmail, FREE_EMAIL_ERROR, WORK_EMAIL_LABEL } from "@/lib/business-email";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
-
-const COUNTRIES = [
-  "India", "USA", "UK", "UAE", "Canada", "Australia",
-  "Singapore", "South Africa", "Other",
-];
 
 type ModalPhase = "form" | "calendar";
 
@@ -41,36 +36,6 @@ const ICONS = {
   shield: <><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></>,
   refresh: <><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path d="M3 3v5h5" /></>,
 } as const;
-
-function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
-  const [selected, setSelected] = useState<string[]>([]);
-  function toggle(opt: string) {
-    setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
-  }
-  return (
-    <div className="field">
-      <label>{label}</label>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
-        {options.map((opt) => (
-          <label key={opt} style={{ cursor: "pointer", marginBottom: 0 }}>
-            <input type="checkbox" name={name} value={opt} checked={selected.includes(opt)} onChange={() => toggle(opt)} style={{ display: "none" }} />
-            <span
-              style={{
-                display: "inline-flex", alignItems: "center", borderRadius: 999, padding: "6px 12px",
-                fontSize: ".78rem", fontWeight: 600, border: "1.5px solid",
-                borderColor: selected.includes(opt) ? "var(--brand)" : "var(--line)",
-                background: selected.includes(opt) ? "var(--tint)" : "#fff",
-                color: selected.includes(opt) ? "var(--brand)" : "var(--muted)",
-              }}
-            >
-              {opt}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function AiBusinessCommunicationPlatformClient() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -156,13 +121,12 @@ export function AiBusinessCommunicationPlatformClient() {
       submittingRef.current = false;
       return;
     }
-    const countries = fd.getAll("countries");
 
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, countries, source: "lp_smart_calling", name: fullName }),
+        body: JSON.stringify({ ...data, source: "lp_smart_calling", name: fullName }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Something went wrong");
@@ -192,10 +156,8 @@ export function AiBusinessCommunicationPlatformClient() {
         <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
         <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
       </div>
-      <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
+      <div className="field"><label htmlFor={`${p}em`}>{WORK_EMAIL_LABEL}</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
-      <div className="field"><label htmlFor={`${p}eu`}>How many end users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 500" required /></div>
-      <MultiSelect name="countries" label="Which countries will you be calling?" options={COUNTRIES} />
       <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
         {status === "sending" ? "Saving…" : "Book my demo →"}
       </button>

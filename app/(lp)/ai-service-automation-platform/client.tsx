@@ -1,15 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
+import { isFreeEmail, FREE_EMAIL_ERROR, WORK_EMAIL_LABEL } from "@/lib/business-email";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
-
-const PLATFORMS = [
-  "WhatsApp", "Instagram", "Facebook", "Email", "Live Chat",
-  "Ticketing (Zendesk / Freshdesk)", "CRM (Salesforce / HubSpot)",
-  "SMS", "Twitter / X", "Other",
-];
 
 type ModalPhase = "form" | "calendar";
 
@@ -30,36 +24,6 @@ const ICONS = {
   timer: <><line x1="10" x2="14" y1="2" y2="2" /><line x1="12" x2="15" y1="14" y2="11" /><circle cx="12" cy="14" r="8" /></>,
   check: <><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></>,
 } as const;
-
-function MultiSelect({ name, label, options }: { name: string; label: string; options: string[] }) {
-  const [selected, setSelected] = useState<string[]>([]);
-  function toggle(opt: string) {
-    setSelected((prev) => (prev.includes(opt) ? prev.filter((o) => o !== opt) : [...prev, opt]));
-  }
-  return (
-    <div className="field">
-      <label>{label}</label>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 6 }}>
-        {options.map((opt) => (
-          <label key={opt} style={{ cursor: "pointer", marginBottom: 0 }}>
-            <input type="checkbox" name={name} value={opt} checked={selected.includes(opt)} onChange={() => toggle(opt)} style={{ display: "none" }} />
-            <span
-              style={{
-                display: "inline-flex", alignItems: "center", borderRadius: 999, padding: "6px 12px",
-                fontSize: ".78rem", fontWeight: 600, border: "1.5px solid",
-                borderColor: selected.includes(opt) ? "var(--accent)" : "var(--line)",
-                background: selected.includes(opt) ? "var(--sage)" : "#fff",
-                color: selected.includes(opt) ? "var(--accent-deep)" : "var(--ink-soft)",
-              }}
-            >
-              {opt}
-            </span>
-          </label>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function AutomateSupportClient() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -148,13 +112,12 @@ export function AutomateSupportClient() {
       submittingRef.current = false;
       return;
     }
-    const platforms = fd.getAll("platforms");
 
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, platforms, source: "lp_omni", name: fullName }),
+        body: JSON.stringify({ ...data, source: "lp_omni", name: fullName }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || "Something went wrong");
@@ -184,10 +147,8 @@ export function AutomateSupportClient() {
         <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
         <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
       </div>
-      <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
+      <div className="field"><label htmlFor={`${p}em`}>{WORK_EMAIL_LABEL}</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
-      <div className="field"><label htmlFor={`${p}eu`}>How many users?</label><input id={`${p}eu`} name="end_users" type="number" placeholder="e.g. 1,000" required /></div>
-      <MultiSelect name="platforms" label="Which platforms do you want to integrate?" options={PLATFORMS} />
       <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
         {status === "sending" ? "Saving…" : "Book my demo →"}
       </button>

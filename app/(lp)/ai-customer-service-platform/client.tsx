@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
+import { isFreeEmail, FREE_EMAIL_ERROR, WORK_EMAIL_LABEL } from "@/lib/business-email";
 
 const CALENDLY_URL = "https://calendly.com/deepak-hyperdial/30min";
 
@@ -145,10 +145,8 @@ export function AiCustomerServicePlatformClient() {
         <div className="field"><label htmlFor={`${p}fn`}>First name</label><input id={`${p}fn`} name="first_name" required autoComplete="given-name" /></div>
         <div className="field"><label htmlFor={`${p}ln`}>Last name</label><input id={`${p}ln`} name="last_name" required autoComplete="family-name" /></div>
       </div>
-      <div className="field"><label htmlFor={`${p}em`}>Work email (no Gmail / Yahoo / Outlook)</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@yourcompany.com" /></div>
+      <div className="field"><label htmlFor={`${p}em`}>{WORK_EMAIL_LABEL}</label><input id={`${p}em`} name="work_email" type="email" required autoComplete="email" placeholder="you@company.com" /></div>
       <div className="field"><label htmlFor={`${p}ph`}>Phone</label><input id={`${p}ph`} name="phone" type="tel" autoComplete="tel" /></div>
-      <div className="field"><label htmlFor={`${p}ts`}>Support agents on team</label>
-        <input id={`${p}ts`} name="team_size" type="number" placeholder="e.g. 20" required /></div>
       <button className="btn btn-primary" type="submit" disabled={status === "sending"}>
         {status === "sending" ? "Saving…" : "Book my demo →"}
       </button>

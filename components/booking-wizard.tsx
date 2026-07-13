@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { isFreeEmail, FREE_EMAIL_ERROR } from "@/lib/business-email";
+import { isFreeEmail, FREE_EMAIL_ERROR, BUSINESS_EMAIL_LABEL } from "@/lib/business-email";
 
 type Step = 1 | 2 | 3 | 4 | 5;
 
@@ -359,7 +359,7 @@ function Step1({
       </div>
 
       <TextField
-        label="Business email (no Gmail / Yahoo / Outlook)"
+        label={BUSINESS_EMAIL_LABEL}
         required
         type="email"
         value={data.work_email}
