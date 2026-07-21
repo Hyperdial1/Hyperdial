@@ -11,8 +11,8 @@ const menus: Menu[] = [
   {
     label: "Product",
     items: [
-      { label: "Overview", href: "/product", desc: "What HyperDial does" },
-      { label: "How it learns", href: "/product/how-it-learns", desc: "The self-learning layer" },
+      { label: "Overview", href: "/product", desc: "The AI-powered phone system" },
+      { label: "How it learns", href: "/product/how-it-learns", desc: "Smarter with every call" },
       { label: "Security & guardrails", href: "/docs/guardrails", desc: "Read-only by default" },
     ],
   },

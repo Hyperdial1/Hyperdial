@@ -4,7 +4,7 @@ import { getAll } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Blog",
-  description: "Notes on building and running AI support agents.",
+  description: "Notes on building and running AI-powered business calling.",
 };
 
 export default function BlogIndex() {
@@ -13,11 +13,11 @@ export default function BlogIndex() {
     <div className="wrap py-16">
       <span className="eyebrow">Blog</span>
       <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight">
-        Field notes on AI support
+        Field notes on AI calling
       </h1>
       <p className="mt-3 max-w-xl text-muted">
-        What we're learning about resolving conversations, measuring honestly,
-        and keeping agents safe.
+        What we're learning about resolving calls, measuring honestly, and
+        keeping AI on the phones safe.
       </p>
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">

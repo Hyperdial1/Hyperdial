@@ -10,17 +10,17 @@ import { BookingWizard } from "@/components/booking-wizard";
 const steps = [
   { n: "1", title: "Pick a slot", body: "Choose whatever time works — no back-and-forth." },
   { n: "2", title: "We confirm instantly", body: "A calendar invite with a video link, right away." },
-  { n: "3", title: "See it live", body: "30 minutes, on your real conversations." },
+  { n: "3", title: "See it live", body: "30 minutes, on your real calls." },
 ];
 
 const covers = [
   {
-    title: "How it handles a real, messy conversation",
-    body: "We use examples from your industry, not a canned script — including the cases your current bot fails on today.",
+    title: "How it handles a real, messy call",
+    body: "We use examples from your industry, not a canned script — including the calls your current setup fails on today.",
   },
   {
-    title: "How it learns from your best agents",
-    body: "See how a top performer's phrasing and decisions get captured, approved, and deployed everywhere.",
+    title: "How it learns from your best reps",
+    body: "See how a top performer's phrasing and decisions get captured, approved, and deployed on every call.",
   },
   {
     title: "Where humans stay in the loop",
@@ -33,22 +33,22 @@ const covers = [
 ];
 
 const loop = [
-  { n: "1", title: "Observe", body: "Captures every conversation your agents handle." },
-  { n: "2", title: "Learn", body: "Extracts how your best agents resolve issues." },
+  { n: "1", title: "Observe", body: "Captures every call your reps handle." },
+  { n: "2", title: "Learn", body: "Extracts how your best reps win calls." },
   { n: "3", title: "Verify", body: "Your manager approves each pattern." },
-  { n: "4", title: "Deploy", body: "AI handles it the same way — everywhere, forever." },
+  { n: "4", title: "Deploy", body: "The AI handles the next call the same way — every time." },
 ];
 
 const trust = [
-  { title: "Keep your existing stack", body: "Connect your channels — no rip-and-replace, no migration project." },
-  { title: "No huge setup", body: "It learns from your real conversations. The knowledge base builds itself." },
+  { title: "Keep your numbers & stack", body: "Bring your own number or forward calls — no rip-and-replace, no migration project." },
+  { title: "No huge setup", body: "It learns from your real calls. The knowledge base builds itself." },
   { title: "Zero risk", body: "Read-only + tickets. The AI never takes an action that could break anything." },
   { title: "Live in days", body: "Switched on fast, and it gets smarter every week on its own." },
 ];
 
 const testimonials = [
   {
-    quote: "We went from drowning in tickets to clearing the backlog in two weeks. The handoff to humans is seamless.",
+    quote: "We went from missing calls every day to answering all of them in two weeks. The handoff to humans is seamless.",
     who: "Ops lead, D2C brand",
   },
   {
@@ -64,7 +64,7 @@ const testimonials = [
 const faqs = [
   {
     q: "How long is the demo?",
-    a: "30 minutes, focused on your real conversations — not a generic slide deck.",
+    a: "30 minutes, focused on your real calls — not a generic slide deck.",
   },
   {
     q: "Is there a cost to the demo?",
@@ -100,11 +100,11 @@ export function DemoPageContent() {
             Talk to us
           </span>
           <h1 className="mx-auto mt-5 max-w-2xl font-display text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-            See HyperDial handle your real conversations — not a script
+            See HyperDial handle your real calls — not a script
           </h1>
           <p className="mx-auto mt-5 max-w-lg text-lg leading-7 text-slate-soft">
-            30 minutes, live on the kind of calls and tickets your current
-            setup struggles with. No slides, no commitment.
+            30 minutes, live on the kind of calls your current phone setup
+            struggles with. No slides, no commitment.
           </p>
           <button onClick={() => setOpen(true)} className="btn-primary mt-8">
             Talk to us
@@ -248,10 +248,10 @@ export function DemoPageContent() {
       <section className="wrap pb-24">
         <div className="relative overflow-hidden rounded-xl2 bg-gradient-to-br from-deep via-deep-600 to-brand px-8 py-16 text-center text-white">
           <h2 className="mx-auto max-w-xl font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            See HyperDial on your real conversations
+            See HyperDial on your real calls
           </h2>
           <p className="mx-auto mt-4 max-w-md text-slate-soft">
-            Bring the conversations your current setup struggles with —
+            Bring the calls your current setup struggles with —
             that&rsquo;s the demo worth watching.
           </p>
           <button

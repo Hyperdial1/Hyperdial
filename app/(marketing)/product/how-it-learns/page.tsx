@@ -35,7 +35,7 @@ const loop = [
   {
     n: "4",
     title: "Deploy",
-    body: "Once approved, the pattern fires the same way on every future call that matches — across voice, chat, email, and social at once.",
+    body: "Once approved, the pattern fires the same way on every future call that matches — and carries over to chat, email, and social too.",
   },
 ];
 
@@ -51,9 +51,9 @@ export default function HowItLearnsPage() {
           The Agent Intelligence Process
         </h1>
         <p className="mt-5 text-lg leading-7 text-muted">
-          AI support doesn&rsquo;t usually fail because of the model. It fails
+          AI calling doesn&rsquo;t usually fail because of the model. It fails
           because it&rsquo;s static — deployed once, never updated — while your
-          human agents learn something new every single day, and that
+          human reps learn something new on every single call, and that
           knowledge goes nowhere. The Agent Intelligence Process is the layer
           that closes the loop between human expertise and AI execution.
         </p>
@@ -66,7 +66,7 @@ export default function HowItLearnsPage() {
           Observe, learn, verify, deploy
         </h2>
         <p className="mt-3 max-w-2xl text-slate-soft">
-          Four steps, running continuously, on every conversation your team
+          Four steps, running continuously, on every call your team
           handles.
         </p>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

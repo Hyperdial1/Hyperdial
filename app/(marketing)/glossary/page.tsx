@@ -4,7 +4,7 @@ import { getAll } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Glossary",
-  description: "Plain-language definitions of customer support and AI terms.",
+  description: "Plain-language definitions of calling, call center, and AI terms.",
 };
 
 export default function GlossaryIndex() {
@@ -16,11 +16,11 @@ export default function GlossaryIndex() {
     <div className="wrap py-16">
       <span className="eyebrow">Glossary</span>
       <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight">
-        Support &amp; AI terms, defined
+        Calling &amp; AI terms, defined
       </h1>
       <p className="mt-3 max-w-xl text-muted">
         Short, honest definitions of the words that get thrown around in
-        automated support.
+        automated calling.
       </p>
 
       <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
