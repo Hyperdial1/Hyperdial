@@ -8,13 +8,13 @@ export const docs: Doc[] = [
     category: "Getting started",
     body: `## What HyperDial is
 
-HyperDial is an AI customer service platform that handles conversations across
-voice, live chat, email, and social — and gets measurably better at handling
-them over time. Most AI support tools are trained once and left alone, which
-means they fail the same way on the same questions indefinitely. HyperDial is
-built around a different idea: every conversation your human agents handle is
-a source of knowledge, and that knowledge should make the AI smarter instead
-of disappearing the moment the call ends.
+HyperDial is an AI-powered business phone system that handles calls end to
+end — with live chat, email, and social running on the same brain — and gets
+measurably better at handling them over time. Most AI calling tools are
+trained once and left alone, which means they fail the same way on the same
+questions indefinitely. HyperDial is built around a different idea: every
+call your human reps handle is a source of knowledge, and that knowledge
+should make the AI smarter instead of disappearing the moment the call ends.
 
 In practice, that means two things are always running side by side: the AI
 handling the volume it already knows how to handle, and a learning system

@@ -10,18 +10,18 @@ type Outcome = {
 
 const outcomes: Outcome[] = [
   {
-    title: "Higher deflection",
-    body: "More conversations resolved by AI without a human — your team handles only the exceptions.",
+    title: "Higher answer rate",
+    body: "Every call picked up, around the clock — AI resolves the routine, your team handles only the exceptions.",
     direction: "up",
   },
   {
-    title: "Higher customer satisfaction",
-    body: "Fast, consistent, around-the-clock answers — your best agent's quality on every conversation.",
+    title: "Faster call resolution",
+    body: "Fast, consistent answers on every call — your best rep's quality, whoever picks up.",
     direction: "up",
   },
   {
-    title: "Lower cost",
-    body: "Handle far more volume without adding headcount — your cost per ticket drops.",
+    title: "Lower cost per call",
+    body: "Handle far more call volume without adding headcount — your cost per call drops.",
     direction: "down",
   },
 ];

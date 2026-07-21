@@ -18,20 +18,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE),
   title: {
     default:
-      "HyperDial — the AI customer-service platform that learns from your best agents",
+      "HyperDial — the AI-powered business phone system that learns from your best reps",
     template: "%s · HyperDial",
   },
   description:
-    "HyperDial is the AI customer-service platform that learns from your best agents and gets smarter with every conversation — across voice, chat, email, and social.",
+    "HyperDial is the AI-powered business phone system for SMBs and enterprises — it answers, routes and makes calls, learns from your best reps, and gets smarter with every call.",
   keywords: [
-    "AI customer service",
-    "AI support agent",
-    "AI contact center",
-    "conversational AI",
-    "omnichannel support",
-    "customer service automation",
-    "AI customer experience",
+    "business phone system",
     "AI call center",
+    "cloud telephony",
+    "AI voice agent",
+    "call center software",
+    "AI customer service",
+    "conversational AI",
+    "IVR software",
   ],
   alternates: { canonical: "/" },
   icons: {
@@ -46,17 +46,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "HyperDial",
-    title: "HyperDial — AI customer service that gets smarter with every conversation",
+    title: "HyperDial — the business phone system that gets smarter with every call",
     description:
-      "Your best agent, in every conversation. AI support across voice, chat, email, and social.",
+      "Your best rep's best call, every call. AI-powered calling for SMBs and enterprises — with chat, email and social on the same brain.",
     url: SITE,
     images: [{ url: "/logo.png", width: 1200, height: 1200, alt: "HyperDial" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HyperDial — AI customer service that learns from your best agents",
+    title: "HyperDial — the AI phone system that learns from your best reps",
     description:
-      "Your best agent, in every conversation — across voice, chat, email, and social.",
+      "Your best rep's best call, every call — with chat, email and social on the same brain.",
     images: ["/logo.png"],
   },
   robots: { index: true, follow: true },
@@ -68,7 +68,7 @@ const jsonLd = {
   name: "HyperDial",
   applicationCategory: "BusinessApplication",
   description:
-    "The AI customer-service platform that learns from your best agents and gets smarter with every conversation, across voice, chat, email, and social.",
+    "The AI-powered business phone system that answers, routes and makes calls, learns from your best reps, and gets smarter with every call.",
   operatingSystem: "Web",
   offers: { "@type": "Offer", category: "SaaS" },
 };

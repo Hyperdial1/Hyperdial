@@ -24,7 +24,7 @@ export const tiers: Tier[] = [
   {
     id: "pilot",
     name: "Pilot — Intelligence Layer",
-    tagline: "Add a layer of Agent Intelligence Processing to your current setup and automate your conversations.",
+    tagline: "Add a layer of Agent Intelligence Processing to your current setup and automate your calls and conversations.",
     pricePerSeat: "$80",
     priceNote: "/ seat / mo",
     monthlyTenSeats: "$800 / mo at 10 seats",
@@ -46,7 +46,7 @@ export const tiers: Tier[] = [
   {
     id: "growth",
     name: "Growth — Full Platform",
-    tagline: "Run your entire setup on HyperDial, with Agent Intelligence Processing across every conversation.",
+    tagline: "Run your entire calling operation on HyperDial, with Agent Intelligence Processing across every call and conversation.",
     pricePerSeat: "$120",
     priceNote: "/ seat / mo",
     monthlyTenSeats: "$1,200 / mo at 10 seats",
@@ -55,9 +55,9 @@ export const tiers: Tier[] = [
     deployment: "Native HyperDial platform + bring-your-own-number / forwarding.",
     highlightLabel: "Everything in Pilot, plus",
     highlights: [
+      "Integrated telephony with unlimited calls*",
       "Fully AI integrated conversations",
       "Human hand-off with AI learning from every conversation across channels",
-      "Integrated telephony with unlimited calls*",
       "All channels — emails, chats, calls, SMS and socials",
       "Full analytics & reporting",
       "Automations and triggers",
@@ -123,18 +123,6 @@ export const featureMatrix: FeatureSection[] = [
     ],
   },
   {
-    section: "Channels",
-    rows: [
-      { feature: "AI and human handling over chat", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "AI and human handling over email", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "AI and human handling over WhatsApp", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "AI and human handling over SMS", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "AI and human handling over calls", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "AI over social (Instagram / FB / X)", pilot: "Integrated", growth: "✓", scale: "✓" },
-      { feature: "Web messenger / widget", pilot: "Integrated", growth: "✓", scale: "✓" },
-    ],
-  },
-  {
     section: "Voice & call features",
     rows: [
       { feature: "Buy local / toll-free numbers", pilot: "—", growth: "✓", scale: "✓" },
@@ -151,6 +139,32 @@ export const featureMatrix: FeatureSection[] = [
       { feature: "Call barging / live monitoring", pilot: "—", growth: "—", scale: "✓" },
       { feature: "Standard call reports", pilot: "—", growth: "✓", scale: "✓" },
       { feature: "Custom call reports", pilot: "—", growth: "—", scale: "✓" },
+    ],
+  },
+  {
+    section: "Channels",
+    rows: [
+      { feature: "AI and human handling over calls", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "AI and human handling over chat", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "AI and human handling over email", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "AI and human handling over WhatsApp", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "AI and human handling over SMS", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "AI over social (Instagram / FB / X)", pilot: "Integrated", growth: "✓", scale: "✓" },
+      { feature: "Web messenger / widget", pilot: "Integrated", growth: "✓", scale: "✓" },
+    ],
+  },
+  {
+    section: "Reporting & analytics",
+    rows: [
+      { feature: "Deflection / volume dashboard", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "AI performance report", pilot: "✓", growth: "✓", scale: "✓" },
+      { feature: "CSAT tracking", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Cost-per-ticket tracking", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Full intent & outcome analytics", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Report builder & pre-built reports", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Data export", pilot: "—", growth: "✓", scale: "✓" },
+      { feature: "Advanced / custom reports", pilot: "—", growth: "—", scale: "✓" },
+      { feature: "Real-time dashboard", pilot: "—", growth: "—", scale: "✓" },
     ],
   },
   {
@@ -195,20 +209,6 @@ export const featureMatrix: FeatureSection[] = [
       { feature: "Proactive messages / banners / tooltips", pilot: "—", growth: "—", scale: "✓" },
       { feature: "Surveys", pilot: "—", growth: "—", scale: "✓" },
       { feature: "Product tours / checklists", pilot: "—", growth: "—", scale: "✓" },
-    ],
-  },
-  {
-    section: "Reporting & analytics",
-    rows: [
-      { feature: "Deflection / volume dashboard", pilot: "✓", growth: "✓", scale: "✓" },
-      { feature: "AI performance report", pilot: "✓", growth: "✓", scale: "✓" },
-      { feature: "CSAT tracking", pilot: "—", growth: "✓", scale: "✓" },
-      { feature: "Cost-per-ticket tracking", pilot: "—", growth: "✓", scale: "✓" },
-      { feature: "Full intent & outcome analytics", pilot: "—", growth: "✓", scale: "✓" },
-      { feature: "Report builder & pre-built reports", pilot: "—", growth: "✓", scale: "✓" },
-      { feature: "Data export", pilot: "—", growth: "✓", scale: "✓" },
-      { feature: "Advanced / custom reports", pilot: "—", growth: "—", scale: "✓" },
-      { feature: "Real-time dashboard", pilot: "—", growth: "—", scale: "✓" },
     ],
   },
   {

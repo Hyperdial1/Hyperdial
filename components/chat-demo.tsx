@@ -7,21 +7,21 @@ type Msg = { from: "customer" | "ai"; text: string };
 // Positive, outcome-driven examples across channels.
 const channels: { label: string; script: Msg[] }[] = [
   {
-    label: "Live chat",
-    script: [
-      { from: "customer", text: "Can you help me track my order?" },
-      { from: "ai", text: "Absolutely. Your order is in transit and arrives tomorrow. I've sent tracking details to your email." },
-      { from: "customer", text: "Perfect, thank you." },
-      { from: "ai", text: "Happy to help! Anything else I can do for you?" },
-    ],
-  },
-  {
     label: "Voice",
     script: [
       { from: "customer", text: "Hi, I'd like to upgrade my plan." },
       { from: "ai", text: "Great choice — I can do that now. You'll move to Pro and keep your current rate for 3 months." },
       { from: "customer", text: "That's easier than I expected!" },
       { from: "ai", text: "All set. I've emailed your confirmation and updated your account." },
+    ],
+  },
+  {
+    label: "Live chat",
+    script: [
+      { from: "customer", text: "Can you help me track my order?" },
+      { from: "ai", text: "Absolutely. Your order is in transit and arrives tomorrow. I've sent tracking details to your email." },
+      { from: "customer", text: "Perfect, thank you." },
+      { from: "ai", text: "Happy to help! Anything else I can do for you?" },
     ],
   },
 ];
