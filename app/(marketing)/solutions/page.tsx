@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { getAll } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Solutions",
+  title: "Industries",
   description:
     "The same problem in every industry — and how HyperDial solves it for each.",
 };
@@ -12,7 +12,7 @@ export default function SolutionsIndex() {
   const verticals = getAll("solutions");
   return (
     <div className="wrap py-16">
-      <span className="eyebrow">Solutions</span>
+      <span className="eyebrow">Industries</span>
       <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight">
         Same problem, different language
       </h1>

@@ -3,16 +3,16 @@ import { Wordmark } from "@/components/wordmark";
 
 const groups = [
   {
-    title: "Product",
+    title: "Platform",
     links: [
-      { label: "Overview", href: "/product" },
-      { label: "How it learns", href: "/product/how-it-learns" },
+      { label: "Telephony", href: "/product/telephony" },
+      { label: "AIP", href: "/product/how-it-learns" },
       { label: "Pricing", href: "/pricing" },
       { label: "Docs", href: "/docs" },
     ],
   },
   {
-    title: "Solutions",
+    title: "Industries",
     links: [
       { label: "Insurance", href: "/solutions/insurance" },
       { label: "Real estate", href: "/solutions/real-estate" },

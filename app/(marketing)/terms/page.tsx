@@ -21,7 +21,7 @@ confirm you have the authority to bind that company.
 
 HyperDial provides a subscription platform that handles customer
 conversations across voice, chat, email, WhatsApp, and social channels, and
-includes the Agent Intelligence Process — a system that observes how your
+includes Agent Intelligence Processing — a system that observes how your
 human agents resolve conversations the AI cannot yet handle, drafts the
 successful resolution as a candidate pattern, and deploys it for future use
 once a manager on your team approves it. The specific features, channels, and
@@ -50,7 +50,7 @@ As our business customer, you are responsible for:
 - **The accuracy and legality of your knowledge base** — the documents, FAQs,
   and policies you connect for the AI to answer from;
 - **Reviewing and approving (or rejecting) candidate patterns** surfaced by
-  the Agent Intelligence Process before they go live, and for the
+  AIP before they go live, and for the
   consequences of approving a pattern that turns out to be wrong; and
 - **Your own end users and their data** — where the Services process your
   customers' personal data on your behalf, you act as the data controller
@@ -83,13 +83,13 @@ not relying on AI output as professional, legal, financial, or medical advice.
 HyperDial is not liable for decisions made or actions taken in reliance on
 unreviewed AI output.
 
-## 6. Data, the Agent Intelligence Process, and AI training
+## 6. Data, Agent Intelligence Processing, and AI training
 
 You retain all rights to the data you submit to the Services ("Customer
 Data"), including your knowledge base content, conversation transcripts, and
 call recordings. You grant HyperDial a limited license to use Customer Data
 solely to: (a) provide and support the Services to you; (b) operate the
-Agent Intelligence Process so it learns from and improves within your own
+AIP so it learns from and improves within your own
 account; and (c) comply with applicable law. **Patterns learned from your
 conversations are not shared with, or used to improve the Services for, any
 other customer**, and we do not use your Customer Data to train any shared

@@ -4,26 +4,25 @@ import { OutcomesCarousel } from "@/components/outcomes-carousel";
 import { getAll } from "@/lib/content";
 
 const stats = [
-  { value: "60–80%", label: "of routine calls handled end to end by AI" },
-  { value: "2–3x", label: "call volume on the same team size" },
-  { value: "~2%", label: "of the cost of a human team" },
-  { value: "Days", label: "to go live — not months" },
+  { value: "2x", label: "increase in outreach, with AI-optimized routing and follow-up" },
+  { value: "Up to 3x", label: "better outcomes per call from sentiment and insight on every conversation" },
+  { value: "50%", label: "lower cost per call as AI trains on every conversation it handles" },
 ];
 
 const products = [
   {
-    icon: "🤖",
-    title: "AI Voice Agent",
-    body: "Answers inbound and makes outbound calls end to end, 24/7 — and hands off to a human with full context when it should.",
+    icon: "🎙️",
+    title: "AI Receptionist",
+    body: "Answers, screens and routes every inbound call like a dedicated front-desk rep — 24/7, no hold music, no missed calls.",
   },
   {
     icon: "📞",
-    title: "Business Phone System",
+    title: "Business Communication Platform",
     body: "Local and toll-free numbers, caller ID, custom greetings, mute, hold and transfer — a full cloud phone system in the browser.",
   },
   {
     icon: "🎛️",
-    title: "Call Center Suite",
+    title: "Contact Center Suite",
     body: "IVR and voice workflows, team routing, overflow and callback, live monitoring and call barging for supervisors.",
   },
   {
@@ -33,13 +32,13 @@ const products = [
   },
   {
     icon: "🔁",
-    title: "Agent Intelligence Process",
+    title: "Agent Intelligence Processing",
     body: "The differentiator: AI that studies how your best reps handle calls and turns it into manager-approved, repeatable patterns.",
   },
   {
-    icon: "💬",
-    title: "Omnichannel Inbox",
-    body: "Chat, email, SMS, WhatsApp and social share the same brain as your phone lines — one platform, not six tools.",
+    icon: "🌍",
+    title: "Global Calling Coverage",
+    body: "180+ countries covered, so you can pick up a local presence anywhere your customers are.",
   },
 ];
 
@@ -77,7 +76,7 @@ const segments = [
 const integrations = ["Salesforce", "HubSpot", "Zendesk", "Slack", "Pipedrive", "Jira"];
 
 const trust = [
-  { title: "Keep your numbers & stack", body: "Bring your own number or forward calls — no rip-and-replace, no migration project." },
+  { title: "Keep your numbers & stack", body: "Bring your own number, or pick a new one from a wide directory of global local and toll-free numbers — no rip-and-replace, no migration project." },
   { title: "No huge setup", body: "It learns from your real calls. The knowledge base builds itself." },
   { title: "Zero risk", body: "Read-only + tickets by default. The AI never takes an action that could break anything." },
   { title: "Secure by design", body: "Data encrypted in transit and at rest, with SSO, custom roles and audit trail on enterprise plans." },
@@ -99,12 +98,12 @@ export default function HomePage() {
               AI-powered business calling
             </span>
             <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.12] tracking-tight sm:text-5xl">
-              The business phone system that gets <span className="text-brand-light">smarter</span> with every call.
+              The more you talk to customers, the <span className="text-brand-light">less</span> your team has to.
             </h1>
             <p className="mt-6 max-w-md text-lg leading-7 text-slate-soft">
-              HyperDial answers, routes and makes calls with AI that learns from
-              your best reps — so small teams never miss a call, and enterprises
-              never miss a beat.
+              Built to connect more calls, pull real insight from every one,
+              and train your AI on each conversation, so your team has less
+              to handle with every call that comes in.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/demo" className="btn-primary">Talk to us</Link>
@@ -124,7 +123,7 @@ export default function HomePage() {
 
       {/* Stats strip */}
       <section className="border-b border-line bg-white">
-        <div className="wrap grid grid-cols-2 gap-8 py-10 text-center md:grid-cols-4">
+        <div className="wrap grid grid-cols-1 gap-8 py-10 text-center sm:grid-cols-3">
           {stats.map((s) => (
             <div key={s.label}>
               <p className="font-display text-3xl font-semibold text-brand">{s.value}</p>
@@ -132,6 +131,9 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+        <p className="wrap pb-6 text-center text-xs text-faint">
+          Based on published contact-center and predictive-dialing industry benchmarks. Individual results vary by volume and use case.
+        </p>
       </section>
 
       {/* Core products */}
@@ -157,13 +159,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Agent Intelligence Process loop */}
+      {/* Agent Intelligence Processing loop */}
       <section className="bg-deep text-white">
         <div className="wrap py-20">
           <div className="max-w-2xl">
             <span className="eyebrow text-brand-light">How it gets smarter</span>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              The Agent Intelligence Process: observe, learn, verify, deploy
+              Agent Intelligence Processing: observe, learn, verify, deploy
             </h2>
             <p className="mt-3 text-slate-soft">
               Every call makes it smarter. The knowledge base builds itself.
@@ -247,7 +249,7 @@ export default function HomePage() {
       <section className="wrap py-20">
         <div className="flex items-end justify-between">
           <div>
-            <span className="eyebrow">Solutions</span>
+            <span className="eyebrow">Industries</span>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
               Same problem, every industry
             </h2>

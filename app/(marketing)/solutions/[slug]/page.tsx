@@ -32,7 +32,7 @@ export default function SolutionPage({
   return (
     <article className="wrap max-w-2xl py-16">
       <Link href="/solutions" className="text-sm link-quiet">
-        ← Solutions
+        ← Industries
       </Link>
       <span className="mt-6 block text-xs font-medium uppercase tracking-wider text-teal-dark">
         For {v.title.toLowerCase()} teams

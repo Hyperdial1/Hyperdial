@@ -41,7 +41,7 @@ read-only: the AI can answer questions and open tickets, but it can't take any
 action that could cause real damage until you turn that capability on. See
 **Security & guardrails** for how those tiers work.
 
-**The Agent Intelligence Process.** This is the learning system itself — the
+**Agent Intelligence Processing.** This is the learning system itself — the
 mechanism that watches how your best agents actually resolve the calls the AI
 can't yet handle, drafts a reusable pattern from what worked, and — once a
 manager approves it — deploys that pattern so the AI handles the same
@@ -61,7 +61,7 @@ Most teams move through the same four stages, roughly in this order:
 3. **Run read-only** for an initial period, so you can see exactly how the AI
    behaves before it's allowed to take any action that changes a record or
    spends money.
-4. **Turn on the Agent Intelligence Process** and let it start learning from
+4. **Turn on Agent Intelligence Processing** and let it start learning from
    the conversations your team is already having. This is also when you'll
    start approving or rejecting the first candidate patterns it surfaces.
 
@@ -71,7 +71,7 @@ If you're setting this up for the first time, start with **Quickstart** —
 it walks through connecting your first channel and knowledge source. Read
 **Security & guardrails** before turning on anything beyond read-only access,
 since that's where you decide what HyperDial is and isn't allowed to do
-unsupervised. **How it learns** explains the Agent Intelligence Process loop
+unsupervised. **How it learns** explains the Agent Intelligence Processing loop
 in detail, including Signal Gaps and pattern decay. And once you have
 something live, **Evaluation** covers how to test it against the calls that
 actually matter, not just the easy ones.`,
@@ -103,9 +103,9 @@ and the knowledge base also grows itself from real calls.
 Begin with read-only answers plus ticket creation. The AI never takes an action
 that could break anything until you allow it.
 
-### 4. Let Agent Intelligence Process learn
+### 4. Let Agent Intelligence Processing learn
 
-As your agents handle calls, the Agent Intelligence Process drafts patterns from what works. Your
+As your agents handle calls, AIP drafts patterns from what works. Your
 manager approves them and the AI starts handling those cases the same way.
 
 ## What's next
@@ -114,12 +114,12 @@ Read Guardrails to expand what the AI can do safely.`,
   },
   {
     slug: "how-it-learns",
-    title: "How it learns (Agent Intelligence Process)",
+    title: "How it learns (Agent Intelligence Processing)",
     description: "The observe, learn, verify, deploy loop.",
     category: "Concepts",
-    body: `## The Agent Intelligence Process loop
+    body: `## The Agent Intelligence Processing loop
 
-The Agent Intelligence Process closes the gap between what your humans
+AIP closes the gap between what your humans
 know and what your AI does.
 
 ### Observe
@@ -212,7 +212,7 @@ write down.
 
 ## Approval before deployment, not after
 
-Every pattern the Agent Intelligence Process drafts — and every rule you or
+Every pattern Agent Intelligence Processing drafts — and every rule you or
 your team writes — has to be approved by someone on your side before it
 goes live. The AI never silently teaches itself a new behavior in
 production; a human always signs off first. If two suggested patterns

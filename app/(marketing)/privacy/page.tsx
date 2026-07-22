@@ -59,7 +59,7 @@ any support tickets created from them.
 
 **AI processing data.** To generate responses, the Services send relevant
 conversation content to third-party AI model providers (see section 5) and
-process it through our own Agent Intelligence Process — the system that
+process it through our own Agent Intelligence Processing — the system that
 observes how human agents resolve conversations and turns successful
 resolutions into approved patterns the AI can reuse. Section 6 explains this
 in more detail.
@@ -71,7 +71,7 @@ browser type, pages visited, and cookies — see section 9.
 
 - To provide, operate, and improve the Services
 - To respond to demo requests, set up new customers, and provide support
-- To train and improve our own Agent Intelligence Process models on a
+- To train and improve our own Agent Intelligence Processing models on a
   customer's own data, within the scope of that customer's agreement with us
   (see section 6 for how this works and what it does *not* include)
 - To detect, prevent, and investigate fraud, abuse, or security incidents
@@ -95,7 +95,7 @@ We rely on a limited set of trusted sub-processors to deliver the Services.
 As of the date above, this includes:
 
 - **AI model providers** — OpenAI, Anthropic, and Google (Gemini) — to
-  generate AI responses and power the Agent Intelligence Process
+  generate AI responses and power Agent Intelligence Processing
 - **Telephony** — Twilio, for call routing, recording, and transcription
 - **Messaging** — Meta (WhatsApp Business Platform), for WhatsApp support
 - **Cloud hosting and infrastructure** — AWS, GCP, and/or Azure, depending on
@@ -109,9 +109,9 @@ Each sub-processor is bound by a data processing agreement requiring
 protections at least as strong as those in this policy. A current,
 itemised list is available on request at **deepak@hyperdial.io**.
 
-## 6. How the Agent Intelligence Process uses your data
+## 6. How Agent Intelligence Processing uses your data
 
-The Agent Intelligence Process is the system that makes HyperDial's AI get
+Agent Intelligence Processing is the system that makes HyperDial's AI get
 better over time. It works like this: when a human agent resolves a
 conversation the AI couldn't yet handle, our system extracts the pattern of
 that resolution and turns it into a candidate the AI can use on similar
