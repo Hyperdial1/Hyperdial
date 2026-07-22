@@ -11,12 +11,12 @@ const menus: Menu[] = [
   {
     label: "Platform",
     items: [
-      { label: "Telephony", href: "/product#telephony", desc: "Numbers, routing & IVR — the foundation" },
-      { label: "Agent Intelligence Processing (AIP)", href: "/product/how-it-learns", desc: "The self-learning layer, incl. security & guardrails" },
-      { label: "Virtual Numbers", href: "/product#virtual-numbers", desc: "Local and toll-free numbers, wide coverage" },
-      { label: "Voice Models", href: "/product#voice-models", desc: "Natural, brand-matched AI voices" },
-      { label: "Conversation Intelligence", href: "/product#conversation-intelligence", desc: "Recording, transcripts & sentiment" },
-      { label: "AI Receptionist", href: "/product#ai-receptionist", desc: "Answers, screens and routes every call" },
+      { label: "Telephony", href: "/product/telephony", desc: "Numbers, routing & IVR — the foundation" },
+      { label: "Agent Intelligence Processing", href: "/product/how-it-learns", desc: "The self-learning layer, incl. security & guardrails" },
+      { label: "Virtual Numbers", href: "/product/virtual-numbers", desc: "Local and toll-free numbers, wide coverage" },
+      { label: "Voice Models", href: "/product/voice-models", desc: "Natural, brand-matched AI voices" },
+      { label: "Conversation Intelligence", href: "/product/conversation-intelligence", desc: "Recording, transcripts & sentiment" },
+      { label: "AI Receptionist", href: "/product/ai-receptionist", desc: "Answers, screens and routes every call" },
     ],
   },
   {

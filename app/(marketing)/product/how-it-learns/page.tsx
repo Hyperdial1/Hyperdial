@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Agent Intelligence Processing (AIP)",
+  title: "Agent Intelligence Processing",
   description:
-    "Agent Intelligence Processing (AIP) — how HyperDial turns your best reps' calls into AI that gets smarter every week, and the guardrails that keep it safe.",
+    "Agent Intelligence Processing — how HyperDial turns your best reps' calls into AI that gets smarter every week, and the guardrails that keep it safe.",
 };
 
 const aopProblems = [
@@ -48,13 +48,13 @@ export default function HowItLearnsPage() {
         </Link>
         <span className="eyebrow mt-6 block">The differentiator</span>
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Agent Intelligence Processing (AIP)
+          Agent Intelligence Processing
         </h1>
         <p className="mt-5 text-lg leading-7 text-muted">
           AI calling doesn&rsquo;t usually fail because of the model. It fails
           because it&rsquo;s static — deployed once, never updated — while your
           human reps learn something new on every single call, and that
-          knowledge goes nowhere. Agent Intelligence Processing (AIP) is the layer
+          knowledge goes nowhere. Agent Intelligence Processing is the layer
           that closes the loop between human expertise and AI execution.
         </p>
       </div>

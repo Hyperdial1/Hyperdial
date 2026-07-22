@@ -26,7 +26,7 @@ because there's no consistent record of what was actually said.
 
 ## How HyperDial helps
 
-Agent Intelligence Processing (AIP) watches every human-handled call your team
+Agent Intelligence Processing watches every human-handled call your team
 takes, including the ones that end in a sale and the ones that don't, and
 extracts what the converting calls actually had in common — not a generic
 best-practice guess, but the real phrasing your own best agent used on your
@@ -75,7 +75,7 @@ booked, the CRM gets updated — triggered by what was actually said on the
 call, the moment it ends, every time, for every lead, not just the ones an
 agent has time to follow up with personally.
 
-Agent Intelligence Processing (AIP) also watches which conversations actually
+Agent Intelligence Processing also watches which conversations actually
 turn into booked viewings and closed deals, and surfaces what your best
 agents do differently — the way they qualify a buyer's timeline, the
 language that gets someone to commit to a viewing slot on the spot. That
@@ -148,7 +148,7 @@ counsellor who has it.
 
 ## How HyperDial helps
 
-Agent Intelligence Processing (AIP) makes that invisible pattern visible. It
+Agent Intelligence Processing makes that invisible pattern visible. It
 watches which conversations end in enrollment and which don't, extracts what
 your highest-converting counsellors are actually saying — how they handle
 the "let me think about it," how they frame outcomes, the specific moment
@@ -233,7 +233,7 @@ require a hiring scramble; the AI absorbs the surge while your team focuses
 on the exceptions that actually need a person — a damaged item, an angry
 customer, an edge-case return.
 
-Agent Intelligence Processing (AIP) also picks up on what your best support
+Agent Intelligence Processing also picks up on what your best support
 agents do when a routine question turns into something more — a customer
 who's frustrated, an order that's genuinely gone wrong — and makes those de-
 escalation patterns available across the whole team.
@@ -305,7 +305,7 @@ shift over time, and a script written once doesn't shift with them.
 ## How HyperDial helps
 
 HyperDial adapts in real time within the conversation rather than running a
-fixed script, and Agent Intelligence Processing (AIP) continuously learns which
+fixed script, and Agent Intelligence Processing continuously learns which
 approaches actually reach the right party and lead to a resolution — not in
 theory, but based on what's working on your own calls right now. Approaches
 that are working get reinforced and deployed more broadly; approaches that
@@ -349,7 +349,7 @@ the AI itself — handles the call. Every conversation becomes a searchable,
 comparable record instead of disappearing into a recruiter's personal notes
 or memory the moment the call ends.
 
-Agent Intelligence Processing (AIP) also surfaces what your strongest recruiters
+Agent Intelligence Processing also surfaces what your strongest recruiters
 do differently when a screening call uncovers something important — the
 follow-up questions that reveal whether a candidate is actually a fit — and
 makes those questioning patterns available across the whole team, so

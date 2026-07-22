@@ -22,20 +22,10 @@ export default function PricingPage() {
             Plans built around how you want to run support
           </h1>
           <p className="mt-5 text-lg leading-7 text-muted">
-            Every plan includes Agent Intelligence Processing (AIP) — the only
+            Every plan includes Agent Intelligence Processing — the only
             difference is how much of your stack HyperDial runs. Talk to us
             and we&rsquo;ll recommend the right fit for your volume.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl2 border border-brand/30 bg-brand/5 px-5 py-4">
-            <span className="text-sm leading-6 text-ink">
-              <span className="font-semibold text-brand">Charter pricing:</span>{" "}
-              join the waitlist now and lock in today&rsquo;s introductory rate
-              for life, before general pricing takes effect.
-            </span>
-            <Link href="/demo" className="btn-primary ml-auto shrink-0">
-              Join the waitlist
-            </Link>
-          </div>
         </div>
 
         {/* Tier cards — staircase layout: Pilot shortest, Scale tallest */}
@@ -55,7 +45,12 @@ export default function PricingPage() {
                   </span>
                 )}
                 <h2 className="font-display text-lg font-semibold">{t.name}</h2>
-                <p className={`mt-2 text-sm leading-6 ${t.featured ? "text-slate-soft" : "text-muted"}`}>
+                <p className="mt-4 flex items-baseline gap-1.5">
+                  <span className="font-display text-3xl font-semibold">{t.pricePerSeat}</span>
+                  <span className={`text-sm ${t.featured ? "text-slate-soft" : "text-muted"}`}>{t.priceNote}</span>
+                </p>
+                <p className={`mt-1 text-xs ${t.featured ? "text-slate-soft" : "text-faint"}`}>{t.monthlyTenSeats}</p>
+                <p className={`mt-3 text-sm leading-6 ${t.featured ? "text-slate-soft" : "text-muted"}`}>
                   {t.tagline}
                 </p>
 

@@ -21,7 +21,7 @@ confirm you have the authority to bind that company.
 
 HyperDial provides a subscription platform that handles customer
 conversations across voice, chat, email, WhatsApp, and social channels, and
-includes Agent Intelligence Processing (AIP) — a system that observes how your
+includes Agent Intelligence Processing — a system that observes how your
 human agents resolve conversations the AI cannot yet handle, drafts the
 successful resolution as a candidate pattern, and deploys it for future use
 once a manager on your team approves it. The specific features, channels, and
@@ -83,7 +83,7 @@ not relying on AI output as professional, legal, financial, or medical advice.
 HyperDial is not liable for decisions made or actions taken in reliance on
 unreviewed AI output.
 
-## 6. Data, Agent Intelligence Processing (AIP), and AI training
+## 6. Data, Agent Intelligence Processing, and AI training
 
 You retain all rights to the data you submit to the Services ("Customer
 Data"), including your knowledge base content, conversation transcripts, and

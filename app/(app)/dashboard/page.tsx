@@ -47,7 +47,7 @@ export default function Dashboard() {
         </span>
       </div>
       <p className="mt-2 text-slate-soft">
-        Agent Intelligence Processing (AIP) is classifying and learning from every conversation.
+        Agent Intelligence Processing is classifying and learning from every conversation.
       </p>
 
       {/* KPI cards */}

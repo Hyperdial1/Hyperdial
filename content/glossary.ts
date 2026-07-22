@@ -3,13 +3,13 @@ import type { Doc } from "@/lib/content";
 export const glossary: Doc[] = [
   {
     slug: "agent-intelligence-process",
-    title: "Agent Intelligence Processing (AIP)",
+    title: "Agent Intelligence Processing",
     description:
       "The self-learning layer that turns human-handled calls into approved AI patterns.",
     category: "HyperDial",
     body: `## Definition
 
-**Agent Intelligence Processing (AIP)** is HyperDial's self-learning
+**Agent Intelligence Processing** is HyperDial's self-learning
 system. It watches every human-handled call, extracts what worked, drafts it as a
 pattern, and deploys it to the AI after a manager approves it.
 
@@ -21,7 +21,7 @@ with every call.
 
 ## Related terms
 
-Agent Intelligence Processing (AIP), Signal Gap, pattern decay, knowledge base.`,
+Agent Intelligence Processing, Signal Gap, pattern decay, knowledge base.`,
   },
   {
     slug: "signal-gap",
@@ -42,7 +42,7 @@ Signal Gap turns each failure into a one-time event.
 
 ## Related terms
 
-Agent Intelligence Processing (AIP), escalation, knowledge base.`,
+Agent Intelligence Processing, escalation, knowledge base.`,
   },
   {
     slug: "pattern-decay",
@@ -63,7 +63,7 @@ decaying patterns before they drag results down.
 
 ## Related terms
 
-Agent Intelligence Processing (AIP), decay detection, intent detection.`,
+Agent Intelligence Processing, decay detection, intent detection.`,
   },
   {
     slug: "right-party-contact",
@@ -141,7 +141,7 @@ everything else on the call.
 
 ## Related terms
 
-Agent Intelligence Processing (AIP), routing, outcome classification.`,
+Agent Intelligence Processing, routing, outcome classification.`,
   },
   {
     slug: "after-call-work",

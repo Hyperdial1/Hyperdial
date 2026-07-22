@@ -5,7 +5,7 @@ const groups = [
   {
     title: "Platform",
     links: [
-      { label: "Telephony", href: "/product#telephony" },
+      { label: "Telephony", href: "/product/telephony" },
       { label: "AIP", href: "/product/how-it-learns" },
       { label: "Pricing", href: "/pricing" },
       { label: "Docs", href: "/docs" },
