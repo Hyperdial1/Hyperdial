@@ -9,15 +9,18 @@ type Menu = { label: string; items: Item[] };
 
 const menus: Menu[] = [
   {
-    label: "Product",
+    label: "Platform",
     items: [
-      { label: "Overview", href: "/product", desc: "The AI-powered phone system" },
-      { label: "How it learns", href: "/product/how-it-learns", desc: "Smarter with every call" },
-      { label: "Security & guardrails", href: "/docs/guardrails", desc: "Read-only by default" },
+      { label: "Telephony", href: "/product#telephony", desc: "Numbers, routing & IVR — the foundation" },
+      { label: "Agent Intelligence Processing (AIP)", href: "/product/how-it-learns", desc: "The self-learning layer, incl. security & guardrails" },
+      { label: "Virtual Numbers", href: "/product#virtual-numbers", desc: "Local and toll-free numbers, wide coverage" },
+      { label: "Voice Models", href: "/product#voice-models", desc: "Natural, brand-matched AI voices" },
+      { label: "Conversation Intelligence", href: "/product#conversation-intelligence", desc: "Recording, transcripts & sentiment" },
+      { label: "AI Receptionist", href: "/product#ai-receptionist", desc: "Answers, screens and routes every call" },
     ],
   },
   {
-    label: "Solutions",
+    label: "Industries",
     items: [
       { label: "Insurance", href: "/solutions/insurance" },
       { label: "Real estate", href: "/solutions/real-estate" },
@@ -62,7 +65,8 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-1 md:flex">
           {menus.map((menu) => {
-            const isSolutions = menu.label === "Solutions";
+            const isIndustries = menu.label === "Industries";
+            const isPlatform = menu.label === "Platform";
             return (
               <div
                 key={menu.label}
@@ -83,9 +87,9 @@ export function Navbar() {
                 </button>
 
                 {open === menu.label && (
-                  <div className={`absolute left-0 top-full pt-2 ${isSolutions ? "w-[420px]" : "w-72"}`}>
+                  <div className={`absolute left-0 top-full pt-2 ${isIndustries ? "w-[420px]" : isPlatform ? "w-80" : "w-72"}`}>
                     <div className="card overflow-hidden p-2 shadow-[0_20px_60px_-24px_rgba(10,22,40,0.35)]">
-                      <div className={isSolutions ? "grid grid-cols-2 gap-0.5" : ""}>
+                      <div className={isIndustries ? "grid grid-cols-2 gap-0.5" : ""}>
                         {menu.items.map((item) => (
                           <Link
                             key={item.label}

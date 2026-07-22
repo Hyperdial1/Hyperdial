@@ -2,9 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How it learns",
+  title: "Agent Intelligence Processing (AIP)",
   description:
-    "The Agent Intelligence Process — how HyperDial turns your best agents' calls into AI that gets smarter every week.",
+    "Agent Intelligence Processing (AIP) — how HyperDial turns your best reps' calls into AI that gets smarter every week, and the guardrails that keep it safe.",
 };
 
 const aopProblems = [
@@ -44,11 +44,11 @@ export default function HowItLearnsPage() {
     <div className="wrap py-16">
       <div className="max-w-2xl">
         <Link href="/product" className="text-sm link-quiet">
-          ← Product
+          ← Platform
         </Link>
         <span className="eyebrow mt-6 block">The differentiator</span>
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          The Agent Intelligence Process
+          Agent Intelligence Processing (AIP)
         </h1>
         <p className="mt-5 text-lg leading-7 text-muted">
           AI calling doesn&rsquo;t usually fail because of the model. It fails
@@ -129,6 +129,25 @@ export default function HowItLearnsPage() {
         </div>
       </section>
 
+      {/* Security & guardrails */}
+      <section className="mt-16 max-w-2xl">
+        <span className="eyebrow">Security &amp; guardrails</span>
+        <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">
+          Read-only by default, every deployment
+        </h2>
+        <p className="mt-4 leading-7 text-muted">
+          Every new HyperDial deployment starts read-only: the AI can answer
+          from your connected knowledge base and open tickets, but it can&rsquo;t
+          take an action that changes a record, spends money, or otherwise
+          can&rsquo;t be undone. You turn on capabilities deliberately, one at a
+          time, once you&rsquo;ve seen how it behaves — the same discipline that
+          governs how AIP itself learns and deploys new patterns.
+        </p>
+        <Link href="/docs/guardrails" className="mt-4 inline-block text-sm font-medium text-brand hover:underline">
+          Read the full security &amp; guardrails doc →
+        </Link>
+      </section>
+
       {/* The moat */}
       <section className="mt-16 max-w-2xl">
         <span className="eyebrow">The compounding moat</span>
@@ -166,7 +185,7 @@ export default function HowItLearnsPage() {
 
       <div className="mt-14 flex flex-wrap gap-3">
         <Link href="/demo" className="btn-primary">Talk to us</Link>
-        <Link href="/product" className="btn-ghost">← Back to product overview</Link>
+        <Link href="/product" className="btn-ghost">← Back to platform overview</Link>
       </div>
     </div>
   );

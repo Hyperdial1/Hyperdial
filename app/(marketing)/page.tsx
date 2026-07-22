@@ -12,18 +12,18 @@ const stats = [
 
 const products = [
   {
-    icon: "🤖",
-    title: "AI Voice Agent",
-    body: "Answers inbound and makes outbound calls end to end, 24/7 — and hands off to a human with full context when it should.",
+    icon: "🎙️",
+    title: "AI Receptionist",
+    body: "Answers, screens and routes every inbound call like a dedicated front-desk rep — 24/7, no hold music, no missed calls.",
   },
   {
     icon: "📞",
-    title: "Business Phone System",
+    title: "Business Communication Platform",
     body: "Local and toll-free numbers, caller ID, custom greetings, mute, hold and transfer — a full cloud phone system in the browser.",
   },
   {
     icon: "🎛️",
-    title: "Call Center Suite",
+    title: "Contact Center Suite",
     body: "IVR and voice workflows, team routing, overflow and callback, live monitoring and call barging for supervisors.",
   },
   {
@@ -33,7 +33,7 @@ const products = [
   },
   {
     icon: "🔁",
-    title: "Agent Intelligence Process",
+    title: "Agent Intelligence Processing (AIP)",
     body: "The differentiator: AI that studies how your best reps handle calls and turns it into manager-approved, repeatable patterns.",
   },
   {
@@ -77,7 +77,7 @@ const segments = [
 const integrations = ["Salesforce", "HubSpot", "Zendesk", "Slack", "Pipedrive", "Jira"];
 
 const trust = [
-  { title: "Keep your numbers & stack", body: "Bring your own number or forward calls — no rip-and-replace, no migration project." },
+  { title: "Keep your numbers & stack", body: "Bring your own number, or pick a new one from a wide directory of global local and toll-free numbers — no rip-and-replace, no migration project." },
   { title: "No huge setup", body: "It learns from your real calls. The knowledge base builds itself." },
   { title: "Zero risk", body: "Read-only + tickets by default. The AI never takes an action that could break anything." },
   { title: "Secure by design", body: "Data encrypted in transit and at rest, with SSO, custom roles and audit trail on enterprise plans." },
@@ -247,7 +247,7 @@ export default function HomePage() {
       <section className="wrap py-20">
         <div className="flex items-end justify-between">
           <div>
-            <span className="eyebrow">Solutions</span>
+            <span className="eyebrow">Industries</span>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
               Same problem, every industry
             </h2>

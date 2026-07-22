@@ -9,7 +9,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Plans built around how much of your stack you want HyperDial to run.",
+  description: "Plans built around how much of your stack you want HyperDial to run. Join the waitlist to lock in charter pricing.",
 };
 
 export default function PricingPage() {
@@ -22,10 +22,20 @@ export default function PricingPage() {
             Plans built around how you want to run support
           </h1>
           <p className="mt-5 text-lg leading-7 text-muted">
-            Every plan includes the Agent Intelligence Process — the only
+            Every plan includes Agent Intelligence Processing (AIP) — the only
             difference is how much of your stack HyperDial runs. Talk to us
             and we&rsquo;ll recommend the right fit for your volume.
           </p>
+          <div className="mt-6 flex flex-wrap items-center gap-3 rounded-xl2 border border-brand/30 bg-brand/5 px-5 py-4">
+            <span className="text-sm leading-6 text-ink">
+              <span className="font-semibold text-brand">Charter pricing:</span>{" "}
+              join the waitlist now and lock in today&rsquo;s introductory rate
+              for life, before general pricing takes effect.
+            </span>
+            <Link href="/demo" className="btn-primary ml-auto shrink-0">
+              Join the waitlist
+            </Link>
+          </div>
         </div>
 
         {/* Tier cards — staircase layout: Pilot shortest, Scale tallest */}
