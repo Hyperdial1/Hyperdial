@@ -37,7 +37,7 @@ const menus: Menu[] = [
     label: "Resources",
     items: [
       { label: "Blog", href: "/blog", desc: "Field notes on voice AI" },
-      { label: "Glossary", href: "/glossary", desc: "Voice & Agent Intelligence Process terms" },
+      { label: "Glossary", href: "/glossary", desc: "Voice & AIP terms" },
       { label: "Docs", href: "/docs", desc: "Setup and concepts" },
     ],
   },

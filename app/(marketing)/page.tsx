@@ -157,13 +157,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Agent Intelligence Process loop */}
+      {/* Agent Intelligence Processing (AIP) loop */}
       <section className="bg-deep text-white">
         <div className="wrap py-20">
           <div className="max-w-2xl">
             <span className="eyebrow text-brand-light">How it gets smarter</span>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              The Agent Intelligence Process: observe, learn, verify, deploy
+              Agent Intelligence Processing (AIP): observe, learn, verify, deploy
             </h2>
             <p className="mt-3 text-slate-soft">
               Every call makes it smarter. The knowledge base builds itself.

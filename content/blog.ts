@@ -47,7 +47,7 @@ and walks out the door when the agent leaves.
 
 ## Closing the gap automatically
 
-The Agent Intelligence Process watches the calls that convert, extracts what worked, and — after
+Agent Intelligence Processing (AIP) watches the calls that convert, extracts what worked, and — after
 a manager approves it — makes it available on every call. The best agent's best
 line becomes everyone's line, including the AI's.`,
   },

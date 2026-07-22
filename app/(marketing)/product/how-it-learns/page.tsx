@@ -54,7 +54,7 @@ export default function HowItLearnsPage() {
           AI calling doesn&rsquo;t usually fail because of the model. It fails
           because it&rsquo;s static — deployed once, never updated — while your
           human reps learn something new on every single call, and that
-          knowledge goes nowhere. The Agent Intelligence Process is the layer
+          knowledge goes nowhere. Agent Intelligence Processing (AIP) is the layer
           that closes the loop between human expertise and AI execution.
         </p>
       </div>

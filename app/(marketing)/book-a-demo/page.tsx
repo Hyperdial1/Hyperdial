@@ -155,7 +155,7 @@ export default function BookADemoPage() {
           <div className="max-w-xl">
             <span className="eyebrow text-brand-light">How it gets smarter</span>
             <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight">
-              The Agent Intelligence Process: observe, learn, verify, deploy
+              Agent Intelligence Processing (AIP): observe, learn, verify, deploy
             </h2>
             <p className="mt-3 text-slate-soft">
               This is the part most demos skip — and the part that matters
